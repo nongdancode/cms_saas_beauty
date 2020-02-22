@@ -63,6 +63,7 @@
         <!-- MODULES -->
         <script src="src/modules/marketing/marketing.module.js"></script>
         <script src="src/modules/marketing/components/send-sms/send-sms.component.js"></script>
+        <script src="src/modules/marketing/components/history-customer/history-customer.component.js"></script>
 
         <script src="src/modules/payment/payment.module.js"></script>
 
@@ -106,12 +107,12 @@
         <script src="src/common/services/booking.service.js"></script>
 
         <script>
-            (function () {
-                var src = 'https://cdn.jsdelivr.net/npm/eruda';
-                if (!/eruda=true/.test(window.location) && localStorage.getItem('active-eruda') != 'true') return;
-                document.write('<scr' + 'ipt src="' + src + '"></scr' + 'ipt>');
-                document.write('<scr' + 'ipt>eruda.init();</scr' + 'ipt>');
-            })();
+         (function () {
+             var src = 'https://cdn.jsdelivr.net/npm/eruda';
+             if (!/eruda=true/.test(window.location) && localStorage.getItem('active-eruda') != 'true') return;
+             document.write('<scr' + 'ipt src="' + src + '"></scr' + 'ipt>');
+             document.write('<scr' + 'ipt>eruda.init();</scr' + 'ipt>');
+         })();
         </script>
     </body>
 </html>

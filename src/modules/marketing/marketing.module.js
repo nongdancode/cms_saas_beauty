@@ -1,6 +1,7 @@
 (function(){
     const module = angular.module('module.marketing', [
-        'module.marketing.components.send-sms'
+        'module.marketing.components.send-sms',
+        'module.marketing.components.history-customer'
     ]);
 
     module.config(function (NgAdminConfigurationProvider) {
@@ -23,7 +24,9 @@
                 .template('<img src="{{ entry.values.image }}" height="42" width="42" />'),
             nga.field('email', 'email'),
             nga.field('visit_count', 'number'),
-            nga.field('amount_paid', 'number')
+            nga.field('amount_paid', 'number'),
+            nga.field('action', 'template')
+                .template('<ma-history-customer></ma-history-customer>')
         ]);
 
         listView.filters([
