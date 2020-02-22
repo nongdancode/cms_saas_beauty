@@ -103,7 +103,9 @@ gulp.task('clean:dist', function() {
 
 gulp.task('html:dist', function () {
   return gulp.src(paths.srcHTML)
-    // .pipe(htmlclean())
+    .pipe(htmlclean({
+      protect: /<!--(.*?)-->/g,
+    }))
     .pipe(gulp.dest(paths.dist));
 });
 
@@ -115,8 +117,10 @@ gulp.task('css:dist', function () {
 });
 
 gulp.task('js:dist', function () {
-  return gulp.src(paths.srcJS)
-    // .pipe(concat('lib-2.app.min.js'))
+  return gulp.src([
+    paths.srcJS,
+    'src/app/app.js'
+  ]).pipe(concat('lib-2.app.min.js'))
     .pipe(uglify({
       mangle: false
     }))
