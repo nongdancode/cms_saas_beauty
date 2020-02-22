@@ -30,12 +30,13 @@
             nga.field('name'),
             nga.field('phone_number'),
             nga.field('last_visit', 'template')
-                .template('<ma-daterange-filter ng-model="value"></ma-daterange-filter>'),
+                .template('<ma-daterange-filter ng-model="value"></ma-daterange-filter>')
+                .pinned(true),
             nga.field('birthday', 'template')
                 .template('<ma-daterange-filter ng-model="value"></ma-daterange-filter>'),
             nga.field('email', 'email'),
             nga.field('visit_count', 'number'),
-            nga.field('amount_paid', 'number')
+            nga.field('amount_paid', 'number'),
         ]);
 
         var template = '<ma-send-sms selection="selection" entity="entity"></ma-send-sms>' +

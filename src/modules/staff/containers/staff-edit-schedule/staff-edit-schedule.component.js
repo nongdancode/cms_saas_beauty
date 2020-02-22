@@ -45,10 +45,10 @@
                             durationEditable: false
                         };
 
+                        event._id = `${event.id}-${event.start}-${event.end}`;
+
                         if (!self.isOverlapping(event)) {
                             $('.calendar').fullCalendar('renderEvent', event, true);
-                            self.data.tasks.find(task => task.id === item.id).selected = true;
-                            $(this).remove();
                         }
                     },
                     eventRender: function(event, element) {
@@ -62,22 +62,7 @@
                     },
                     eventClick: function(calEvent, jsEvent, view) {
                         if (jsEvent.target.id === 'delete-event') {
-                            const task = self.data.tasks.find(task => task.id === calEvent.id);
-
-                            if (task) {
-                                task.selected = false;
-                            } else {
-                                self.data.tasks = [
-                                    ...self.data.tasks,
-                                    {
-                                        ...calEvent.task,
-                                        selected: false,
-                                        color: window.models.TaskType[calEvent.type].color
-                                    }
-                                ];
-                            }
-
-                            $('.calendar').fullCalendar('removeEvents', calEvent.id);
+                            $('.calendar').fullCalendar('removeEvents', calEvent._id);
                         }
                     },
                     eventConstraint: {
@@ -102,16 +87,20 @@
 
             this.$scope.$watch('$ctrl.data.events', (newValue, oldValue) => {
                 const events = newValue.map(event => {
-                    return {
+                    event = {
                         ...event,
                         id: event.task ? event.task.id : -1,
                         title: (event.task || {}).name,
-                        start: moment.unix(event.start),
-                        end: moment.unix(event.end),
+                        start: moment.unix(event.start).valueOf(),
+                        end: moment.unix(event.end).valueOf(),
                         editable: event.type !== 'disable',
                         durationEditable: false,
                         backgroundColor: window.models.TaskType[event.type].color
                     };
+
+                    event._id = `${event.id}-${event.start}-${event.end}`;
+
+                    return event;
                 });
 
                 this.uiConfig.calendar = {

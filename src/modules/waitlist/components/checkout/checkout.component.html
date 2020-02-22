@@ -1,3 +1,9 @@
+<style>
+    .checkout-form {
+        margin: 20px 35px 0 35px;
+    }
+</style>
+
 <a class="btn btn-default btn-sm" ng-click="$ctrl.showModal()" style="width: 100px">
     <span class="glyphicon glyphicon-print" aria-hidden="true"></span>&nbsp;
     <span class="hidden-xs ng-scope">Checkout</span>
@@ -9,6 +15,16 @@
     </div>
     <div class="modal-body" id="modal-body">
         <app-invoice invoice="$ctrl.data.invoice" view-type="$ctrl.data.viewType"></app-invoice>
+
+        <form class="checkout-form">
+            <div class="form-group">
+                <label for="email">Payment Type:</label>
+                <select class="form-control">
+                    <option value="cash">Cash</option>
+                    <option value="check">Check</option>
+                </select>
+            </div>
+        </form>
     </div>
     <div class="modal-footer">
         <button class="btn btn-primary" type="button" ng-click="$ctrl.toggleViewType()" ng-disabled="$ctrl.disableToggle">{{ $ctrl.data.viewType === 'view' ? 'Edit' : 'View' }}</button>

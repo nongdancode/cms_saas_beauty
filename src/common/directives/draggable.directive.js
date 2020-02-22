@@ -7,6 +7,7 @@
                     const item = JSON.parse(attr.item || '{}');
 
                     const params = {
+                        ...item,
                         id: +item.id,
                         type: item.type,
                         title: item.name,

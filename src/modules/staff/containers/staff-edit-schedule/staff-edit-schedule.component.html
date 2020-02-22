@@ -66,7 +66,7 @@
     <div class="col-sm-3">
         <div class="external-events">
             <p><strong>Tasks</strong></p>
-            <div ng-if="!task.selected" ng-repeat="task in $ctrl.data.tasks" class="fc-event" data-item="{{ task }}" style="background-color: {{ task.color }}" draggable>
+            <div ng-repeat="task in $ctrl.data.tasks" class="fc-event" data-item="{{ task }}" style="background-color: {{ task.color }}" draggable>
                 {{ task.name }} ({{ task.stepping }} mins)
             </div>
         </div>

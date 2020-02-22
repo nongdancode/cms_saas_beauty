@@ -1,3 +1,27 @@
-<div style="display: flex; align-items: center; align-content: center; padding-left: 15px;">
-    <input type="checkbox" ng-change="$ctrl.change(checkbox)" ng-model="$ctrl.checkbox" />
+<style>
+    .btn-switch {
+        display: flex;
+        align-items: center;
+        align-content: center;
+        padding-left: 6px;
+    }
+
+    .btn-switch > .active, .btn-switch > .inactive {
+        font-size: 26px;
+        cursor: pointer;
+    }
+
+    .btn-switch > i.active {
+        color: #5cb85c;
+    }
+
+    .btn-switch > i.inactive {
+        color: #d9534f;
+    }
+</style>
+
+<div class="btn-switch">
+    <i class="fa fa-toggle-on"
+        ng-class="$ctrl.entry.values.active ? 'active' : 'fa-rotate-180 inactive'"
+        ng-click="$ctrl.change(checkbox)" />
 </div>

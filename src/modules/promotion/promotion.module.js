@@ -18,6 +18,7 @@
             nga.field('name'),
             nga.field('description'),
             nga.field('status'),
+            nga.field('discount_rate'),
             nga.field('active')
                 .template('<ma-promotion-active entry="entry"></ma-promotion-active>')
         ]);
@@ -25,7 +26,8 @@
         listView.filters([
             nga.field('name'),
             nga.field('description'),
-            nga.field('status')
+            nga.field('status'),
+            nga.field('discount_rate')
         ]);
 
         window.addEntity('promotion', entity);
@@ -35,10 +37,12 @@
         RestangularProvider.addResponseInterceptor(function(data, operation, what, url, response) {
             if (operation === "getList" && what === 'promotion') {
                 return [
-                    {                        id: 1,
+                    {
+                        id: 1,
                         name: 'Promotion 1',
                         description: 'Id velit ut tortor pretium.',
                         status: 'Status 1',
+                        discount_rate: 15,
                         active: true
                     },
                     {
@@ -46,6 +50,7 @@
                         name: 'Promotion 2',
                         description: 'Scelerisque eleifend donec pretium vulputate.',
                         status: 'Status 2',
+                        discount_rate: 30,
                         active: false
                     }
                 ];

@@ -14,6 +14,7 @@
             this.PromotionService.updatePromotionById(this.entry.values.id, {
                 active: state
             }).finally(() => {
+                this.entry.values.active = !this.entry.values.active;
                 this.progression.done();
             });
         };

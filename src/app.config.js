@@ -76,8 +76,6 @@
                         });
                     });
 
-                dataList = dataList.slice(0, 4);
-
                 response.totalCount = dataList.length;
 
                 if (typeof _page !== 'undefined' && typeof _perPage !== 'undefined') {
@@ -124,19 +122,19 @@
                       .icon('<span class="glyphicon glyphicon-shopping-cart"></span>')
               )
               .addChild(
-                  nga.menu().title('Staff')
+                  nga.menu().title('Manager / Schedule')
                       .active(path => path.includes('/staff/'))
                       .icon('<span class="glyphicon glyphicon-time"></span>')
                       .addChild(
                           nga.menu()
-                              .title('Staff Manager')
+                              .title('Schedule Manager')
                               .link('/staff/list')
                               .active(path => path == '/staff/list')
                               .icon('<span class="glyphicon glyphicon-calendar"></span>')
                       )
                       .addChild(
                           nga.menu()
-                              .title('Staff View')
+                              .title('Schedule View')
                               .link('/staff/schedule')
                               .active(path => path == '/staff/schedule')
                               .icon('<span class="glyphicon glyphicon-eye-open"></span>')

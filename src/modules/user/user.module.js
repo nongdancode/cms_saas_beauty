@@ -14,9 +14,13 @@
 
         listView.fields([
             nga.field('name'),
+            nga.field('social_sn')
+                .label('Social SN'),
+            nga.field('email'),
             nga.field('phone_number'),
             nga.field('role', 'number'),
-            nga.field('salary_type', 'number'),
+            nga.field('base_salary', 'number'),
+            nga.field('commision_type'),
             nga.field('services', 'reference_many')
                 .targetEntity(nga.entity('service'))
                 .targetField(nga.field('name'))
@@ -27,18 +31,26 @@
 
         listView.filters([
             nga.field('name'),
+            nga.field('social_sn')
+                .label('Social SN'),
+            nga.field('email'),
             nga.field('phone_number'),
             nga.field('role', 'number'),
-            nga.field('salary_type', 'number')
+            nga.field('base_salary', 'number'),
+            nga.field('commision_type')
         ]);
 
         const creationView = entity.creationView();
 
         creationView.fields([
             nga.field('name'),
+            nga.field('social_sn')
+                .label('Social SN'),
+            nga.field('email'),
             nga.field('phone_number'),
             nga.field('role', 'number'),
-            nga.field('salary_type', 'number'),
+            nga.field('base_salary', 'number'),
+            nga.field('commision_type'),
             nga.field('services', 'reference_many')
                 .targetEntity(nga.entity('service'))
                 .targetField(nga.field('name'))
@@ -55,16 +67,22 @@
                         id: 1,
                         name: 'User 1',
                         phone_number: '111-111-1111',
+                        social_sn: '123456789',
+                        email: 'test@abc.com',
                         role: 1,
-                        salary_type: 1,
+                        base_salary: 200,
+                        commision_type: 1,
                         services: [1, 2]
                     },
                     {
                         id: 2,
                         name: 'User 2',
                         phone_number: '222-222-2222',
+                        social_sn: '123456789',
+                        email: 'test@abc.com',
                         role: 2,
-                        salary_type: 2,
+                        base_salary: 300,
+                        commision_type: 2,
                         services: [1, 2]
                     }
                 ];
