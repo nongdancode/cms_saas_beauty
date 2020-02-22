@@ -1,0 +1,32 @@
+{
+  "name": "lash-admin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "serve": "serve . -l 5001"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "angular-daterangepicker": "^0.2.3-alpha1",
+    "angular-ui-bootstrap": "^2.5.6",
+    "angular-ui-calendar": "^1.0.2",
+    "angular-ui-mask": "^1.8.7",
+    "bootstrap": "^3.3.7",
+    "daterangepicker": "^3.0.5",
+    "eonasdan-bootstrap-datetimepicker": "^4.17.47",
+    "fullcalendar": "^2.9.1",
+    "highcharts": "^8.0.0",
+    "highcharts-ng": "^1.2.1",
+    "jquery": "^3.4.1",
+    "jquery-ui-dist": "^1.12.1",
+    "moment": "^2.24.0",
+    "ng-admin": "^1.0.13",
+    "ngstorage": "^0.3.11",
+    "ui-select": "^0.19.8"
+  },
+  "devDependencies": {
+    "serve": "^11.3.0"
+  }
+}

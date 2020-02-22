@@ -1,0 +1,129 @@
+<style>
+    .img > img {
+        width:100%;
+        height:100%;
+        object-fit: contain;
+    }
+
+    .flex-item {
+        flex-grow: 1;
+    }
+
+    .select-item .img {
+        display: inline-block;
+        height: 24px;
+        width: 24px;
+
+        margin-right: 10px;
+        background: #eee;
+    }
+
+    .select-item .text {
+        display: inline-flex;
+        align-items: center;
+        font-size: 12px;
+    }
+
+    .service-detail-form {
+        margin-bottom: 0 20px 20px 20px;
+        padding: 10px 20px;
+        border: 2px solid #eee;
+        border-radius: 4px;
+    }
+
+    .service-detail-form > h3 {
+        text-align: center;
+    }
+</style>
+
+<a class="btn btn-default btn-sm" ng-click="$ctrl.showModal()" style="width: 100px">
+    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>&nbsp;
+    <span class="hidden-xs ng-scope">Checkin</span>
+</a>
+
+<script type="text/ng-template" id="checkin-modal.html">
+    <div class="modal-header">
+        <h3 class="modal-title" id="modal-title">Checkin</h3>
+    </div>
+    <div class="modal-body" id="modal-body">
+        <div class="form">
+            <div class="form-group">
+                <label>Services</label>
+                <ui-select multiple ng-model="$ctrl.form.serviceIds" theme="bootstrap" title="Choose services">
+                    <ui-select-match placeholder="Select services">
+                        {{ $item.name }}
+                    </ui-select-match>
+                    <ui-select-choices repeat="service.id as service in $ctrl.data.services | propsFilter: { name: $select.search }">
+                        <div class="flex-item select-item">
+                            <div class="img">
+                                <img alt="" ng-src="{{ service.img }}"/>
+                            </div>
+
+                            <div class="text" ng-bind-html="service.name | highlight: $select.search"></div>
+                        </div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div>
+
+        <div class="service-detail-form" ng-repeat="service in $ctrl.data.services" ng-if="$ctrl.form.serviceIds.includes(service.id)">
+            <h3>{{ service.name }}</h3>
+
+            <hr/>
+
+            <div class="form-group">
+                <label>Employee</label>
+                <ui-select class="w-100" ng-model="$ctrl.form.employees[service.id]" theme="bootstrap" title="Choose a employee">
+                    <ui-select-match placeholder="Select a employee">
+                        {{ $select.selected.name }}
+                    </ui-select-match>
+                    <ui-select-choices repeat="employee.id as employee in $ctrl.data.employees | filter:{ service_id: service.id } | propsFilter: { name: $select.search }">
+                        <div class="flex-item select-item">
+                            <div class="img">
+                                <img alt="" ng-src="{{ employee.img }}"/>
+                            </div>
+
+                            <div class="text" ng-bind-html="employee.name | highlight: $select.search"></div>
+                        </div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+
+            <div class="form-group" style="display: flex; justify-content: space-between;" ng-if="$ctrl.form.employees[service.id]">
+                <div style="display:inline-block; width: 48%">
+                    <label>Date</label>
+                    <div class="input-group input-date-time-picker" datetimepicker
+                        ng-model="$ctrl.form.dates[service.id]"
+                        options="{
+                        format: 'MM/DD/YYYY',
+                        enabledDates: $ctrl.util.keys($ctrl.data.availableTimes[$ctrl.form.employees[service.id]]).map($ctrl.util.toMoment)
+                        }" >
+                        <input class="form-control" />
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+                <div style="display:inline-block; width: 48%">
+                    <label>Time</label>
+                    <ui-select style="width: 100%;" ng-model="$ctrl.form.times[service.id]" theme="bootstrap" title="Choose time">
+                        <ui-select-match placeholder="Select time">
+                            {{ $select.selected.text }}
+                        </ui-select-match>
+                        <ui-select-choices
+                            repeat="time.value as time in
+                            $ctrl.data.availableTimes[$ctrl.form.employees[service.id]][$ctrl.form.dates[service.id].startOf('day').valueOf()] | propsFilter: { text: $select.search }">
+                            <div class="flex-item">
+                                <div class="text" ng-bind-html="time.text | highlight: $select.search"></div>
+                            </div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="$ctrl.checkin()" ng-disabled="$ctrl.isDisabledCheckin">Checkin</button>
+        <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+    </div>
+</script>

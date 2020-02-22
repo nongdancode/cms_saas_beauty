@@ -1,0 +1,23 @@
+<div class="row list-header ng-scope">
+    <div class="col-lg-12">
+        <div class="page-header">
+            <h1>Customer Report</h1>
+        </div>
+    </div>
+</div>
+
+<div>
+    <div style="display: flex; justify-content: space-between;">
+        <div class="btn-group" role="group">
+            <button type="button" class="btn btn-default" ng-click="$ctrl.data.dateType = 'day'">Day</button>
+            <button type="button" class="btn btn-default" ng-click="$ctrl.data.dateType = 'week'">Week</button>
+            <button type="button" class="btn btn-default" ng-click="$ctrl.data.dateType = 'month'">Month</button>
+        </div>
+    </div>
+
+    <highchart id="chartByDate" config="$ctrl.chartByDate"></highchart>
+
+    <div style="display: flex; justify-content: center">
+        <highchart config="$ctrl.chartByAge"></highchart>
+    </div>
+</div>

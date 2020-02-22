@@ -1,0 +1,23 @@
+<style>
+    html, body {
+        margin: 0;
+        padding: 0;
+        font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+        font-size: 14px;
+    }
+
+    .calendar {
+        max-width: 900px;
+        margin: 20px auto;
+    }
+</style>
+
+<div class="row list-header ng-scope">
+    <div class="col-lg-12">
+        <div class="page-header">
+            <h1>Staff Schedule: {{ $ctrl.data.staff.name }}</h1>
+        </div>
+    </div>
+</div>
+
+<div class="calendar" ui-calendar="$ctrl.uiConfig.calendar" ng-model="$ctrl.data.eventSources"></div>
