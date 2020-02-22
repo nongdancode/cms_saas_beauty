@@ -26,7 +26,7 @@
             nga.field('visit_count', 'number'),
             nga.field('amount_paid', 'number'),
             nga.field('action', 'template')
-                .template('<ma-history-customer></ma-history-customer>')
+                .template('<ma-history-customer id="entry.values.id"></ma-history-customer>')
         ]);
 
         listView.filters([

@@ -2,6 +2,8 @@
     const module = angular.module('module.marketing.components.history-customer', []);
 
     class HistoryCustomerComponent {
+        data = {};
+
         constructor($scope, $timeout, $uibModal, notification, MarketingService) {
             this.$scope = $scope;
             this.$timeout = $timeout;
@@ -11,7 +13,22 @@
         }
 
         $onInit() {
-            this.data = {};
+            this.data.history = [
+                {
+                    id: 1,
+                    service_name: 'Lash 1',
+                    count: 10,
+                    note: 'Pick Jenny'
+                },
+                {
+                    id: 2,
+                    service_name: 'Lash 2',
+                    count: 6,
+                    note: 'Pick Alice'
+                }
+            ];
+
+            this.MarketingService.historyCustomer(this.id);
         }
 
         showModal() {
@@ -30,7 +47,9 @@
     }
 
     module.component('maHistoryCustomer', {
-        bindings: {},
+        bindings: {
+            id: '<'
+        },
         controller: HistoryCustomerComponent,
         templateUrl: 'src/modules/marketing/components/history-customer/history-customer.component.html'
     });

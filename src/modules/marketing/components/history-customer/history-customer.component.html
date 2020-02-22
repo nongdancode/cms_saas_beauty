@@ -8,6 +8,24 @@
         <h3 class="modal-title" id="modal-title">History Customer</h3>
     </div>
     <div class="modal-body" id="modal-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Service Name</th>
+                    <th scope="col">Count</th>
+                    <th scope="col">Note</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="row in $ctrl.data.history">
+                    <th scope="row">{{ $index }}</th>
+                    <td>{{ row.service_name }}</td>
+                    <td>{{ row.count }}</td>
+                    <td>{{ row.note }}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
     <div class="modal-footer">
         <button class="btn btn-primary" type="button" ng-click="$ctrl.close()">Close</button>
