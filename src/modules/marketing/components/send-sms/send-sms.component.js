@@ -2,16 +2,19 @@
     const module = angular.module('module.marketing.components.send-sms', []);
 
     class SendSmsComponent {
-        constructor($scope, $uibModal, notification, MarketingService) {
+        constructor($scope, $timeout, $uibModal, notification, MarketingService) {
             this.$scope = $scope;
+            this.$timeout = $timeout;
             this.$uibModal = $uibModal;
             this.notification = notification;
             this.MarketingService = MarketingService;
         }
 
         $onInit() {
-            this.data = {
-                message: ''
+            this.form = {
+                message: '',
+                type: 'sms',
+                file: null
             };
         }
 
@@ -27,23 +30,44 @@
 
         };
 
+        upload(e) {
+            this.$timeout(() => {
+                this.form.file = e.files[0];
+            });
+        }
+
         send() {
             if (confirm('Send SMS to: ' + this.names)) {
                 const ids = this.selection.map(function (entry) {
                     return entry.identifierValue;
                 });
 
-                this.MarketingService.sendSms(ids, this.data.message).then(res => {
-                    this.notification.log('Send SMS Successful!');
+                console.log(this.form);
 
-                    this.modal.close();
-                });
+                // this.MarketingService.sendSms(ids, this.form.message).then(res => {
+                //     this.notification.log('Send SMS Successful!');
+
+                //     this.close();
+                // });
             }
         };
 
         cancel() {
-            this.modal.close();
+            this.close();
         };
+
+        close() {
+            this.modal.close();
+            this.reset();
+        }
+
+        reset() {
+            this.form = {
+                message: '',
+                type: 'sms',
+                file: null
+            };
+        }
 
         get isShow() {
             return this.selection.length;

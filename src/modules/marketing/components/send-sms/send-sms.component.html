@@ -10,10 +10,33 @@
     <div class="modal-body" id="modal-body">
         <div style="margin-bottom: 5px;">Send SMS to: <b>{{ $ctrl.names }}</b></div>
         <hr/>
-        <textarea ng-model="$ctrl.data.message" class="form-control" rows="10" style="resize: none;"></textarea>
+        <form name="templateForm" action="">
+            <div class="form-group">
+                <label for="">Message Type</label>
+                <select name="type" class="form-control" style="width: 80px;" ng-model="$ctrl.form.type">
+                    <option value="sms">SMS</option>
+                    <option value="mms">MMS</option>
+                </select>
+            </div>
+            <div class="form-group" ng-if="$ctrl.form.type === 'mms'">
+                <label style="display: block;">Image</label>
+
+                <label class="btn btn-default" style="width: 80px;">
+                    Browse <input type="file" name="file" class="hidden" onchange="angular.element(this).scope().$ctrl.upload(this)">
+                </label>
+
+                <label style="margin-left: 5px; font-weight: normal;">
+                    {{ $ctrl.form.file.name }}
+                </label>
+            </div>
+            <div class="form-group">
+                <label for="">Message</label>
+                <textarea name="message" ng-model="$ctrl.form.message" class="form-control" rows="10" style="resize: none;"></textarea>
+            </div>
+        </form>
     </div>
     <div class="modal-footer">
-        <button class="btn btn-primary" type="button" ng-disabled="!$ctrl.data.message" ng-click="$ctrl.send()">OK</button>
+        <button class="btn btn-primary" type="button" ng-click="$ctrl.send(templateForm)">OK</button>
         <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
     </div>
 </script>
