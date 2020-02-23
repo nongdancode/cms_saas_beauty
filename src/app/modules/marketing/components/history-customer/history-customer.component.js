@@ -27,11 +27,11 @@
                     note: 'Pick Alice'
                 }
             ];
-
-            this.MarketingService.historyCustomer(this.id);
         }
 
         showModal() {
+            this.MarketingService.historyCustomer(this.id);
+
             this.modal = this.$uibModal.open({
                 animation: true,
                 templateUrl: 'history-customer-modal.html',
