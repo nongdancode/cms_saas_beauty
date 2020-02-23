@@ -11,7 +11,9 @@
         $onInit() {
             this.data = {
                 invoice: this.entry.values.invoice,
-                viewType: 'view'
+                viewType: 'view',
+                paymentType: 'cash',
+                discount: '00'
             };
         }
 

@@ -14,8 +14,10 @@
 
         listView.fields([
             nga.field('name'),
-            nga.field('cost', 'number'),
-            nga.field('stepping', 'number'),
+            nga.field('cost', 'number')
+                .label('Price'),
+            nga.field('stepping', 'number')
+                .label('Duration'),
             nga.field('users', 'reference_many')
                 .targetEntity(nga.entity('user'))
                 .targetField(nga.field('name'))
@@ -26,16 +28,20 @@
 
         listView.filters([
             nga.field('name'),
-            nga.field('cost', 'number'),
-            nga.field('stepping', 'number'),
+            nga.field('cost', 'number')
+                .label('Price'),
+            nga.field('stepping', 'number')
+                .label('Duration')
         ]);
 
         const creationView = entity.creationView();
 
         creationView.fields([
             nga.field('name'),
-            nga.field('cost', 'number'),
-            nga.field('stepping', 'number'),
+            nga.field('cost', 'number')
+                .label('Price'),
+            nga.field('stepping', 'number')
+                .label('Duration'),
             nga.field('users', 'reference_many')
                 .targetEntity(nga.entity('user'))
                 .targetField(nga.field('name'))

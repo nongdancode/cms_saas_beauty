@@ -9,7 +9,7 @@
         const listView = entity.listView();
 
         listView
-            .title('User')
+            .title('Employee')
             .perPage(10);
 
         listView.fields([
@@ -21,6 +21,7 @@
             nga.field('role', 'number'),
             nga.field('base_salary', 'number'),
             nga.field('commision_type'),
+            nga.field('payment_type'),
             nga.field('services', 'reference_many')
                 .targetEntity(nga.entity('service'))
                 .targetField(nga.field('name'))
@@ -37,10 +38,14 @@
             nga.field('phone_number'),
             nga.field('role', 'number'),
             nga.field('base_salary', 'number'),
-            nga.field('commision_type')
+            nga.field('commision_type'),
+            nga.field('payment_type')
         ]);
 
         const creationView = entity.creationView();
+
+        creationView
+            .title('Employee');
 
         creationView.fields([
             nga.field('name'),
@@ -51,6 +56,7 @@
             nga.field('role', 'number'),
             nga.field('base_salary', 'number'),
             nga.field('commision_type'),
+            nga.field('payment_type'),
             nga.field('services', 'reference_many')
                 .targetEntity(nga.entity('service'))
                 .targetField(nga.field('name'))
@@ -72,6 +78,7 @@
                         role: 1,
                         base_salary: 200,
                         commision_type: 1,
+                        payment_type: 1,
                         services: [1, 2]
                     },
                     {
@@ -83,6 +90,7 @@
                         role: 2,
                         base_salary: 300,
                         commision_type: 2,
+                        payment_type: 2,
                         services: [1, 2]
                     }
                 ];

@@ -18,11 +18,18 @@
 
         <form class="checkout-form">
             <div class="form-group">
-                <label for="email">Payment Type:</label>
-                <select class="form-control">
+                <label>Payment Type:</label>
+                <select class="form-control" ng-model="$ctrl.data.paymentType">
                     <option value="cash">Cash</option>
                     <option value="check">Check</option>
                 </select>
+            </div>
+            <div class="form-group">
+                <label>Discount:</label>
+                <input class="form-control" ng-model="$ctrl.data.discount"
+                       ui-mask="99%"
+                       ui-mask-placeholder
+                       ui-mask-placeholder-char="_"/>
             </div>
         </form>
     </div>

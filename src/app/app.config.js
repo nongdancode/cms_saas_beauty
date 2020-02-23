@@ -171,7 +171,7 @@
               )
               .addChild(
                   nga.menu(user)
-                      .title('User')
+                      .title('Employee')
                       .icon('<span class="glyphicon glyphicon-user"></span>')
               )
               .addChild(
