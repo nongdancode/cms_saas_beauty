@@ -40,8 +40,8 @@
 
                         event = {
                             ...event,
-                            start: date.valueOf(),
-                            end: date.add(item.stepping, 'minutes').valueOf(),
+                            start: moment(date).valueOf(),
+                            end: moment(date).add(item.stepping, 'minutes').valueOf(),
                             durationEditable: false
                         };
 
