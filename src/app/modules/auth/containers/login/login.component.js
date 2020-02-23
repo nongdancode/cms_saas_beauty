@@ -20,7 +20,10 @@
         login(username, password) {
             this.AuthService.login(username, password)
                 .then(res => {
-                    this.UserService.setUser(username);
+                    this.UserService.setUser({
+                        id: 1,
+                        username: username
+                    });
                     this.notification.log('Login successfully !');
                     this.$location.path('/dashboard');
                 }, err => {

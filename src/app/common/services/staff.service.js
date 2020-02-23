@@ -11,17 +11,17 @@
 
         service.getStaffTasks = function(id) {
             return $http.get(window.config.baseApiUrl + `staffs/${id}/tasks`)
-                .then(res => res.data);
+                .then(res => res.data.data);
         };
 
         service.getStaffSchedules = function(id) {
             return $http.get(window.config.baseApiUrl + `staffs/${id}/schedules`)
-                .then(res => res.data);
+                .then(res => res.data.data);
         };
 
         service.updateSchedules = function(id, schedules) {
             return $http.post(window.config.baseApiUrl + `staffs/${id}/tasks`, schedules)
-                .then(res => res.data);
+                .then(res => res.data.data);
         };
 
         return service;

@@ -5,11 +5,11 @@
     var service = {};
 
     service.getUser = function() {
-      return $window.localStorage.getItem('user');
+      return JSON.parse($window.localStorage.getItem('user'));
     };
 
     service.setUser = function(user) {
-      return $window.localStorage.setItem('user', user);
+      return $window.localStorage.setItem('user', JSON.stringify(user));
     };
 
     service.clearUser = function() {
