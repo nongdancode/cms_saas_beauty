@@ -48,7 +48,7 @@
 
                         event._id = `${event.id}-${event.start}-${event.end}`;
 
-                        if (!self.isOverlapping(event)) {
+                        if (!self.isInvalidEvent(event)) {
                             $('.calendar').fullCalendar('renderEvent', event, true);
                         }
                     },
@@ -115,16 +115,17 @@
 
         };
 
-        isOverlapping(event){
+        isInvalidEvent(event){
             const array = $('.calendar').fullCalendar('clientEvents');
 
-            for (let i in array){
-                let start = event.start;
-                let end = event.end;
+            if (event.start < moment()) {
+                return true;
+            }
 
-                if ((end > array[i].start && end < array[i].end)
-                    || (start > array[i].start && start < array[i].end)
-                    || (start < array[i].start && end > array[i].end)){
+            for (let i in array){
+                if ((event.end > array[i].start && event.end < array[i].end)
+                    || (event.start > array[i].start && event.start < array[i].end)
+                    || (event.start < array[i].start && event.end > array[i].end)){
                     return true;
                 }
             }
