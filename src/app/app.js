@@ -10,7 +10,11 @@ angular.module('app.third-party', [
     'ngStorage'
 ]);
 
-angular.module('app.templates', []);
+try {
+    angular.module("app.templates");
+} catch (e) {
+    angular.module("app.templates", []);
+}
 
 angular.module('app.resources', []);
 
