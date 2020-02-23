@@ -10,6 +10,8 @@ angular.module('app.third-party', [
     'ngStorage'
 ]);
 
+angular.module('app.templates', []);
+
 angular.module('app.resources', []);
 
 angular.module('app.services', [
@@ -44,6 +46,7 @@ angular.module('app.modules', [
 ]);
 
 angular.module('app', [
+    'app.templates',
     'app.third-party',
     'app.resources',
     'app.services',
