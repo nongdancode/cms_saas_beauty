@@ -21,12 +21,13 @@ const paths = {
   srcJS: 'src/**/*.js',
   srcVendorJS: vendor.js,
   srcVendorCSS: vendor.css,
-  srcImage: 'src/**/*.{png,jpg,gif}',
+  srcAssets: 'src/assets/**/*',
 
   dev: 'build/dev',
   devIndex: 'build/dev/index.html',
   devCSS: 'build/dev/**/*.css',
   devJS: 'build/dev/**/*.js',
+  devAssets: 'build/dev/assets',
 
   devVendor: 'build/dev/vendor',
   devVendorCSS: 'build/dev/vendor/**/*.css',
@@ -35,7 +36,8 @@ const paths = {
   dist: 'build/dist',
   distIndex: 'build/dist/index.html',
   distCSS: 'build/dist/**/*.css',
-  distJS: 'build/dist/**/*.js'
+  distJS: 'build/dist/**/*.js',
+  distAssets: 'build/dist/assets'
 };
 
 gulp.task('default', function () {
@@ -63,8 +65,8 @@ gulp.task('js', function () {
   return gulp.src(paths.srcJS).pipe(gulp.dest(paths.dev));
 });
 
-gulp.task('image', function () {
-  return gulp.src(paths.srcImage).pipe(gulp.dest(paths.dev));
+gulp.task('assets', function () {
+  return gulp.src(paths.srcAssets).pipe(gulp.dest(paths.devAssets));
 });
 
 gulp.task('vendor-js', function() {
@@ -80,7 +82,7 @@ gulp.task('vendor-css', function() {
 });
 
 gulp.task('copy', function(next) {
-  return sequence('clean', ['index', 'html', 'css', 'js', 'image', 'vendor-css', 'vendor-js'])(next);
+  return sequence('clean', ['index', 'html', 'css', 'js', 'assets', 'vendor-css', 'vendor-js'])(next);
 });
 
 gulp.task('inject', ['copy'], function () {
@@ -145,8 +147,8 @@ gulp.task('js:dist', function () {
     .pipe(gulp.dest(paths.dist));
 });
 
-gulp.task('image:dist', function () {
-  return gulp.src(paths.srcImage).pipe(gulp.dest(paths.dist));
+gulp.task('assets:dist', function () {
+  return gulp.src(paths.srcAssets).pipe(gulp.dest(paths.distAssets));
 });
 
 gulp.task('vendor-css:dist', function () {
@@ -164,7 +166,7 @@ gulp.task('vendor-js:dist', function () {
 });
 
 gulp.task('copy:dist', function(next) {
-  return sequence('clean:dist', ['index:dist', 'html:dist', 'css:dist', 'js:dist', 'vendor-css:dist', 'vendor-js:dist', 'image:dist'])(next);
+  return sequence('clean:dist', ['index:dist', 'html:dist', 'css:dist', 'js:dist', 'assets:dist', 'vendor-css:dist', 'vendor-js:dist'])(next);
 });
 
 gulp.task('inject:dist', ['copy:dist'], function () {
