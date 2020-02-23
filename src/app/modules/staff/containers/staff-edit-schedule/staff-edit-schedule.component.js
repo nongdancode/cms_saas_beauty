@@ -31,6 +31,7 @@
 
             this.uiConfig = {
                 calendar: {
+                    timezone: 'local',
                     editable: true,
                     droppable: true,
                     eventOverlap: false,
@@ -117,19 +118,12 @@
         isOverlapping(event){
             const array = $('.calendar').fullCalendar('clientEvents');
 
-            const offset = new Date().getTimezoneOffset();
-
             for (let i in array){
                 let start = event.start;
                 let end = event.end;
 
-                if (array[i].type === 'disable') {
-                    start = moment(event.start).add(offset, 'minutes');
-                    end = moment(event.end).add(offset, 'minutes');
-                }
-
-                if ((end >= array[i].start && end <= array[i].end)
-                    || (start >= array[i].start && start <= array[i].end)
+                if ((end > array[i].start && end < array[i].end)
+                    || (start > array[i].start && start < array[i].end)
                     || (start < array[i].start && end > array[i].end)){
                     return true;
                 }
