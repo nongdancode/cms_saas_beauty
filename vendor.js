@@ -26,6 +26,7 @@ module.exports = {
         "node_modules/daterangepicker/daterangepicker.css",
         "node_modules/jquery-ui-dist/jquery-ui.min.css",
         "node_modules/ng-admin/build/ng-admin.min.css",
-        "node_modules/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css"
+        "node_modules/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css",
+        "node_modules/ui-select/dist/select.min.css"
     ]
 };
