@@ -98,8 +98,11 @@ gulp.task('inject', ['copy'], function () {
 gulp.task('serve', ['inject'], function () {
   return gulp.src(paths.dev)
     .pipe(webserver({
-      port: 3001,
-      livereload: true
+      port: 3010,
+      livereload: {
+        enable: true,
+        port: 3011
+      }
     }));
 });
 
@@ -183,8 +186,11 @@ gulp.task('build', ['inject:dist']);
 gulp.task('serve:dist', ['inject:dist'], function () {
   return gulp.src(paths.dist)
     .pipe(webserver({
-      port: 3001,
-      livereload: true
+      port: 3010,
+      livereload: {
+        enable: true,
+        port: 3011
+      }
     }));
 });
 
