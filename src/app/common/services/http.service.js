@@ -9,13 +9,9 @@
     };
 
     service.responseError = function(response) {
-      if(response.status === 401) {
-        UserService.setCurrentUser(null);
-
-	      $location.path('/auth/login');
-      }
       return response;
     };
+
     return service;
   });
 
