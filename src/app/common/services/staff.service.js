@@ -1,27 +1,27 @@
 (function(){
     angular.module('service.staff', [])
         .factory('StaffService', StaffService);
-    function StaffService($http) {
+    function StaffService(HttpService) {
         var service = {};
 
         service.getStaffs = function() {
-            return $http.get(window.config.baseApiUrl + 'staffs')
+            return HttpService.get(HttpService.generateUrl('staffs'))
                 .then(res => res.data);
         };
 
         service.getStaffTasks = function(id) {
-            return $http.get(window.config.baseApiUrl + `staffs/${id}/tasks`)
-                .then(res => res.data.data);
+            return HttpService.get(HttpService.generateUrl(`staffs/${id}/tasks`))
+                .then(res => res.data);
         };
 
         service.getStaffSchedules = function(id) {
-            return $http.get(window.config.baseApiUrl + `staffs/${id}/schedules`)
-                .then(res => res.data.data);
+            return HttpService.get(HttpService.generateUrl(`staffs/${id}/schedules`))
+                .then(res => res.data);
         };
 
         service.updateSchedules = function(id, schedules) {
-            return $http.post(window.config.baseApiUrl + `staffs/${id}/tasks`, schedules)
-                .then(res => res.data.data);
+            return HttpService.post(HttpService.generateUrl(`staffs/${id}/tasks`), schedules)
+                .then(res => res.data);
         };
 
         return service;

@@ -19,6 +19,7 @@ try {
 angular.module('app.resources', []);
 
 angular.module('app.services', [
+    'service.http',
     'service.utility',
     'service.user',
     'service.auth',
