@@ -6,17 +6,17 @@
 
         service.getStaffs = function() {
             return HttpService.get(HttpService.generateUrl('staffs'))
-                .then(res => res.data);
+                .then(res => res.data || []);
         };
 
         service.getStaffTasks = function(id) {
             return HttpService.get(HttpService.generateUrl(`staffs/${id}/tasks`))
-                .then(res => res.data);
+                .then(res => res.data || []);
         };
 
         service.getStaffSchedules = function(id) {
             return HttpService.get(HttpService.generateUrl(`staffs/${id}/schedules`))
-                .then(res => res.data);
+                .then(res => res.data || []);
         };
 
         service.updateSchedules = function(id, schedules) {

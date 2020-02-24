@@ -1,12 +1,22 @@
 (function(){
   const module = angular.module('service.http', []);
 
-  module.factory('HttpInterceptor', function(){
-    return {
-      response: function(response){
-        return response;
-      }
+  module.factory('HttpInterceptor', function($location, UserService){
+    var service = {};
+
+    service.request = function(config) {
+      return config;
     };
+
+    service.responseError = function(response) {
+      if(response.status === 401) {
+        UserService.setCurrentUser(null);
+
+	      $location.path('/auth/login');
+      }
+      return response;
+    };
+    return service;
   });
 
   module.config(function($httpProvider) {

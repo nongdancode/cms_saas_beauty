@@ -39,14 +39,19 @@ window.models = {
     TaskType: {
         BOOKING: 'booking',
         SERVICE: 'service',
+        ACTIVE: 'active',
         DISABLE: 'disable',
         booking: {
             text: 'Booking',
-            color: 'green'
+            color: '#50a'
         },
         service: {
             text: 'Service',
-            color: 'blue'
+            color: '#0af'
+        },
+        active: {
+            text: 'Active',
+            color: '#0ea'
         },
         disable: {
             text: 'Disable',
