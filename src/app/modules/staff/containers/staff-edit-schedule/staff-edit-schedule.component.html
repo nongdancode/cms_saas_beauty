@@ -1,76 +1,75 @@
 <style>
-    html, body {
-        margin: 0;
-        padding: 0;
-        font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
-        font-size: 14px;
-    }
+  html, body {
+    margin: 0;
+    padding: 0;
+    font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+    font-size: 14px;
+  }
 
-    .external-events {
-        z-index: 2;
-        top: 20px;
-        left: 20px;
-        padding: 0 10px;
-        max-height: 500px;
-        border: 1px solid #ccc;
-        background: #eee;
-    }
+  .external-events {
+    z-index: 2;
+    top: 20px;
+    left: 20px;
+    padding: 0 10px;
+    max-height: 500px;
+    border: 1px solid #ccc;
+    background: #eee;
+  }
 
-    .external-events .fc-event {
-        margin: 1em 0;
-        padding: 2px;
-        cursor: move;
-    }
+  .external-events .fc-event {
+    margin: 1em 0;
+    padding: 2px;
+    cursor: move;
+  }
 
-    .fc-content {
-        display: inline;
-        white-space: normal !important;
-    }
+  .fc-content {
+    display: inline;
+    white-space: normal !important;
+  }
 
-    .fc-agendaDay-view .fc-nonbusiness {
-        background: #EEEEEE;
-    }
+  .fc-agendaDay-view .fc-nonbusiness {
+    background: #EEEEEE;
+  }
 
-    td.fc-day.fc-past {
-        background-color: #EEEEEE;
-    }
+  td.fc-day.fc-past {
+    background-color: #EEEEEE;
+  }
 
-    .calendar {
-        max-width: 900px;
-        margin: 20px auto;
-    }
+  .calendar {
+    max-width: 900px;
+    margin: 20px auto;
+  }
 
-    .delete-event {
-        position: absolute;
-        right: 0;
-        top: 50%;
-        transform: translateY(-50%);
-        z-index: 999;
+  .delete-event {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 999;
 
-        color: white;
-    }
+    color: white;
+  }
 </style>
-
 <div class="row list-header ng-scope">
-    <div class="col-lg-12">
-        <div class="page-header">
-            <h1>Staff Schedule: {{ $ctrl.data.staff.name }}</h1>
-        </div>
+  <div class="col-lg-12">
+    <div class="page-header">
+      <h1>Staff Schedule: {{ $ctrl.data.staff.name }}</h1>
     </div>
+  </div>
 </div>
 
-<div>
-    <div class="col-sm-9 center">
-        <div class="calendar" ui-calendar="$ctrl.uiConfig.calendar" ng-model="$ctrl.data.eventSources"></div>
+<div class="row">
+  <div class="col-sm-9 center">
+    <div class="calendar" ui-calendar="$ctrl.uiConfig.calendar" ng-model="$ctrl.data.eventSources"></div>
+  </div>
+  <div class="col-sm-3">
+    <div class="external-events">
+      <p><strong>Tasks</strong></p>
+      <div ng-repeat="task in $ctrl.data.tasks" class="fc-event" data-item="{{ task }}" style="background-color: {{ task.color }}" draggable>
+        {{ task.name }} ({{ task.stepping }} mins)
+      </div>
     </div>
-    <div class="col-sm-3">
-        <div class="external-events">
-            <p><strong>Tasks</strong></p>
-            <div ng-repeat="task in $ctrl.data.tasks" class="fc-event" data-item="{{ task }}" style="background-color: {{ task.color }}" draggable>
-                {{ task.name }} ({{ task.stepping }} mins)
-            </div>
-        </div>
-        <hr/>
-        <button class="btn btn-block btn-success" ng-click="$ctrl.submit()">Submit</button>
-    </div>
+    <hr/>
+    <button class="btn btn-block btn-success" ng-click="$ctrl.submit()">Submit</button>
+  </div>
 </div>
