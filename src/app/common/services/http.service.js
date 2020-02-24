@@ -1,7 +1,7 @@
 (function(){
   const module = angular.module('service.http', []);
 
-  module.factory('HttpInterceptor', function($location, UserService){
+  module.factory('HttpInterceptor', function(){
     var service = {};
 
     service.request = function(config) {
