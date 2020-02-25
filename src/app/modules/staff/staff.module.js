@@ -57,7 +57,7 @@
 
         listView.fields([
             nga.field('name'),
-            nga.field('img')
+            nga.field('image')
                 .template('<img src="{{ entry.values.img }}" height="42" width="42" />'),
             nga.field()
                 .label('Action')
