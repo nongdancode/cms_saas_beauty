@@ -111,8 +111,11 @@ window.models.arrayMetadata = model => {
 };
 
 window.config = {
-    baseApiUrl: 'http://api.beautysalonappsolution.com/api/admin/'
+    baseUrl: 'http://api.beautysalonappsolution.com/'
 };
+
+window.config.baseApiUrl = window.config.baseUrl + 'api/admin/';
+
 
 window.addEntity = (name, entity) => {
     window.entities = {
