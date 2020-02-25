@@ -118,16 +118,19 @@
 
             this.progression.start();
 
-            const data = this.form.serviceIds.map(id => {
-                return {
-                    serviceId: id,
-                    employeeId: this.form.employees[id],
-                    timeRange: {
-                        start: this.form.times[id].start.valueOf(),
-                        end: this.form.times[id].end.valueOf()
-                    }
-                };
-            });
+            const data = {
+                id: this.entry.values.id,
+                services: this.form.serviceIds.map(id => {
+                    return {
+                        serviceId: id,
+                        employeeId: this.form.employees[id],
+                        timeRange: {
+                            start: this.form.times[id].start.valueOf(),
+                            end: this.form.times[id].end.valueOf()
+                        }
+                    };
+                })
+            };
 
             this.BookingService.confirmCheckin(data)
                 .finally(() => {
@@ -154,6 +157,9 @@
     }
 
     module.component('maCheckin', {
+        bindings: {
+            entry: '<'
+        },
         controller: CheckinComponent,
         templateUrl: 'app/modules/waitlist/components/checkin/checkin.component.html'
     });
