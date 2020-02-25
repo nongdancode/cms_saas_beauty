@@ -139,16 +139,47 @@
         };
 
         submit() {
-            const events = this.getEvents().map(event => {
-                return {
-                    id: event.id,
-                    start: event.start.unix(),
-                    end: event.end.unix()
-                };
-            });
+            const originalEvents = this.data.events
+                  .filter(event => event.task)
+                  .map(event => {
+                      return {
+                          id: +event.task.id,
+                          start: event.start,
+                          end: event.end,
+                          type: event.type
+                      };
+                  });
 
-            this.StaffService.updateSchedules(+this.$stateParams.id, events)
-                .finally(() => this.$state.reload());
+            const submitEvents = this.getEvents()
+                  .map(event => {
+                      return {
+                          id: +event.id,
+                          start: event.start.unix(),
+                          end: event.end.unix(),
+                          type: event.type
+                      };
+                  });
+
+            const addedEvents = submitEvents
+                  .filter(event => {
+                      console.log(originalEvents, event);
+                      return originalEvents.every(
+                          e => !['id', 'start', 'end', 'type'].every(field => event[field] === e[field])
+                      );
+                  });
+
+            const deletedEvents = originalEvents
+                  .filter(event => {
+                      console.log(event, submitEvents);
+                      return submitEvents.every(
+                          e => !['id', 'start', 'end', 'type'].every(field => event[field] === e[field])
+                      );
+                  });
+
+            this.StaffService.updateSchedules(+this.$stateParams.id, {
+                add: addedEvents,
+                delete: deletedEvents
+            }).finally(() => this.$state.reload());
         };
     }
 

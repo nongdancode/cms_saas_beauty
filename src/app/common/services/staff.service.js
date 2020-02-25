@@ -22,11 +22,11 @@
         service.updateSchedules = function(id, schedules) {
             return HttpService.post(HttpService.generateUrl(`schedules/${id}/tasks`), schedules)
                 .then(res => {
-                    if (res.code) {
-                        notification.log('Update schedules failed!', { addnCls: 'humane-flatty-error' });
+                    if (res.code === 0) {
+                        notification.log('Update schedules successfully!', { addnCls: 'humane-flatty-success' });
                     }
 
-                    notification.log('Update schedules successfully!', { addnCls: 'humane-flatty-success' });
+                    notification.log('Update schedules failed!', { addnCls: 'humane-flatty-error' });
 
                     return res.data;
                 });

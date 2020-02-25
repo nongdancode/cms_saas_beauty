@@ -9,11 +9,11 @@
         customerIds: ids,
         message: message
       }).then(res => {
-        if (res.code) {
-          notification.log('Send SMS failed!', { addnCls: 'humane-flatty-error' });
+        if (res.code === 0) {
+          notification.log('Send SMS successfully!', { addnCls: 'humane-flatty-success' });
         }
 
-        notification.log('Send SMS successfully!', { addnCls: 'humane-flatty-success' });
+        notification.log('Send SMS failed!', { addnCls: 'humane-flatty-error' });
 
         return res.data;
       });

@@ -197,11 +197,11 @@
         service.confirmCheckin = function(data) {
             return HttpService.post(window.config.baseApiUrl + 'checkin/confirm', data)
                 .then(res => {
-                    if (res.code) {
-                        notification.log('Checkin confirm failed!', { addnCls: 'humane-flatty-error' });
+                    if (res.code === 0) {
+                        notification.log('Checkin confirm successfully!', { addnCls: 'humane-flatty-success' });
                     }
 
-                    notification.log('Checkin confirm successfully!', { addnCls: 'humane-flatty-success' });
+                    notification.log('Checkin confirm failed!', { addnCls: 'humane-flatty-error' });
 
                     return res.data;
                 });
@@ -210,11 +210,11 @@
         service.confirmCheckout = function(data) {
             return HttpService.post(window.config.baseApiUrl + 'checkout/confirm', data)
                 .then(res => {
-                    if (res.code) {
-                        notification.log('Checkout confirm failed!', { addnCls: 'humane-flatty-error' });
+                    if (res.code === 0) {
+                        notification.log('Checkout confirm successfully!', { addnCls: 'humane-flatty-success' });
                     }
 
-                    notification.log('Checkout confirm successfully!', { addnCls: 'humane-flatty-success' });
+                    notification.log('Checkout confirm failed!', { addnCls: 'humane-flatty-error' });
 
                     return res.data;
                 });

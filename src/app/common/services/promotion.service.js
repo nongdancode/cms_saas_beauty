@@ -11,11 +11,11 @@
         service.updatePromotionById = function(id, data) {
             return HttpService.post(window.config.baseApiUrl + `promotions/${id}`, data)
                 .then(res => {
-                    if (res.code) {
-                        notification.log('Update promotion failed!', { addnCls: 'humane-flatty-error' });
+                    if (res.code === 0) {
+                        notification.log('Update promotion successfully!', { addnCls: 'humane-flatty-success' });
                     }
 
-                    notification.log('Update promotion successfully!', { addnCls: 'humane-flatty-success' });
+                    notification.log('Update promotion failed!', { addnCls: 'humane-flatty-error' });
 
                     return res.data;
                 });
