@@ -83,8 +83,7 @@
                         center: 'title',
                         right: 'today prev,next'
                     },
-                    minTime: moment(),
-                    defaultView: 'agendaDay'
+                    minTime: moment()
                 }
             };
 
