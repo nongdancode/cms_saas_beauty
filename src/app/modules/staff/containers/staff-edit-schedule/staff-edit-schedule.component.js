@@ -9,8 +9,9 @@
             eventSources: []
         };
 
-        constructor($scope, $stateParams, $resolve, StaffService) {
+        constructor($scope, $state, $stateParams, $resolve, StaffService) {
             this.$scope = $scope;
+            this.$state = $state;
             this.$stateParams = $stateParams;
             this.$resolve = $resolve;
             this.StaffService = StaffService;
@@ -147,7 +148,8 @@
                 };
             });
 
-            this.StaffService.updateSchedules(+this.$stateParams.id, events);
+            this.StaffService.updateSchedules(+this.$stateParams.id, events)
+                .finally(() => this.$state.reload());
         };
     }
 
