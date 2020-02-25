@@ -136,7 +136,6 @@
             this.BookingService.confirmCheckin(data)
                 .finally(() => {
                     this.init();
-                    this.notification.log('Checkin Successfully!');
                     this.progression.done();
                     this.reset();
                     this.$state.reload();

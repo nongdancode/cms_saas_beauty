@@ -24,10 +24,10 @@
                         id: 1,
                         username: username
                     });
-                    this.notification.log('Login successfully !');
+                    this.notification.log('Login successfully !', { addnCls: 'humane-flatty-success' });
                     this.$location.path('/dashboard');
                 }, err => {
-                    this.notification.log('Username or password is incorrect !');
+                    this.notification.log('Username or password is incorrect !', { addnCls: 'humane-flatty-error' });
                 });
         };
     }

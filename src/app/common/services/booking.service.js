@@ -2,11 +2,11 @@
     angular.module('service.booking', [])
         .factory('BookingService', BookingService);
 
-    function BookingService($http) {
+    function BookingService(notification, HttpService) {
         var service = {};
 
         service.getWaitList = function() {
-            return $http.get(window.config.baseApiUrl + 'staffs')
+            return HttpService.get(window.config.baseApiUrl + 'staffs')
                 .then(err => [
                     {
                         id: 1,
@@ -76,7 +76,7 @@
         };
 
         service.getCheckinServices = function() {
-            return $http.get(window.config.baseApiUrl + 'checkin/services')
+            return HttpService.get(window.config.baseApiUrl + 'checkin/services')
                 .then(err => [
 	                {
 		                "id": 1,
@@ -94,7 +94,7 @@
         };
 
         service.getCheckinEmployees = function() {
-            return $http.get(window.config.baseApiUrl + 'checkin/employees')
+            return HttpService.get(window.config.baseApiUrl + 'checkin/employees')
                 .then(err => [
                     {
                         "id":2,
@@ -195,11 +195,29 @@
         };
 
         service.confirmCheckin = function(data) {
-            return $http.post(window.config.baseApiUrl + 'checkin/confirm', data);
+            return HttpService.post(window.config.baseApiUrl + 'checkin/confirm', data)
+                .then(res => {
+                    if (res.code) {
+                        notification.log('Checkin confirm failed!', { addnCls: 'humane-flatty-error' });
+                    }
+
+                    notification.log('Checkin confirm successfully!', { addnCls: 'humane-flatty-success' });
+
+                    return res.data;
+                });
         };
 
         service.confirmCheckout = function(data) {
-            return $http.post(window.config.baseApiUrl + 'checkout/confirm', data);
+            return HttpService.post(window.config.baseApiUrl + 'checkout/confirm', data)
+                .then(res => {
+                    if (res.code) {
+                        notification.log('Checkout confirm failed!', { addnCls: 'humane-flatty-error' });
+                    }
+
+                    notification.log('Checkout confirm successfully!', { addnCls: 'humane-flatty-success' });
+
+                    return res.data;
+                });
         };
 
         return service;
