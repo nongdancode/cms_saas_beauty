@@ -14,9 +14,12 @@ window.models = {
         }
     },
     AgeType: {
-        '20_35': '20_35',
-        '35_50': '35_50',
-        '50_60': '50_60'
+        'm20_35': '20_35',
+        'm35_50': '35_50',
+        'm50_60': '50_60',
+        '20_35': {},
+        '35_50': {},
+        '50_60': {}
     },
     PaymentType: {
         SUCCESS: 'success',
@@ -34,6 +37,26 @@ window.models = {
         },
         chargeback: {
             text: 'Charge Back'
+        }
+    },
+    EmployeePaymentType: {
+        'm50/50': '50/50',
+        'm70/30': '70/30',
+        '50/50': {
+            text: '50/50'
+        },
+        '70/30': {
+            text: '70/30'
+        }
+    },
+    EmployeeCommissionType: {
+        '100_CHECK': '100_check',
+        '50CHECK_50CASH': '50check_50cash',
+        '100_check': {
+            text: '100% Check'
+        },
+        '50check_50cash': {
+            text: '50% Check 50% Cash'
         }
     },
     TaskType: {

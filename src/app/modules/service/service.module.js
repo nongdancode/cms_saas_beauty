@@ -6,6 +6,10 @@
 
         const entity = nga.entity('service');
 
+        entity.url(() => {
+            return 'services';
+        });
+
         const listView = entity.listView();
 
         listView

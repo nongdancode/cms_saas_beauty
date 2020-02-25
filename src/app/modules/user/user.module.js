@@ -8,6 +8,10 @@
 
         const listView = entity.listView();
 
+        entity.url(() => {
+            return 'employees';
+        });
+
         listView
             .title('Employee')
             .perPage(10);
