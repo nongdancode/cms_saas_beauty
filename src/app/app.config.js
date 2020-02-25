@@ -107,15 +107,16 @@
     const menu = nga.menu()
           .addChild(
             nga.menu(waitlist)
-              .title('Wait List')
+              .title('Check-in & Waiting List')
               .icon('<span class="glyphicon glyphicon-oil"></span>')
           )
           .addChild(
             nga.menu(marketing)
+              .title('Marketing Management')
               .icon('<span class="glyphicon glyphicon-shopping-cart"></span>')
           )
           .addChild(
-            nga.menu().title('Manager / Schedule')
+            nga.menu().title('Schedule Management')
               .active(path => path.includes('/staff/'))
               .icon('<span class="glyphicon glyphicon-time"></span>')
               .addChild(
@@ -135,13 +136,18 @@
           )
           .addChild(
             nga.menu(payment)
-              .title('Payment')
+              .title('Transaction History')
               .icon('<span class="glyphicon glyphicon-usd"></span>')
           )
           .addChild(
             nga.menu(promotion)
               .title('Promotion')
               .icon('<span class="glyphicon glyphicon-flash"></span>')
+              .addChild(
+                nga.menu()
+                  .title('Loyalty (upgrade)')
+                  .icon('<span class="glyphicon glyphicon-eye-close"></span>')
+              )
           )
           .addChild(
             nga.menu().title('Report')
@@ -164,12 +170,12 @@
           )
           .addChild(
             nga.menu(user)
-              .title('Employee')
+              .title('Employee Management')
               .icon('<span class="glyphicon glyphicon-user"></span>')
           )
           .addChild(
             nga.menu(service)
-              .title('Service')
+              .title('Service Management')
               .icon('<span class="glyphicon glyphicon-tasks"></span>')
           )
           .addChild(
