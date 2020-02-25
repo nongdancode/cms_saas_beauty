@@ -45,7 +45,9 @@
             this.UtilityService.print('app-invoice').then(res => {
                 const { id, name, status, phone, deposit, invoice } = this.entry.values;
 
-                const checkout = { id, name, status, phone, deposit, invoice };
+                const { paymentType } = this.data;
+
+                const checkout = { id, name, status, phone, deposit, paymentType, invoice };
 
                 this.BookingService
                     .confirmCheckout(checkout)
