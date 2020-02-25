@@ -58,14 +58,14 @@ window.models = {
             color: 'red'
         }
     },
-    WaitType: {
+    WaitStatus: {
         BOOKING: 'booking',
-        WALKING: 'walking',
+        CHECKIN: 'checkin',
         booking: {
             text: 'Booking'
         },
-        walking: {
-            text: 'Walking'
+        checkin: {
+            text: 'Checkin'
         }
     }
 };

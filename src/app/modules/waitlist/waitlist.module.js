@@ -19,12 +19,12 @@
         listView.fields([
             nga.field('name'),
             nga.field('phone'),
-            nga.field('type'),
+            nga.field('status'),
             nga.field('invoice', 'template')
                 .label('Action')
                 .template(
-                    `<ma-checkout ng-if="entry.values.type === 'booking'" entry="entry"></ma-checkout>` +
-                        `<ma-checkin ng-if="entry.values.type === 'walking'" entry="entry"></ma-checkin>`
+                    `<ma-checkout ng-if="entry.values.status === 'booking'" entry="entry"></ma-checkout>` +
+                        `<ma-checkin ng-if="entry.values.status === 'checkin'" entry="entry"></ma-checkin>`
                 )
         ]);
 
@@ -44,7 +44,8 @@
                         id: 1,
                         name: 'Name 1',
                         phone: 'Phone 1',
-                        type: 'booking',
+                        status: 'booking',
+                        deposit: 0,
                         invoice: {
                             id: 1,
                             tax: 10,
@@ -75,7 +76,8 @@
                         id: 2,
                         name: 'Name 2',
                         phone: 'Phone 2',
-                        type: 'walking',
+                        status: 'checkin',
+                        deposit: 0,
                         invoice: {
                             id: 2,
                             tax: 10,

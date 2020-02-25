@@ -2,10 +2,11 @@
     const module = angular.module('module.waitlist.components.checkout', []);
 
     class CheckoutComponent {
-        constructor($scope, $uibModal, UtilityService) {
+        constructor($scope, $uibModal, UtilityService, BookingService) {
             this.$scope = $scope;
             this.$uibModal = $uibModal;
             this.UtilityService = UtilityService;
+            this.BookingService = BookingService;
         }
 
         $onInit() {
@@ -42,7 +43,13 @@
 
         print() {
             this.UtilityService.print('app-invoice').then(res => {
-                this.modal.close();
+                const { id, name, status, phone, deposit, invoice } = this.entry.values;
+
+                const checkout = { id, name, status, phone, deposit, invoice };
+
+                this.BookingService
+                    .confirmCheckout(checkout)
+                    .finally(() => this.modal.close());
             });
         };
 

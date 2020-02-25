@@ -12,7 +12,8 @@
                         id: 1,
                         name: 'Name 1',
                         phone: 'Phone 1',
-                        type: 'booking',
+                        status: 'booking',
+                        deposit: 0,
                         invoice: {
                             id: 1,
                             tax: 10,
@@ -43,7 +44,8 @@
                         id: 2,
                         name: 'Name 2',
                         phone: 'Phone 2',
-                        type: 'walking',
+                        status: 'checkin',
+                        deposit: 0,
                         invoice: {
                             id: 2,
                             tax: 10,
@@ -194,6 +196,10 @@
 
         service.confirmCheckin = function(data) {
             return $http.post(window.config.baseApiUrl + 'checkin/confirm', data);
+        };
+
+        service.confirmCheckout = function(data) {
+            return $http.post(window.config.baseApiUrl + 'checkout/confirm', data);
         };
 
         return service;

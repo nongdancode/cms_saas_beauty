@@ -20,7 +20,7 @@
         };
 
         service.updateSchedules = function(id, schedules) {
-            return HttpService.post(HttpService.generateUrl(`staffs/${id}/tasks`), schedules)
+            return HttpService.post(HttpService.generateUrl(`schedules/${id}/tasks`), schedules)
                 .then(res => res.data);
         };
 
