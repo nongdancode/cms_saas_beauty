@@ -106,6 +106,10 @@ window.models.metadata = model => {
     }, {});
 };
 
+window.models.arrayMetadata = model => {
+    return Object.values(window.models.metadata(model));
+};
+
 window.config = {
     baseApiUrl: 'http://api.beautysalonappsolution.com/api/admin/'
 };

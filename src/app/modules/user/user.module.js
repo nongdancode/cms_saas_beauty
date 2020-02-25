@@ -59,8 +59,24 @@
             nga.field('phone_number'),
             nga.field('role', 'number'),
             nga.field('base_salary', 'number'),
-            nga.field('commision_type'),
-            nga.field('payment_type'),
+            nga.field('commision_type', 'choice')
+                .choices(
+                    window.models.arrayMetadata(window.models.EmployeeCommissionType).map(row => {
+                        return {
+                            label: row.text,
+                            value: row.key
+                        };
+                    })
+                ),
+            nga.field('payment_type', 'choice')
+                .choices(
+                    window.models.arrayMetadata(window.models.EmployeePaymentType).map(row => {
+                        return {
+                            label: row.text,
+                            value: row.key
+                        };
+                    })
+                ),
             nga.field('services', 'reference_many')
                 .targetEntity(nga.entity('service'))
                 .targetField(nga.field('name'))
@@ -81,8 +97,8 @@
                         email: 'test@abc.com',
                         role: 1,
                         base_salary: 200,
-                        commision_type: 1,
-                        payment_type: 1,
+                        commision_type: '50check_50cash',
+                        payment_type: '50/50',
                         services: [1, 2]
                     },
                     {
@@ -93,8 +109,8 @@
                         email: 'test@abc.com',
                         role: 2,
                         base_salary: 300,
-                        commision_type: 2,
-                        payment_type: 2,
+                        commision_type: '100_check',
+                        payment_type: '70/30',
                         services: [1, 2]
                     }
                 ];
