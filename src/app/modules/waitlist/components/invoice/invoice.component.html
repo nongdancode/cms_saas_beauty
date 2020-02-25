@@ -169,7 +169,10 @@
         <input class="form-control" ng-model="item.name" type="text" style="display: inline-block; margin-left: 10px; width: calc(100% - 100px);" />
       </td>
       <td style="width: 15%; text-align: right;">
-        <input class="form-control" ng-model="item.discount" style="width: 100%" type="number" />
+        <input class="form-control" ng-model="item.discount" style="width: 100%" type="text"
+          ui-mask="99%"
+          ui-mask-placeholder
+          ui-mask-placeholder-char="_"/>
       </td>
       <td style="width: 15%; text-align: right;">
         <input class="form-control" ng-model="item.price" style="width: 100%" type="number" />
@@ -183,7 +186,7 @@
       </td>
 
       <td colspan="2">
-        Total: ${{ $ctrl.total() }}
+        Total: ${{ $ctrl.total() || 0 }}
       </td>
     </tr>
   </table>
