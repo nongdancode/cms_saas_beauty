@@ -1,180 +1,190 @@
 <style>
-    .invoice-box {
-        max-width: 800px;
-        margin: auto;
-        padding: 30px;
-        border: 1px solid #eee;
-        box-shadow: 0 0 10px rgba(0, 0, 0, .15);
-        font-size: 16px;
-        line-height: 24px;
-        font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
-        color: #555;
-    }
+  .invoice-box {
+    max-width: 800px;
+    margin: auto;
+    padding: 30px;
+    border: 1px solid #eee;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+    font-size: 16px;
+    line-height: 24px;
+    font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+    color: #555;
+  }
 
-    .invoice-box table {
-        width: 100%;
-        line-height: inherit;
-        text-align: left;
-    }
+  .invoice-box table {
+    width: 100%;
+    line-height: inherit;
+    text-align: left;
+  }
 
-    .invoice-box table td {
-        padding: 5px;
-        vertical-align: top;
-    }
+  .invoice-box table td {
+    padding: 5px;
+    vertical-align: top;
+  }
 
-    .invoice-box table tr td:nth-child(2) {
-        text-align: right;
-    }
+  .invoice-box table tr td:nth-child(2) {
+    text-align: right;
+  }
 
+  .invoice-box table tr.top table td {
+    padding-bottom: 20px;
+  }
+
+  .invoice-box table tr.top table td.title {
+    font-size: 45px;
+    line-height: 45px;
+    color: #333;
+  }
+
+  .invoice-box table tr.information table td {
+    padding-bottom: 40px;
+  }
+
+  .invoice-box table tr.heading td {
+    background: #eee;
+    border-bottom: 1px solid #ddd;
+    font-weight: bold;
+  }
+
+  .invoice-box table tr.details td {
+    padding-bottom: 20px;
+  }
+
+  .invoice-box table tr.item td{
+    border-bottom: 1px solid #eee;
+  }
+
+  .invoice-box table tr.item.last td {
+    border-bottom: none;
+  }
+
+  .invoice-box table tr.total td:nth-child(2) {
+    border-top: 2px solid #eee;
+    font-weight: bold;
+  }
+
+  @media only screen and (max-width: 600px) {
     .invoice-box table tr.top table td {
-        padding-bottom: 20px;
-    }
-
-    .invoice-box table tr.top table td.title {
-        font-size: 45px;
-        line-height: 45px;
-        color: #333;
+      width: 100%;
+      display: block;
+      text-align: center;
     }
 
     .invoice-box table tr.information table td {
-        padding-bottom: 40px;
+      width: 100%;
+      display: block;
+      text-align: center;
     }
+  }
 
-    .invoice-box table tr.heading td {
-        background: #eee;
-        border-bottom: 1px solid #ddd;
-        font-weight: bold;
-    }
+  /** RTL **/
+  .rtl {
+    direction: rtl;
+    font-family: Tahoma, 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+  }
 
-    .invoice-box table tr.details td {
-        padding-bottom: 20px;
-    }
+  .rtl table {
+    text-align: right;
+  }
 
-    .invoice-box table tr.item td{
-        border-bottom: 1px solid #eee;
-    }
-
-    .invoice-box table tr.item.last td {
-        border-bottom: none;
-    }
-
-    .invoice-box table tr.total td:nth-child(2) {
-        border-top: 2px solid #eee;
-        font-weight: bold;
-    }
-
-    @media only screen and (max-width: 600px) {
-        .invoice-box table tr.top table td {
-            width: 100%;
-            display: block;
-            text-align: center;
-        }
-
-        .invoice-box table tr.information table td {
-            width: 100%;
-            display: block;
-            text-align: center;
-        }
-    }
-
-    /** RTL **/
-    .rtl {
-        direction: rtl;
-        font-family: Tahoma, 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
-    }
-
-    .rtl table {
-        text-align: right;
-    }
-
-    .rtl table tr td:nth-child(2) {
-        text-align: left;
-    }
+  .rtl table tr td:nth-child(2) {
+    text-align: left;
+  }
 </style>
 
 <div class="invoice-box">
-    <table cellpadding="0" cellspacing="0">
-        <tr class="top">
-            <td colspan="2">
-                <table>
-                    <tr>
-                        <td class="title">
-                            <img src="assets/images/logo-2.png" style="width:100%; max-width:300px;">
-                        </td>
-
-                        <td>
-                            Invoice #: {{ $ctrl.invoice.id }}<br>
-                            Created: {{ $ctrl.data.today }}<br>
-                        </td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-
-        <tr class="information" ng-if="$ctrl.viewType === 'view'">
-            <td colspan="2">
-                <table>
-                    <tr>
-                        <td ng-bind-html="$ctrl.data.leftInfo"></td>
-                        <td ng-bind-html="$ctrl.data.rightInfo"></td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-
-        <tr class="information" ng-if="$ctrl.viewType === 'edit'">
-            <td colspan="2">
-                <table>
-                    <tr>
-                        <td>
-                            <textarea class="form-control" ng-model="$ctrl.data.leftInfo"></textarea>
-                        </td>
-                        <td>
-                            <textarea class="form-control" ng-model="$ctrl.data.rightInfo"></textarea>
-                        </td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-
-        <tr class="heading">
-            <td>
-                Item
+  <table cellpadding="0" cellspacing="0">
+    <tr class="top">
+      <td colspan="2">
+        <table>
+          <tr>
+            <td class="title">
+              <img src="assets/images/logo-2.png" style="width:100%; max-width:300px;">
             </td>
 
             <td>
-                Price
+              Invoice #: {{ $ctrl.invoice.id }}<br>
+              Created: {{ $ctrl.data.today }}<br>
             </td>
-        </tr>
+          </tr>
+        </table>
+      </td>
+    </tr>
 
-        <tr class="item" ng-repeat="item in $ctrl.data.items track by $index" ng-class="{ last: $last }" ng-if="$ctrl.viewType === 'view'">
-            <td>
-                {{ item.name }}
-            </td>
-            <td>
-                ${{ item.price }}
-            </td>
-        </tr>
+    <tr class="information" ng-if="$ctrl.viewType === 'view'">
+      <td colspan="2">
+        <table>
+          <tr>
+            <td ng-bind-html="$ctrl.data.leftInfo"></td>
+            <td ng-bind-html="$ctrl.data.rightInfo"></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
 
-        <tr class="item" ng-repeat="item in $ctrl.data.items" ng-if="$ctrl.viewType === 'edit'">
-            <td style="width: 85%">
-                <button ng-click="$ctrl.remove($index)" class="btn btn-danger" style="width: 80px; margin-top: -1px;">Remove</button>
-                <input class="form-control" ng-model="item.name" type="text" style="display: inline-block; margin-left: 10px; width: calc(100% - 100px);" />
-            </td>
-            <td style="width: 15%">
-                <input class="form-control" ng-model="item.price" style="width: 100%" type="number" />
-            </td>
-        </tr>
-
-        <tr class="total">
+    <tr class="information" ng-if="$ctrl.viewType === 'edit'">
+      <td colspan="2">
+        <table>
+          <tr>
             <td>
-                <button ng-if="$ctrl.viewType === 'edit'" ng-click="$ctrl.add()"
-                    class="btn btn-primary" style="width: 80px; margin-top: -1px;">Add</button>
+              <textarea class="form-control" ng-model="$ctrl.data.leftInfo"></textarea>
             </td>
-
             <td>
-                Total: ${{ $ctrl.total() }}
+              <textarea class="form-control" ng-model="$ctrl.data.rightInfo"></textarea>
             </td>
-        </tr>
-    </table>
+          </tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr class="heading">
+      <td>
+        Item
+      </td>
+
+      <td style="width: 15%; text-align: right;">
+        Discount
+      </td>
+
+      <td style="width: 15%; text-align: right;">
+        Price
+      </td>
+    </tr>
+
+    <tr class="item" ng-repeat="item in $ctrl.data.items track by $index" ng-class="{ last: $last }" ng-if="$ctrl.viewType === 'view'">
+      <td>
+        {{ item.name }}
+      </td>
+      <td style="width: 15%; text-align: right;">
+        {{ item.discount }}%
+      </td>
+      <td style="width: 15%; text-align: right;">
+        ${{ item.price }}
+      </td>
+    </tr>
+
+    <tr class="item" ng-repeat="item in $ctrl.data.items" ng-if="$ctrl.viewType === 'edit'">
+      <td style="width: 70%">
+        <button ng-click="$ctrl.remove($index)" class="btn btn-danger" style="width: 80px; margin-top: -1px;">Remove</button>
+        <input class="form-control" ng-model="item.name" type="text" style="display: inline-block; margin-left: 10px; width: calc(100% - 100px);" />
+      </td>
+      <td style="width: 15%; text-align: right;">
+        <input class="form-control" ng-model="item.discount" style="width: 100%" type="number" />
+      </td>
+      <td style="width: 15%; text-align: right;">
+        <input class="form-control" ng-model="item.price" style="width: 100%" type="number" />
+      </td>
+    </tr>
+
+    <tr class="total">
+      <td>
+        <button ng-if="$ctrl.viewType === 'edit'" ng-click="$ctrl.add()"
+          class="btn btn-primary" style="width: 80px; margin-top: -1px;">Add</button>
+      </td>
+
+      <td colspan="2">
+        Total: ${{ $ctrl.total() }}
+      </td>
+    </tr>
+  </table>
 </div>

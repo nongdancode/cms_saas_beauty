@@ -12,8 +12,7 @@
             this.data = {
                 invoice: this.entry.values.invoice,
                 viewType: 'view',
-                paymentType: 'cash',
-                discount: '00'
+                paymentType: 'cash'
             };
         }
 

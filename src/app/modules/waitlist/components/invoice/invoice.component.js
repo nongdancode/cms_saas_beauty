@@ -13,7 +13,7 @@
 
         total() {
             return this.invoice.services.reduce((result, service) => {
-                return result + service.price;
+                return result + (service.price - (service.price * service.discount / 100));
             }, 0);
         };
 

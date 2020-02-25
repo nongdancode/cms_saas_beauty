@@ -16,7 +16,6 @@
                         invoice: {
                             id: 1,
                             tax: 10,
-                            discount: 10,
                             about: {
                                 companyName: '',
                                 phone: '',
@@ -29,10 +28,12 @@
                             services: [
                                 {
                                     name: 'Service 1',
+                                    discount: 10,
                                     price: 10
                                 },
                                 {
                                     name: 'Service 2',
+                                    discount: 20,
                                     price: 20
                                 }
                             ]
@@ -46,7 +47,6 @@
                         invoice: {
                             id: 2,
                             tax: 10,
-                            discount: 10,
                             about: {
                                 companyName: '',
                                 phone: '',
@@ -59,10 +59,12 @@
                             services: [
                                 {
                                     name: 'Service 1',
+                                    discount: 10,
                                     price: 10
                                 },
                                 {
                                     name: 'Service 2',
+                                    discount: 20,
                                     price: 20
                                 }
                             ]
