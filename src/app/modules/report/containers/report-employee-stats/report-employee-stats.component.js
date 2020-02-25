@@ -50,7 +50,7 @@
                 type: 'column'
             },
             title: {
-                text: 'Comeback Statistic'
+                text: 'Customer Comeback'
             },
             xAxis: {
                 title: {
