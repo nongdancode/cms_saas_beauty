@@ -2,8 +2,9 @@
     const module = angular.module('module.waitlist.components.checkin', []);
 
     class CheckinComponent {
-        constructor($scope, $uibModal, progression, notification, BookingService) {
+        constructor($scope, $state, $uibModal, progression, notification, BookingService) {
             this.$scope = $scope;
+            this.$state = $state;
             this.$uibModal = $uibModal;
             this.progression = progression;
             this.notification = notification;
@@ -138,6 +139,7 @@
                     this.notification.log('Checkin Successfully!');
                     this.progression.done();
                     this.reset();
+                    this.$state.reload();
                 });
         };
 

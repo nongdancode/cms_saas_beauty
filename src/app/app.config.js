@@ -10,7 +10,7 @@
       const key = `${operation}-${what}`;
 
       if (window.httpCache[key]) {
-        httpConfig.timeout = 1;
+        // httpConfig.timeout = 1;
       }
 
       return { element: element };
@@ -30,9 +30,9 @@
           dataList = response.data;
         }
 
-        if (Array.isArray(window.httpCache[key])) {
-          dataList = window.httpCache[key];
-        }
+        // if (Array.isArray(window.httpCache[key])) {
+        //   dataList = window.httpCache[key];
+        // }
 
         window.httpCache[key] = dataList;
 
