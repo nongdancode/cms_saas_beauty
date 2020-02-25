@@ -167,6 +167,13 @@
                   .active(path => path == '/report/customer')
                   .icon('<span class="glyphicon glyphicon-equalizer"></span>')
               )
+              .addChild(
+                nga.menu()
+                  .title('Employee Statistic')
+                  .link('/report/employee-statistic')
+                  .active(path => path == '/report/employee-statistic')
+                  .icon('<span class="glyphicon glyphicon-user"></span>')
+              )
           )
           .addChild(
             nga.menu(user)
