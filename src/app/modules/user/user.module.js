@@ -60,6 +60,8 @@
                 .label('Social SN'),
             nga.field('email'),
             nga.field('phone_number'),
+            nga.field('image', 'file')
+                .uploadInformation({ 'url': window.config.baseApiUrl + 'upload', 'apifilename': 'user_{{ entry.values.id }}' }),
             nga.field('role', 'number'),
             nga.field('base_salary', 'number'),
             nga.field('commision_type', 'choice')
@@ -92,8 +94,12 @@
 
         editionView.fields([
             nga.field('name'),
+            nga.field('social_sn')
+                .label('Social SN'),
             nga.field('email'),
             nga.field('phone_number'),
+            nga.field('image', 'file')
+                .uploadInformation({ 'url': window.config.baseApiUrl + 'upload', 'apifilename': 'user_{{ entry.values.id }}' }),
             nga.field('role', 'number'),
             nga.field('base_salary', 'number'),
             nga.field('commision_type', 'choice')
