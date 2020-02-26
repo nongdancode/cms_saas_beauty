@@ -110,7 +110,7 @@
         .addCollection(nga.collection(payment))
     );
 
-    const currentUser = JSON.parse(window.localStorage.getItem('ngStorage-user'));
+    const currentUser = (JSON.parse(window.localStorage.getItem('ngStorage-user')) || {});
 
     let menu;
 
