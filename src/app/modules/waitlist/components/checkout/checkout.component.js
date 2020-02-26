@@ -50,8 +50,7 @@
                 const checkout = { id, name, status, phone, deposit, paymentType, invoice };
 
                 this.BookingService
-                    .confirmCheckout(checkout)
-                    .finally(() => this.modal.close());
+                    .confirmCheckout(checkout);
             });
         };
 
