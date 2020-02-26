@@ -196,6 +196,13 @@
               .active(path => path.includes('/auth/'))
               .addChild(
                 nga.menu()
+                  .title('Change password')
+                  .link('/auth/change-password')
+                  .active(path => path == '/auth/change-password')
+                  .icon('<span class="glyphicon glyphicon-user"></span>')
+              )
+              .addChild(
+                nga.menu()
                   .title('Logout')
                   .link('/auth/logout')
                   .active(path => path == '/auth/logout')

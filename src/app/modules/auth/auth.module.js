@@ -1,6 +1,7 @@
 (function() {
     const module = angular.module('module.auth', [
         'module.auth.containers.login',
+        'module.auth.containers.change-password'
     ]);
 
     module.config(function ($stateProvider, $httpProvider, $locationProvider) {
@@ -18,6 +19,11 @@
                         $location.path('/auth/login');
                     });
                 }
+            })
+            .state('change-password', {
+                parent: 'ng-admin',
+	              url: '/auth/change-password',
+	              template: '<change-password $resolve="$resolve"></change-password>'
             });
 
 

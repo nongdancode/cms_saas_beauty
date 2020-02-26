@@ -8,8 +8,8 @@
         $stateProvider
             .state('staff-view-schedule', {
                 parent: 'ng-admin',
-	        url: '/staff/schedule',
-	        template: '<staff-view-schedule $resolve="$resolve"></staff-view-schedule>',
+	              url: '/staff/schedule',
+	              template: '<staff-view-schedule $resolve="$resolve"></staff-view-schedule>',
                 resolve: {
                     schedules: function($stateParams, StaffService, UserService) {
                         return StaffService.getStaffSchedules(UserService.getUser().id);
@@ -24,8 +24,8 @@
             })
             .state('staff-edit-schedule', {
                 parent: 'ng-admin',
-	        url: '/staff/schedule/:id/edit',
-	        template: '<staff-edit-schedule $resolve="$resolve"></staff-edit-schedule>',
+	              url: '/staff/schedule/:id/edit',
+	              template: '<staff-edit-schedule $resolve="$resolve"></staff-edit-schedule>',
                 resolve: {
                     schedules: function($stateParams, StaffService) {
                         return StaffService.getStaffSchedules(+$stateParams.id);
