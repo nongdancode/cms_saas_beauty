@@ -24,9 +24,9 @@
                 .then(res => {
                     if (res.code === 0) {
                         notification.log('Update schedules successfully!', { addnCls: 'humane-flatty-success' });
+                    } else {
+                        notification.log('Update schedules failed!', { addnCls: 'humane-flatty-error' });
                     }
-
-                    notification.log('Update schedules failed!', { addnCls: 'humane-flatty-error' });
 
                     return res.data;
                 });

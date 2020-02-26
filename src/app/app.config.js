@@ -17,7 +17,7 @@
     });
 
     RestangularProvider.addResponseInterceptor(function(data, operation, what, url, response) {
-      if (operation === "getList") {
+      if (operation === 'getList') {
         const key = `${operation}-${what}`;
 
         let dataList = [];
@@ -76,6 +76,12 @@
         }
 
         return dataList;
+      }
+
+      if (operation === 'get') {
+        const id = new URL(url).searchParams.get('id');
+
+        return data.find(row => +row.id === +id) || {};
       }
 
       return data;

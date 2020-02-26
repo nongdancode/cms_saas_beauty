@@ -13,9 +13,9 @@
                 .then(res => {
                     if (res.code === 0) {
                         notification.log('Update promotion successfully!', { addnCls: 'humane-flatty-success' });
+                    } else {
+                        notification.log('Update promotion failed!', { addnCls: 'humane-flatty-error' });
                     }
-
-                    notification.log('Update promotion failed!', { addnCls: 'humane-flatty-error' });
 
                     return res.data;
                 });

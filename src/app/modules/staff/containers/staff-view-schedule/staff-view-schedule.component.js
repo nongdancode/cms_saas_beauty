@@ -125,18 +125,6 @@
         getEvents() {
             return $('.calendar').fullCalendar('clientEvents').filter(event => event.type !== 'disable');
         };
-
-        submit() {
-            const events = this.getEvents().map(event => {
-                return {
-                    id: event.id,
-                    start: event.start.unix(),
-                    end: event.end.unix()
-                };
-            });
-
-            console.log('Submit: ', events);
-        };
     }
 
     module.component('staffViewSchedule', {

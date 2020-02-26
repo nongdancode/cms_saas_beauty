@@ -11,9 +11,9 @@
       }).then(res => {
         if (res.code === 0) {
           notification.log('Send SMS successfully!', { addnCls: 'humane-flatty-success' });
+        } else {
+          notification.log('Send SMS failed!', { addnCls: 'humane-flatty-error' });
         }
-
-        notification.log('Send SMS failed!', { addnCls: 'humane-flatty-error' });
 
         return res.data;
       });

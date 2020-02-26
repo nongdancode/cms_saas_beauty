@@ -162,7 +162,6 @@
 
             const addedEvents = submitEvents
                   .filter(event => {
-                      console.log(originalEvents, event);
                       return originalEvents.every(
                           e => !['id', 'start', 'end', 'type'].every(field => event[field] === e[field])
                       );
@@ -170,7 +169,6 @@
 
             const deletedEvents = originalEvents
                   .filter(event => {
-                      console.log(event, submitEvents);
                       return submitEvents.every(
                           e => !['id', 'start', 'end', 'type'].every(field => event[field] === e[field])
                       );

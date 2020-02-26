@@ -88,9 +88,9 @@
                 .then(res => {
                     if (res.code === 0) {
                         notification.log('Checkin confirm successfully!', { addnCls: 'humane-flatty-success' });
+                    } else {
+                        notification.log('Checkin confirm failed!', { addnCls: 'humane-flatty-error' });
                     }
-
-                    notification.log('Checkin confirm failed!', { addnCls: 'humane-flatty-error' });
 
                     return res.data;
                 });
@@ -101,9 +101,9 @@
                 .then(res => {
                     if (res.code === 0) {
                         notification.log('Checkout confirm successfully!', { addnCls: 'humane-flatty-success' });
+                    } else {
+                        notification.log('Checkout confirm failed!', { addnCls: 'humane-flatty-error' });
                     }
-
-                    notification.log('Checkout confirm failed!', { addnCls: 'humane-flatty-error' });
 
                     return res.data;
                 });

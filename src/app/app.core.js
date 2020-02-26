@@ -124,4 +124,18 @@ window.addEntity = (name, entity) => {
     };
 };
 
+window.entityUrl = base => (entityName, viewType, identifierValue, identifierName) => {
+    switch(viewType) {
+    case 'ListView': {
+        return base;
+    }
+    case 'EditView': {
+        return base + '?id=' + identifierValue;
+    }
+    default: {
+        return base;
+    }
+    }
+};
+
 window.httpCache = {};
