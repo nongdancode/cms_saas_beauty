@@ -1,19 +1,19 @@
 (function(){
   angular.module('service.user', [])
     .factory('UserService', UserService);
-  function UserService($window) {
+  function UserService($localStorage) {
     var service = {};
 
     service.getUser = function() {
-      return JSON.parse($window.localStorage.getItem('user'));
+      return $localStorage.user;
     };
 
     service.setUser = function(user) {
-      return $window.localStorage.setItem('user', JSON.stringify(user));
+      return $localStorage.user = user;
     };
 
     service.clearUser = function() {
-      return $window.localStorage.removeItem('user');
+      delete $localStorage.user;
     };
 
     return service;

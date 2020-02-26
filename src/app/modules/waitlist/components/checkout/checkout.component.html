@@ -1,34 +1,34 @@
 <style>
-    .checkout-form {
-        margin: 20px 35px 0 35px;
-    }
+  .checkout-form {
+    margin: 20px 35px 0 35px;
+  }
 </style>
 
 <a class="btn btn-default btn-sm" ng-click="$ctrl.showModal()" style="width: 100px">
-    <span class="glyphicon glyphicon-print" aria-hidden="true"></span>&nbsp;
-    <span class="hidden-xs ng-scope">Checkout</span>
+  <span class="glyphicon glyphicon-print" aria-hidden="true"></span>&nbsp;
+  <span class="hidden-xs ng-scope">Checkout</span>
 </a>
 
 <script type="text/ng-template" id="invoice-modal.html">
-    <div class="modal-header">
-        <h3 class="modal-title" id="modal-title">Checkout</h3>
-    </div>
-    <div class="modal-body" id="modal-body">
-        <app-invoice invoice="$ctrl.data.invoice" view-type="$ctrl.data.viewType"></app-invoice>
+  <div class="modal-header">
+    <h3 class="modal-title" id="modal-title">Checkout</h3>
+  </div>
+  <div class="modal-body" id="modal-body">
+    <app-invoice invoice="$ctrl.data.invoice" view-type="$ctrl.data.viewType"></app-invoice>
 
-        <form class="checkout-form">
-            <div class="form-group">
-                <label>Payment Type:</label>
-                <select class="form-control" ng-model="$ctrl.data.paymentType">
-                    <option value="cash">Cash</option>
-                    <option value="check">Check</option>
-                </select>
-            </div>
-        </form>
-    </div>
-    <div class="modal-footer">
-        <button class="btn btn-primary" type="button" ng-click="$ctrl.toggleViewType()" ng-disabled="$ctrl.disableToggle">{{ $ctrl.data.viewType === 'view' ? 'Edit' : 'View' }}</button>
-        <button class="btn btn-primary" type="button" ng-click="$ctrl.print()" ng-disabled="$ctrl.disablePrint">Print</button>
-        <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
-    </div>
+    <form class="checkout-form">
+      <div class="form-group">
+        <label>Payment Type:</label>
+        <select class="form-control" ng-model="$ctrl.data.paymentType">
+          <option value="cash">Cash</option>
+          <option value="check">Credit/Debit card</option>
+        </select>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="$ctrl.toggleViewType()" ng-disabled="$ctrl.disableToggle">{{ $ctrl.data.viewType === 'view' ? 'Edit' : 'View' }}</button>
+    <button class="btn btn-primary" type="button" ng-click="$ctrl.print()" ng-disabled="$ctrl.disablePrint">Print</button>
+    <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+  </div>
 </script>

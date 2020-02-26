@@ -16,6 +16,7 @@ module.exports = {
         "node_modules/fullcalendar/dist/fullcalendar.min.js",
         "node_modules/highcharts/highcharts.src.js",
         "node_modules/highcharts-ng/dist/highcharts-ng.min.js",
+        "node_modules/ngstorage/ngStorage.min.js",
         "src/assets/js/datetimepicker.js"
     ],
     css: [
