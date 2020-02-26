@@ -90,6 +90,16 @@ window.models = {
         checkin: {
             text: 'Checkin'
         }
+    },
+    Role: {
+        STAFF: 'staff',
+        OWNER: 'owner',
+        staff: {
+            text: 'staff'
+        },
+        owner: {
+            text: 'Owner'
+        }
     }
 };
 

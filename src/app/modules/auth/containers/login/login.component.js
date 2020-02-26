@@ -20,14 +20,21 @@
         login(username, password) {
             this.AuthService.login(username, password)
                 .then(res => {
-                    this.UserService.setUser({
-                        id: 1,
-                        username: username
-                    });
-                    this.notification.log('Login successfully !', { addnCls: 'humane-flatty-success' });
-                    this.$location.path('/dashboard');
-                }, err => {
-                    this.notification.log('Username or password is incorrect !', { addnCls: 'humane-flatty-error' });
+                    console.log(res);
+                    if (res.code === 0) {
+                        this.UserService.setUser({
+                            id: res.data.id,
+                            username: res.data.username,
+                            role: res.data.role
+                        });
+
+                        this.notification.log('Login successfully !', { addnCls: 'humane-flatty-success' });
+
+                        window.location.href = '/#/dashboard';
+                        window.location.reload();
+                    } else {
+                        this.notification.log('Username or password is incorrect !', { addnCls: 'humane-flatty-error' });
+                    }
                 });
         };
     }
