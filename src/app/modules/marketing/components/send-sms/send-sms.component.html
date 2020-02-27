@@ -13,7 +13,7 @@
     <form name="templateForm" action="">
       <div class="form-group">
         <label for="">Message Type</label>
-        <select name="type" class="form-control" style="width: 80px;" ng-model="$ctrl.form.type">
+        <select name="type" class="form-control" style="width: 80px;" ng-model="$ctrl.form.type" required>
           <option value="sms">SMS</option>
           <option value="mms">MMS</option>
         </select>
@@ -31,12 +31,14 @@
       </div>
       <div class="form-group">
         <label for="">Message</label>
-        <textarea name="message" ng-model="$ctrl.form.message" class="form-control" rows="10" style="resize: none;"></textarea>
+        <textarea name="message" ng-model="$ctrl.form.message" class="form-control" rows="10" style="resize: none;" required></textarea>
       </div>
     </form>
   </div>
   <div class="modal-footer">
-    <button class="btn btn-primary" type="button" ng-click="$ctrl.send(templateForm)">OK</button>
+    <button class="btn btn-primary" type="button"
+      ng-disabled="templateForm.$invalid || ($ctrl.form.type === 'mms' && !$ctrl.form.file)"
+      ng-click="$ctrl.send(templateForm)">OK</button>
     <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
   </div>
 </script>
