@@ -15,7 +15,8 @@
             this.form = {
                 message: '',
                 type: 'sms',
-                file: null
+                file: null,
+                imageUrl: ''
             };
         }
 
