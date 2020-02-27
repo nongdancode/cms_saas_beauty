@@ -5,7 +5,7 @@
     var service = {};
 
     service.sendSms = function(data) {
-      const endpoint = data.type === 'sms' ? 'sms_sending' : 'mms';
+      const endpoint = data.type === 'sms' ? 'sms_sending' : 'mms_sending';
 
       return HttpService.post(window.config.baseApiUrl + endpoint, data).then(res => {
         if (res.code === 0) {
