@@ -19,7 +19,7 @@
         listView.fields([
             nga.field('name'),
             nga.field('price', 'number')
-                .template('<span>{{ entry.values.price }}$</span>'),
+                .format('$0,0.00'),
             nga.field('stepping', 'number')
                 .label('Duration'),
             nga.field('users', 'reference_many')
