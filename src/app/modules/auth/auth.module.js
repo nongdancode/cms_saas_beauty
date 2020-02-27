@@ -25,9 +25,6 @@
 	              url: '/auth/change-password',
 	              template: '<change-password $resolve="$resolve"></change-password>'
             });
-
-
-        $httpProvider.defaults.withCredentials = true;
     });
 
     module.run(function($rootScope, $location, Restangular, UserService){

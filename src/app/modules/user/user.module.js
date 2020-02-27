@@ -58,8 +58,6 @@
                 .label('Social SN'),
             nga.field('email'),
             nga.field('phone_number'),
-            nga.field('image', 'file')
-                .uploadInformation({ 'url': window.config.baseApiUrl + 'upload-image', 'apifilename': 'user_{{ entry.values.id }}' }),
             nga.field('base_salary', 'number'),
             nga.field('commision_type', 'choice')
                 .choices(
@@ -95,8 +93,6 @@
                 .label('Social SN'),
             nga.field('email'),
             nga.field('phone_number'),
-            nga.field('image', 'file')
-                .uploadInformation({ 'url': window.config.baseApiUrl + 'upload-image', 'apifilename': 'user_{{ entry.values.id }}' }),
             nga.field('role', 'number'),
             nga.field('base_salary', 'number'),
             nga.field('commision_type', 'choice')

@@ -43,8 +43,6 @@
 
         creationView.fields([
             nga.field('name'),
-            nga.field('img', 'file')
-                .uploadInformation({ 'url': window.config.baseApiUrl + 'upload-image', 'apifilename': 'service_{{ entry.values.id }}' }),
             nga.field('price', 'number'),
             nga.field('stepping', 'number')
                 .label('Duration'),
@@ -60,8 +58,6 @@
 
         editionView.fields([
             nga.field('name'),
-            nga.field('img', 'file')
-                .uploadInformation({ 'url': window.config.baseApiUrl + 'upload-image', 'apifilename': 'service_{{ entry.values.id }}' }),
             nga.field('price', 'number'),
             nga.field('stepping', 'number')
                 .label('Duration'),
