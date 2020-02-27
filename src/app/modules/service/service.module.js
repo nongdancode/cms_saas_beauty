@@ -22,7 +22,8 @@
                 .format('$0,0.00'),
             nga.field('stepping', 'number')
                 .label('Duration'),
-            nga.field('users', 'reference_many')
+            nga.field('userIds', 'reference_many')
+                .label('Employees')
                 .targetEntity(userEntity)
                 .targetField(nga.field('name'))
                 .singleApiCall(function (ids) {
@@ -46,7 +47,8 @@
             nga.field('price', 'number'),
             nga.field('stepping', 'number')
                 .label('Duration'),
-            nga.field('users', 'reference_many')
+            nga.field('userIds', 'reference_many')
+                .label('Employees')
                 .targetEntity(userEntity)
                 .targetField(nga.field('name'))
         ]);
@@ -61,7 +63,8 @@
             nga.field('price', 'number'),
             nga.field('stepping', 'number')
                 .label('Duration'),
-            nga.field('users', 'reference_many')
+            nga.field('userIds', 'reference_many')
+                .label('Employees')
                 .targetEntity(userEntity)
                 .targetField(nga.field('name'))
         ]);
