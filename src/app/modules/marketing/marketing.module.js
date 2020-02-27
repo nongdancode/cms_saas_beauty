@@ -12,7 +12,7 @@
         const listView = entity.listView();
 
         listView
-            .title('Marketing')
+            .title('Customer Management')
             .perPage(10);
 
         listView.fields([
@@ -20,11 +20,10 @@
             nga.field('phone_number'),
             nga.field('last_visit', 'date'),
             nga.field('birthday', 'date'),
-            nga.field('image')
-                .template('<img src="{{ entry.values.image }}" height="42" width="42" />'),
             nga.field('email', 'email'),
             nga.field('visit_count', 'number'),
-            nga.field('amount_paid', 'number'),
+            nga.field('amount_paid', 'number')
+                .format('$0,0.00'),
             nga.field('action', 'template')
                 .template('<ma-history-customer id="entry.values.id"></ma-history-customer>')
         ]);

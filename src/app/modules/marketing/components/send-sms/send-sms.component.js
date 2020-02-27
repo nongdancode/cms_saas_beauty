@@ -2,11 +2,12 @@
     const module = angular.module('module.marketing.components.send-sms', []);
 
     class SendSmsComponent {
-        constructor($scope, $timeout, $uibModal, notification, MarketingService) {
+        constructor($scope, $timeout, $uibModal, notification, UtilityService, MarketingService) {
             this.$scope = $scope;
             this.$timeout = $timeout;
             this.$uibModal = $uibModal;
             this.notification = notification;
+            this.UtilityService = UtilityService;
             this.MarketingService = MarketingService;
         }
 
@@ -32,12 +33,17 @@
 
         upload(e) {
             this.$timeout(() => {
-                this.form.file = e.files[0];
+                const file = e.files[0];
+
+                this.UtilityService.upload(file)
+                    .then(res => {
+                        this.form.file = file;
+                    });
             });
         }
 
         send() {
-            if (confirm('Send SMS to: ' + this.names)) {
+            if (confirm('Send Message to: ' + this.names)) {
                 const ids = this.selection.map(function (entry) {
                     return entry.identifierValue;
                 });

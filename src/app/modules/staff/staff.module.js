@@ -52,7 +52,7 @@
         const listView = entity.listView();
 
         listView
-            .title('Staff Manager')
+            .title('Staff Management')
             .perPage(10);
 
         listView.fields([

@@ -18,13 +18,15 @@
                     id: 1,
                     service_name: 'Lash 1',
                     count: 10,
-                    note: 'Pick Jenny'
+                    staff: 'Jenny',
+                    note: ''
                 },
                 {
                     id: 2,
                     service_name: 'Lash 2',
                     count: 6,
-                    note: 'Pick Alice'
+                    staff: 'Alice',
+                    note: ''
                 }
             ];
         }

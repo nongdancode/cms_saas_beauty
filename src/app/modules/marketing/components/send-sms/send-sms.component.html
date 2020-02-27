@@ -1,42 +1,42 @@
 <a class="btn btn-default btn-sm" ng-if="$ctrl.isShow" ng-click="$ctrl.showModal()">
-    <span class="glyphicon glyphicon-phone" aria-hidden="true"></span>&nbsp;
-    <span class="hidden-xs ng-scope">Send SMS</span>
+  <span class="glyphicon glyphicon-phone" aria-hidden="true"></span>&nbsp;
+  <span class="hidden-xs ng-scope">SMS/MMS Marketing</span>
 </a>
 
 <script type="text/ng-template" id="send-sms-modal.html">
-    <div class="modal-header">
-        <h3 class="modal-title" id="modal-title">Send SMS</h3>
-    </div>
-    <div class="modal-body" id="modal-body">
-        <div style="margin-bottom: 5px;">Send SMS to: <b>{{ $ctrl.names }}</b></div>
-        <hr/>
-        <form name="templateForm" action="">
-            <div class="form-group">
-                <label for="">Message Type</label>
-                <select name="type" class="form-control" style="width: 80px;" ng-model="$ctrl.form.type">
-                    <option value="sms">SMS</option>
-                    <option value="mms">MMS</option>
-                </select>
-            </div>
-            <div class="form-group" ng-if="$ctrl.form.type === 'mms'">
-                <label style="display: block;">Image</label>
+  <div class="modal-header">
+    <h3 class="modal-title" id="modal-title">SMS/MMS Marketing</h3>
+  </div>
+  <div class="modal-body" id="modal-body">
+    <div style="margin-bottom: 5px;">Send Message to: <b>{{ $ctrl.names }}</b></div>
+    <hr/>
+    <form name="templateForm" action="">
+      <div class="form-group">
+        <label for="">Message Type</label>
+        <select name="type" class="form-control" style="width: 80px;" ng-model="$ctrl.form.type">
+          <option value="sms">SMS</option>
+          <option value="mms">MMS</option>
+        </select>
+      </div>
+      <div class="form-group" ng-if="$ctrl.form.type === 'mms'">
+        <label style="display: block;">Image</label>
 
-                <label class="btn btn-default" style="width: 80px;">
-                    Browse <input type="file" name="file" class="hidden" onchange="angular.element(this).scope().$ctrl.upload(this)">
-                </label>
+        <label class="btn btn-default" style="width: 80px;">
+          Browse <input type="file" name="file" class="hidden" onchange="angular.element(this).scope().$ctrl.upload(this)">
+        </label>
 
-                <label style="margin-left: 5px; font-weight: normal;">
-                    {{ $ctrl.form.file.name }}
-                </label>
-            </div>
-            <div class="form-group">
-                <label for="">Message</label>
-                <textarea name="message" ng-model="$ctrl.form.message" class="form-control" rows="10" style="resize: none;"></textarea>
-            </div>
-        </form>
-    </div>
-    <div class="modal-footer">
-        <button class="btn btn-primary" type="button" ng-click="$ctrl.send(templateForm)">OK</button>
-        <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
-    </div>
+        <label style="margin-left: 5px; font-weight: normal;">
+          {{ $ctrl.form.file.name }}
+        </label>
+      </div>
+      <div class="form-group">
+        <label for="">Message</label>
+        <textarea name="message" ng-model="$ctrl.form.message" class="form-control" rows="10" style="resize: none;"></textarea>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="$ctrl.send(templateForm)">OK</button>
+    <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+  </div>
 </script>

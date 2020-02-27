@@ -2,7 +2,7 @@
   angular.module('service.utility', [])
     .factory('UtilityService', UtilityService);
 
-  function UtilityService() {
+  function UtilityService(HttpService) {
     const service = {};
 
     service.print = function(selector) {
@@ -18,6 +18,10 @@
 
         resolve();
       });
+    };
+
+    service.upload = function(file) {
+      return HttpService.upload(HttpService.generateUrl('upload-image'), 'image')(file);
     };
 
     return service;

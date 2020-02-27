@@ -5,8 +5,7 @@
         var service = {};
 
         service.getStaffs = function() {
-            return HttpService.get(HttpService.generateUrl('staffs'))
-                .then(res => res.data || []);
+            return HttpService.get(HttpService.generateUrl('staffs'));
         };
 
         service.getStaffTasks = function(id) {

@@ -38,6 +38,19 @@
         .then(res => res.data);
     };
 
+    service.upload = function(url, field) {
+      console.log(field);
+      return function(file) {
+        const fd = new FormData();
+        fd.append(field, file);
+
+        return $http.post(url, fd, {
+          transformRequest: angular.identity,
+          headers: {'Content-Type': undefined}
+        });
+      };
+    };
+
     return service;
   }
 })();

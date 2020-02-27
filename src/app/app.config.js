@@ -124,7 +124,7 @@
         )
         .addChild(
           nga.menu(marketing)
-            .title('Marketing Management')
+            .title('Customer Management')
             .icon('<span class="glyphicon glyphicon-shopping-cart"></span>')
         )
         .addChild(
@@ -169,16 +169,16 @@
         )
         .addChild(
           nga.menu(marketing)
-            .title('Marketing Management')
+            .title('Customer Management')
             .icon('<span class="glyphicon glyphicon-shopping-cart"></span>')
         )
         .addChild(
-          nga.menu().title('Schedule Management')
+          nga.menu().title('Management')
             .active(path => path.includes('/staff/'))
             .icon('<span class="glyphicon glyphicon-time"></span>')
             .addChild(
               nga.menu()
-                .title('Schedule Manager')
+                .title('Schedule Management')
                 .link('/staff/list')
                 .active(path => path == '/staff/list')
                 .icon('<span class="glyphicon glyphicon-calendar"></span>')
