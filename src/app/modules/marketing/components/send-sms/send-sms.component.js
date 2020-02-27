@@ -37,7 +37,7 @@
 
                 this.UtilityService.upload(file)
                     .then(res => {
-                        this.form.file = file;
+                        this.form.file = res.data;
                     });
             });
         }
