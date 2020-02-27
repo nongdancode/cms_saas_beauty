@@ -21,7 +21,7 @@
     };
 
     service.upload = function(file) {
-      return HttpService.upload(HttpService.generateUrl('upload-image'), 'image')(file);
+      return HttpService.upload(HttpService.generateUrl('upload-image'), 'file')(file);
     };
 
     return service;
