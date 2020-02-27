@@ -48,13 +48,11 @@
                     return entry.identifierValue;
                 });
 
-                console.log(this.form);
+                this.MarketingService.sendSms({ customerIds: ids, ...this.form }).then(res => {
+                    this.notification.log('Send SMS Successful!');
 
-                // this.MarketingService.sendSms(ids, this.form.message).then(res => {
-                //     this.notification.log('Send SMS Successful!');
-
-                //     this.close();
-                // });
+                    this.close();
+                });
             }
         };
 

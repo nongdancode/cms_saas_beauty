@@ -4,11 +4,10 @@
   function MarketingService(HttpService, notification) {
     var service = {};
 
-    service.sendSms = function(ids, message) {
-      return HttpService.post(window.config.baseApiUrl + 'sms_sending', {
-        customerIds: ids,
-        message: message
-      }).then(res => {
+    service.sendSms = function(data) {
+      const endpoint = data.type === 'sms' ? 'sms_sending' : 'mms';
+
+      return HttpService.post(window.config.baseApiUrl + endpoint, data).then(res => {
         if (res.code === 0) {
           notification.log('Send SMS successfully!', { addnCls: 'humane-flatty-success' });
         } else {
