@@ -5,7 +5,21 @@
     $urlRouterProvider.otherwise('/dashboard');
   });
 
-  module.config(function(RestangularProvider) {
+  module.config(function($httpProvider, RestangularProvider) {
+    $httpProvider.interceptors.push(function() {
+      return {
+        request: function(config) {
+          if (config.method === 'DELETE') {
+            const url = new URL(config.url);
+            const id = url.searchParams.get('id');
+
+            config.url = url.origin + url.pathname + '/' + id;
+          }
+          return config;
+        },
+      };
+    });
+
     RestangularProvider.addFullRequestInterceptor(function(element, operation, what, url, headers, params, httpConfig) {
       const key = `${operation}-${what}`;
 
@@ -13,7 +27,11 @@
         // httpConfig.timeout = 1;
       }
 
-      return { element: element };
+      switch(operation) {
+      default: {
+        return { element: element };
+      }
+      }
     });
 
     RestangularProvider.addResponseInterceptor(function(data, operation, what, url, response) {

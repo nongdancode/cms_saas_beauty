@@ -142,6 +142,9 @@ window.entityUrl = base => (entityName, viewType, identifierValue, identifierNam
     case 'EditView': {
         return base + '?id=' + identifierValue;
     }
+    case 'DeleteView': {
+        return base + '?id=' + identifierValue;
+    }
     default: {
         return base;
     }
