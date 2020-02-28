@@ -76,10 +76,7 @@
                             value: row.key
                         };
                     })
-                ),
-            nga.field('services', 'reference_many')
-                .targetEntity(serviceEntity)
-                .targetField(nga.field('name'))
+                )
         ]);
 
         const editionView = entity.editionView();
@@ -112,10 +109,7 @@
                             value: row.key
                         };
                     })
-                ),
-            nga.field('services', 'reference_many')
-                .targetEntity(serviceEntity)
-                .targetField(nga.field('name'))
+                )
         ]);
 
         window.addEntity('user', entity);
