@@ -62,7 +62,7 @@
                 const employeeIds = this.data.employees.map(employee => employee.id);
 
                 employeeIds.forEach(id => {
-                    this.data.availableTimes[id] = Object.keys(this.data.employeesMap[id].available).reduce((result, timestamp) => {
+                    this.data.availableTimes[id] = Object.keys((this.data.employeesMap[id].available || {})).reduce((result, timestamp) => {
                         const availableOptions = [];
 
                         this.data.employeesMap[id].available[timestamp].forEach(({start_time, end_time}) => {
