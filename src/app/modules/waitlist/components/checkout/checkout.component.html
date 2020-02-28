@@ -14,7 +14,7 @@
     <h3 class="modal-title" id="modal-title">Checkout</h3>
   </div>
   <div class="modal-body" id="modal-body">
-    <app-invoice invoice="$ctrl.data.invoice" view-type="$ctrl.data.viewType"></app-invoice>
+    <app-invoice customer="$ctrl.entry.values" invoice="$ctrl.data.invoice" view-type="$ctrl.data.viewType"></app-invoice>
 
     <form class="checkout-form">
       <div class="form-group">

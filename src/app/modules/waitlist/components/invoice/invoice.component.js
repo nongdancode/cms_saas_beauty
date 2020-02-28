@@ -6,8 +6,8 @@
             this.data = {
                 items: this.invoice.services,
                 today: moment().format('LL'),
-                leftInfo: 'Sparksuite, Inc.<br/>12345 Sunny Road<br/>Sunnyville, CA 12345',
-                rightInfo: 'Acme Corp.<br/>John Doe<br/>john@example.com'
+                leftInfo: `${this.invoice.about.address.streetAddress}\n${this.invoice.about.address.city}\n${this.invoice.about.address.state}`,
+                rightInfo: `${this.customer.name}\n${this.customer.phone}`
             };
         }
 
@@ -32,6 +32,7 @@
     module.component('appInvoice', {
         bindings: {
             invoice: '<',
+            customer: '<',
             viewType: '<'
         },
         controller: InvoiceComponent,

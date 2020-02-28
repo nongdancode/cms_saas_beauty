@@ -18,12 +18,12 @@
                             id: 1,
                             tax: 10,
                             about: {
-                                companyName: '',
-                                phone: '',
+                                companyName: 'The lash supply',
+                                phone: '8327744593',
                                 address: {
-                                    streetAddress: '',
-                                    city: '',
-                                    state: ''
+                                    streetAddress: 'Bellard',
+                                    city: 'Houston',
+                                    state: 'Texas'
                                 }
                             },
                             services: [
@@ -50,12 +50,12 @@
                             id: 2,
                             tax: 10,
                             about: {
-                                companyName: '',
-                                phone: '',
+                                companyName: 'The lash supply',
+                                phone: '8327744593',
                                 address: {
-                                    streetAddress: '',
-                                    city: '',
-                                    state: ''
+                                    streetAddress: 'Bellard',
+                                    city: 'Houston',
+                                    state: 'Texas'
                                 }
                             },
                             services: [
