@@ -47,7 +47,7 @@
             nga.field('price', 'number'),
             nga.field('stepping', 'number')
                 .label('Duration'),
-            nga.field('users', 'reference_many')
+            nga.field('userIds', 'reference_many')
                 .targetEntity(userEntity)
                 .targetField(nga.field('name'))
         ]);
@@ -62,7 +62,7 @@
             nga.field('price', 'number'),
             nga.field('stepping', 'number')
                 .label('Duration'),
-            nga.field('users', 'reference_many')
+            nga.field('userIds', 'reference_many')
                 .targetEntity(userEntity)
                 .targetField(nga.field('name'))
         ]);
