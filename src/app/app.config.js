@@ -75,6 +75,9 @@
                   return moment(row[field]) >= moment(value.startDate)
                     && moment(row[field]) <= moment(value.endDate);
                 }
+                case 'custom': {
+                  return row[value.field] === value.value;
+                }
                 default: {
                   return row[field] === value;
                 }
