@@ -46,7 +46,10 @@
             nga.field('name'),
             nga.field('price', 'number'),
             nga.field('stepping', 'number')
-                .label('Duration')
+                .label('Duration'),
+            nga.field('userIds', 'reference_many')
+                .targetEntity(userEntity)
+                .targetField(nga.field('name'))
         ]);
 
         const editionView = entity.editionView();
@@ -58,7 +61,10 @@
             nga.field('name'),
             nga.field('price', 'number'),
             nga.field('stepping', 'number')
-                .label('Duration')
+                .label('Duration'),
+            nga.field('userIds', 'reference_many')
+                .targetEntity(userEntity)
+                .targetField(nga.field('name'))
         ]);
 
         window.addEntity('service', entity);
