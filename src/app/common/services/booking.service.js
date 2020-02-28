@@ -80,7 +80,16 @@
         };
 
         service.getCheckinEmployees = function() {
-            return HttpService.get(window.config.baseUrl + 'api/booking/list_employee');
+            return HttpService.get(window.config.baseUrl + 'api/booking/list_employee')
+                .then(res => {
+                    return res.map(row => {
+                        return {
+                            ...row,
+                            employee_id: row.id,
+                            id: row.id + '_' + row.service_id
+                        };
+                    });
+                });
         };
 
         service.confirmCheckin = function(data) {

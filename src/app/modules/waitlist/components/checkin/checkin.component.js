@@ -62,39 +62,58 @@
                 const employeeIds = this.data.employees.map(employee => employee.id);
 
                 employeeIds.forEach(id => {
-                    this.data.availableTimes[id] = Object.keys((this.data.employeesMap[id].available || {})).reduce((result, timestamp) => {
-                        const availableOptions = [];
+                    this.data.availableTimes[id] = Object.keys((this.data.employeesMap[id].available || {}))
+                        .filter(timestamp => timestamp > moment().unix())
+                        .reduce((result, timestamp) => {
+                            const availableOptions = [];
 
-                        this.data.employeesMap[id].available[timestamp].forEach(({start_time, end_time}) => {
-                            const serviceStepping = this.data.servicesMap[this.data.employeesMap[id].service_id].stepping;
+                            this.data.employeesMap[id].available[timestamp].forEach(({start_time, end_time}) => {
+                                const serviceStepping = this.data.servicesMap[this.data.employeesMap[id].service_id].stepping;
 
-                            let start = moment.unix(start_time);
-                            let end = moment.unix(end_time);
+                                let start = moment.unix(start_time);
+                                let end = moment.unix(end_time);
 
-                            while (moment(start).add(serviceStepping, 'minutes') <= end) {
-                                let _start = moment(start);
-                                let _end = moment(start).add(serviceStepping, 'minutes');
+                                while (moment(start).add(serviceStepping, 'minutes') <= end) {
+                                    let _start = moment(start);
+                                    let _end = moment(start).add(serviceStepping, 'minutes');
 
-                                availableOptions.push({
-                                    text: `${_start.format('hh:mm A')}`,
-                                    value: {
-                                        start: _start,
-                                        end: _end
-                                    }
-                                });
+                                    availableOptions.push({
+                                        text: `${_start.format('hh:mm A')}`,
+                                        value: {
+                                            start: _start,
+                                            end: _end
+                                        }
+                                    });
 
-                                start = moment(start).add(serviceStepping, 'minutes');
-                            }
-                        });
+                                    start = moment(start).add(serviceStepping, 'minutes');
+                                }
+                            });
 
-                        return {
-                            ...result,
-                            [moment.unix(timestamp).startOf('day').valueOf()]: availableOptions
-                        };
-                    }, {});
+                            return {
+                                ...result,
+                                [moment.unix(timestamp).startOf('day').valueOf()]: availableOptions
+                            };
+                        }, {});
+
 
                     this.form.dates[this.data.employeesMap[id].service_id] = moment(+Object.keys(this.data.availableTimes[id])[0]);
                 });
+
+                this.data.employees = employees
+                    .reduce((result, employee) => {
+                        if (!Object.keys(employee.available || {}).length) {
+                            return result;
+                        }
+
+                        const stepping = this.data.servicesMap[employee.service_id].stepping;
+                        const times = this.data.availableTimes[employee.id];
+
+                        if (!Object.keys(times || {}).length) {
+                            return result;
+                        }
+
+                        return [ ...result, employee ];
+                    }, []);
             });
         };
 
@@ -124,7 +143,7 @@
                 services: this.form.serviceIds.map(id => {
                     return {
                         serviceId: id,
-                        employeeId: this.form.employees[id],
+                        employeeId: this.form.employees[id].split('_')[0],
                         timeRange: {
                             start: this.form.times[id].start.valueOf(),
                             end: this.form.times[id].end.valueOf()
