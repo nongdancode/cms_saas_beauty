@@ -7,6 +7,7 @@ angular.module('app.third-party', [
     'ui-datetimepicker',
     'daterangepicker',
     'highcharts-ng',
+    'angularFileUpload',
     'ngStorage'
 ]);
 

@@ -12,12 +12,13 @@
         }
 
         $onInit() {
+            this.uploader = new this.UtilityService.upload();
+
             this.form = {
                 message: '',
-                type: 'sms',
-                file: null,
-                imageUrl: ''
+                type: 'sms'
             };
+
         }
 
         showModal() {
@@ -32,27 +33,20 @@
 
         };
 
-        upload(e) {
-            this.$timeout(() => {
-                const file = e.files[0];
-
-                this.UtilityService.upload(file)
-                    .then(res => {
-                        this.form.file = res.data;
-                    });
-            });
-        }
-
         send() {
             if (confirm('Send Message to: ' + this.names)) {
-                const ids = this.selection.map(function (entry) {
-                    return entry.identifierValue;
-                });
+                this.uploader.__uploadAll().then((result) => {
+                    const ids = this.selection.map(function (entry) {
+                        return entry.identifierValue;
+                    });
 
-                this.MarketingService.sendSms({ customerIds: ids, ...this.form }).then(res => {
-                    this.notification.log('Send SMS Successful!');
-
-                    this.close();
+                    this.MarketingService.sendSms({
+                        customerIds: ids,
+                        images: result,
+                        ...this.form
+                    }).then(res => {
+                        this.close();
+                    });
                 });
             }
         };
@@ -70,8 +64,9 @@
             this.form = {
                 message: '',
                 type: 'sms',
-                file: null
             };
+
+            this.uploader.clearQueue();
         }
 
         get isShow() {
