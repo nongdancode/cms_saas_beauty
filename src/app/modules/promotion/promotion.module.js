@@ -32,30 +32,4 @@
 
         window.addEntity('promotion', entity);
     });
-
-    module.config(function(RestangularProvider) {
-        RestangularProvider.addResponseInterceptor(function(data, operation, what, url, response) {
-            if (operation === "getList" && what === 'promotion') {
-                return [
-                    {
-                        id: 1,
-                        name: 'Promotion 1',
-                        description: 'Id velit ut tortor pretium.',
-                        status: 'Status 1',
-                        discount_rate: 15,
-                        active: true
-                    },
-                    {
-                        id: 2,
-                        name: 'Promotion 2',
-                        description: 'Scelerisque eleifend donec pretium vulputate.',
-                        status: 'Status 2',
-                        discount_rate: 30,
-                        active: false
-                    }
-                ];
-            }
-            return data;
-        });
-    });
 })();

@@ -17,6 +17,10 @@ try {
     angular.module("app.templates", []);
 }
 
+angular.module('app.core', [
+    'core.ng-admin-customizer'
+]);
+
 angular.module('app.resources', []);
 
 angular.module('app.services', [
@@ -48,12 +52,15 @@ angular.module('app.modules', [
     'module.promotion',
     'module.user',
     'module.service',
-    'module.waitlist'
+    'module.waitlist',
+    'module.group'
 ]);
 
 angular.module('app', [
     'app.templates',
     'app.third-party',
+    'app.core',
+    'app.mock',
     'app.resources',
     'app.services',
     'app.directives',

@@ -31,27 +31,15 @@
         listView.filters([
             nga.field('name'),
             nga.field('phone_number'),
-            nga.field('last_visit', 'template')
-                .template('<ma-daterange-filter ng-model="value"></ma-daterange-filter>')
-                .pinned(true),
-            nga.field('birthday', 'template')
-                .template('<ma-daterange-filter ng-model="value"></ma-daterange-filter>'),
+            nga.field('last_visit', 'daterange').pinned(true),
+            nga.field('birthday', 'daterange'),
             nga.field('email', 'email'),
             nga.field('visit_count', 'number'),
             nga.field('amount_paid', 'number'),
-            nga.field('__custom')
+            nga.field('__custom', 'custom')
                 .label('Custom')
-                .defaultValue({
-                    type: 'custom',
-                    field: 'last_visit',
-                    value: undefined
-                })
-                .template(
-                    '<div style="display:flex; justify-content: space-between;">' +
-                        '<input type="text" class="form-control" style="display:inline-block; width: 48%;" ng-model="value.field" />' +
-                        '<input type="text" class="form-control" style="display:inline-block; width: 48%;" ng-model="value.value" />' +
-                        '</div>'
-                )
+                .defaultValue('Ali')
+                .field('name')
         ]);
 
         listView.actions(
