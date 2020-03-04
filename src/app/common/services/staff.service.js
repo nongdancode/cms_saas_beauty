@@ -31,6 +31,53 @@
                 });
         };
 
+        service.getTasks = function(id) {
+            return HttpService.get(HttpService.generateUrl(`schedules/${id}/tasks`))
+                .then(res => res.data || [
+                    {
+                        id: "2",
+                        name: "Hybrid Lash",
+                        stepping: 60,
+                        img: "",
+                        start: 1582914600,
+                        end: 1582918200,
+                        type: "active"
+                    },
+                    {
+                        id: "2",
+                        name: "Hybrid Lash",
+                        stepping: 60,
+                        img: "",
+                        start: 1582914600,
+                        end: 1582918200,
+                        type: "booking"
+                    },
+                    {
+                        id: "2",
+                        name: "Hybrid Lash",
+                        stepping: 60,
+                        img: "",
+                        start: 1582914600,
+                        end: 1582918200,
+                        type: "disable"
+                    }
+                ]);
+        };
+
+        service.getShifts = function(id) {
+            return HttpService.get(HttpService.generateUrl(`schedules/${id}/shifts`))
+                .then(res => res.data || [
+                    {
+                        start: 1582914600,
+                        end: 1582918200,
+                    },
+                    {
+                        start: 1582914600,
+                        end: 1582918200,
+                    }
+                ]);
+        };
+
         return service;
     }
 })();
