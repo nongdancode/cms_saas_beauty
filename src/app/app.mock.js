@@ -3,7 +3,7 @@
 
   module.config(function(RestangularProvider) {
     RestangularProvider.addResponseInterceptor(function(data, operation, what, url, response) {
-      if (operation === "getList" ) {
+      if (['get', 'getList'].includes(operation)) {
         if (what === 'group') {
           return [
             {
@@ -13,6 +13,38 @@
             {
               id: 2,
               name: 'Group 2'
+            }
+          ];
+        }
+
+        if (what === 'service') {
+          return [
+            {
+              id: 1,
+              img: 'https://eyelashexcellence.com/wp-content/uploads/2015/06/volume-lash-course.jpg',
+              name: 'Volume Lash 1',
+              stepping: 90,
+              price: 79,
+              userIds: [2, 3, 4],
+              groupIds: [1]
+            },
+            {
+              id: 2,
+              img: 'https://eyelashexcellence.com/wp-content/uploads/2015/06/volume-lash-course.jpg',
+              name: 'Volume Lash 2',
+              stepping: 90,
+              price: 79,
+              userIds: [2, 3, 4],
+              groupIds: [2]
+            },
+            {
+              id: 3,
+              img: 'https://eyelashexcellence.com/wp-content/uploads/2015/06/volume-lash-course.jpg',
+              name: 'Volume Lash 3',
+              stepping: 90,
+              price: 79,
+              userIds: [2, 3, 4],
+              groupIds: [1, 2]
             }
           ];
         }

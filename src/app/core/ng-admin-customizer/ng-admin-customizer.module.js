@@ -97,12 +97,12 @@
 
         let dataList = [];
 
-        if (Array.isArray(data)) {
-          dataList = data;
-        }
-
         if (Array.isArray(response.data)) {
           dataList = response.data;
+        }
+
+        if (Array.isArray(data)) {
+          dataList = data;
         }
 
         // if (Array.isArray(window.httpCache[key])) {
@@ -121,7 +121,7 @@
 
               switch (typeof value){
               case 'string' : {
-                return row[field].toLowerCase().includes(value.toLowerCase());
+                return (row[field] || '').toLowerCase().includes(value.toLowerCase());
               }
               case 'number': {
                 return row[field] === value;
@@ -133,7 +133,39 @@
                     && moment(row[field]) <= moment(value.data.endDate);
                 }
                 case 'custom': {
-                  return row[value.data.field] === value.data.value;
+                  const filter = value.data;
+                  const original = row[filter.field];
+
+                  switch (filter.operator) {
+                  case '$in': {
+                    if (Array.isArray(original)) {
+                      const array = original.map(row => row.toString().toLowerCase());
+                      const filterValue = (filter.value || '').toLowerCase();
+
+                      return array.includes(filterValue);
+                    }
+
+                    return false;
+                  }
+                  case '$gte': {
+                    return original >= filter.value;
+                  }
+                  case '$lte': {
+                    return original <= filter.value;
+                  }
+                  case '$gt': {
+                    return original > filter.value;
+                  }
+                  case '$lt': {
+                    return original < filter.value;
+                  }
+                  case '$eq': {
+                    return original === filter.value;
+                  }
+                  default: {
+                    return original === filter.value;
+                  }
+                  }
                 }
                 default: {
                   return row[field] === value;
@@ -159,7 +191,7 @@
       if (operation === 'get') {
         const id = new URL(url).searchParams.get('id');
 
-        return data.find(row => +row.id === +id) || {};
+        return (data.find && data.find(row => +row.id === +id)) || {};
       }
 
       return data;

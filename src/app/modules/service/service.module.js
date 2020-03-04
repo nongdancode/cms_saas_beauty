@@ -5,6 +5,7 @@
         const nga = NgAdminConfigurationProvider;
 
         const userEntity = nga.entity('user').url(nga.entityUrl('employees'));
+        const groupEntity = nga.entity('group').url(nga.entityUrl('groups'));
 
         const entity = nga.entity('service');
 
@@ -28,6 +29,13 @@
                 .targetField(nga.field('name'))
                 .singleApiCall(function (ids) {
                     return { ids };
+                }),
+            nga.field('groupIds', 'reference_many')
+                .label('Groups')
+                .targetEntity(groupEntity)
+                .targetField(nga.field('name'))
+                .singleApiCall(function (ids) {
+                    return { ids };
                 })
         ]);
 
@@ -35,7 +43,12 @@
             nga.field('name'),
             nga.field('price', 'number'),
             nga.field('stepping', 'number')
-                .label('Duration')
+                .label('Duration'),
+            nga.field('groupIds', 'custom')
+                .label('Group')
+                .field('groupIds')
+                .operator('$in')
+                .defaultValue(1)
         ]);
 
         listView.listActions(['edit', 'delete']);

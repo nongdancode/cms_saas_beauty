@@ -35,11 +35,7 @@
             nga.field('birthday', 'daterange'),
             nga.field('email', 'email'),
             nga.field('visit_count', 'number'),
-            nga.field('amount_paid', 'number'),
-            nga.field('__custom', 'custom')
-                .label('Custom')
-                .defaultValue('Ali')
-                .field('name')
+            nga.field('amount_paid', 'number')
         ]);
 
         listView.actions(
