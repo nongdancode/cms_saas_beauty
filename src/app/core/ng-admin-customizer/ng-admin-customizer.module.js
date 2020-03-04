@@ -4,7 +4,65 @@
     'core.ng-admin-customizer.types.daterange'
   ]);
 
+  module.config(function (NgAdminConfigurationProvider, $injector) {
+    const nga = NgAdminConfigurationProvider;
+
+    nga.addEntity = (name, entity) => {
+      nga.entities = {
+        ...(nga.entities || {}),
+        [name]: entity
+      };
+    };
+
+    nga.entityUrl = base => (entityName, viewType, identifierValue, identifierName) => {
+      switch(viewType) {
+      case 'ListView': {
+        return base;
+      }
+      case 'EditView': {
+        return base + '?id=' + identifierValue;
+      }
+      case 'DeleteView': {
+        return base + '?id=' + identifierValue;
+      }
+      default: {
+        return base;
+      }
+      }
+    };
+
+    nga.generateMenu = (ref, tree, roles) => {
+      const _generateMenu = (root, _tree) => {
+        const filterRole =
+              menu => menu.role ? roles.some(role => menu.role.includes(role)) : true;
+
+        _tree
+          .filter(node => filterRole(ref[node.key]))
+          .forEach(node => {
+            const metadata = ref[node.key];
+
+            let menu = nga.menu()
+                .title(metadata.name)
+                .link(metadata.src)
+                .icon(`<span class="${metadata.icon}"></span>`);
+
+            metadata.active && menu.active(metadata.active);
+
+            _generateMenu(menu, (node.children || []));
+
+            root.addChild(menu);
+          });
+
+        return root;
+      };
+
+      return _generateMenu(nga.menu(), tree);
+    };
+  });
+
   module.config(function($httpProvider, RestangularProvider) {
+    window.httpCache = {};
+
     $httpProvider.interceptors.push(function() {
       return {
         request: function(config) {

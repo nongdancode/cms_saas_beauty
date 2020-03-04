@@ -126,29 +126,219 @@ window.config = {
 
 window.config.baseApiUrl = window.config.baseUrl + 'api/admin/';
 
+window.menu = {};
 
-window.addEntity = (name, entity) => {
-  window.entities = {
-    ...(window.entities || {}),
-    [name]: entity
-  };
-};
+window.menu.ref = [
+  {
+    key: 'check-in',
+    name: 'Check-in & Waiting List',
+    icon: 'glyphicon glyphicon-oil',
+    src: '/waitlist/list'
+  },
+  {
+    key: 'customer-management',
+    name: 'Customer Management',
+    icon: 'glyphicon glyphicon-shopping-cart',
+    src: '/marketing/list',
+    role: [window.models.Role.OWNER]
+  },
+  {
+    key: 'management',
+    name: 'Management',
+    icon: 'glyphicon glyphicon-time',
+    active: path => path.includes('/staff/')
+  },
+  {
+    key: 'schedule-management',
+    name: 'Schedule Management',
+    icon: 'glyphicon glyphicon-calendar',
+    src: '/staff/list',
+    active: path => path == '/staff/list',
+    role: [window.models.Role.OWNER]
+  },
+  {
+    key: 'schedule-view',
+    name: 'Schedule View',
+    icon: '/staff/schedule',
+    src: 'glyphicon glyphicon-eye-open',
+    active: path => path == '/staff/schedule'
+  },
+  {
+    key: 'transaction-history',
+    name: 'Transaction History',
+    icon: 'glyphicon glyphicon-usd',
+    src: '/payment/list',
+    role: [window.models.Role.OWNER]
+  },
+  {
+    key: 'promotion',
+    name: 'Promotion',
+    icon: 'glyphicon glyphicon-flash',
+    src: '/promotion/list',
+    role: [window.models.Role.OWNER]
+  },,
+  {
+    key: 'loyalty',
+    name: 'Loyalty (upgrade)',
+    icon: 'glyphicon glyphicon-eye-close',
+    role: [window.models.Role.OWNER]
+  },
+  {
+    key: 'report',
+    name: 'Report',
+    icon: 'glyphicon glyphicon-stats',
+    active: path => path.includes('/report/'),
+    role: [window.models.Role.OWNER]
+  },
+  {
+    key: 'payment-report',
+    name: 'Payment Report',
+    icon: 'glyphicon glyphicon-stats',
+    src: '/report/payment',
+    active: path => path == '/report/payment',
+    role: [window.models.Role.OWNER]
+  },
+  {
+    key: 'customer-report',
+    name: 'Customer Report',
+    icon: '/report/customer',
+    src: 'glyphicon glyphicon-equalizer',
+    active: path => path == '/report/customer',
+    role: [window.models.Role.OWNER]
+  },
+  {
+    key: 'employee-statistic',
+    name: 'Employee Statistic',
+    icon: 'glyphicon glyphicon-user',
+    src: '/report/employee-statistic',
+    active: path => path == '/report/employee-statistic',
+    role: [window.models.Role.OWNER]
+  },
+  {
+    key: 'employee-management',
+    name: 'Employee Management',
+    icon: 'glyphicon glyphicon-user',
+    src: '/user/list',
+    role: [window.models.Role.OWNER]
+  },
+  {
+    key: 'service',
+    name: 'Service Management',
+    icon: 'glyphicon glyphicon-tasks',
+    role: [window.models.Role.OWNER]
+  },
+  {
+    key: 'group-management',
+    name: 'Service Group Management',
+    icon: 'glyphicon glyphicon-tasks',
+    src: '/group/list',
+    role: [window.models.Role.OWNER]
+  },
+  {
+    key: 'service-management',
+    name: 'Service Management',
+    icon: 'glyphicon glyphicon-tasks',
+    src: '/service/list',
+    role: [window.models.Role.OWNER]
+  },
+  {
+    key: 'setting',
+    name: 'Setting',
+    icon: 'glyphicon glyphicon-cog',
+    active: path => path.includes('/auth/')
+  },
+  {
+    key: 'change-password',
+    name: 'Change Password',
+    icon: 'glyphicon glyphicon-user',
+    src: '/auth/change-password',
+    active: path => path == '/auth/change-password'
+  },
+  {
+    key: 'logout',
+    name: 'Logout',
+    icon: 'glyphicon glyphicon-log-out',
+    src: '/auth/logout',
+    active: path => path == '/auth/logout'
+  }
+];
 
-window.entityUrl = base => (entityName, viewType, identifierValue, identifierName) => {
-  switch(viewType) {
-  case 'ListView': {
-    return base;
-  }
-  case 'EditView': {
-    return base + '?id=' + identifierValue;
-  }
-  case 'DeleteView': {
-    return base + '?id=' + identifierValue;
-  }
-  default: {
-    return base;
-  }
-  }
-};
+window.menu.refMap = window.menu.ref.reduce(
+  (result, item) => {
+    return {
+      ...result,
+      [item.key]: item
+    };
+  },
+  {}
+);
 
-window.httpCache = {};
+window.menu.tree = [
+  {
+    key: 'check-in'
+  },
+  {
+    key: 'customer-management'
+  },
+  {
+    key: 'management',
+    children: [
+      {
+        key: 'schedule-management'
+      },
+      {
+        key: 'schedule-view'
+      }
+    ]
+  },
+  {
+    key: 'transaction-history'
+  },
+  {
+    key: 'promotion',
+    children: [
+      {
+        key: 'loyalty'
+      }
+    ]
+  },
+  {
+    key: 'report',
+    children: [
+      {
+        key: 'payment-report'
+      },
+      {
+        key: 'customer-report'
+      },
+      {
+        key: 'employee-statistic'
+      }
+    ]
+  },
+  {
+    key: 'employee-management'
+  },
+  {
+    key: 'service',
+    children: [
+      {
+        key: 'group-management'
+      },
+      {
+        key: 'service-management'
+      }
+    ]
+  },
+  {
+    key: 'setting',
+    children: [
+      {
+        key: 'change-password'
+      },
+      {
+        key: 'logout'
+      }
+    ]
+  }
+];

@@ -33,6 +33,6 @@
             nga.field('type')
         ]);
 
-        window.addEntity('waitlist', entity);
+        nga.addEntity('waitlist', entity);
     });
 })();

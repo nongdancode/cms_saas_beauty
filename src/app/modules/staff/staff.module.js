@@ -69,6 +69,6 @@
             nga.field('name')
         ]);
 
-        window.addEntity('staff', entity);
+        nga.addEntity('staff', entity);
     });
 })();

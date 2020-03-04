@@ -30,6 +30,6 @@
             nga.field('discount_rate')
         ]);
 
-        window.addEntity('promotion', entity);
+        nga.addEntity('promotion', entity);
     });
 })();

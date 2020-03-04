@@ -6,7 +6,7 @@
 
         const entity = nga.entity('group');
 
-        entity.url(window.entityUrl('groups'));
+        entity.url(nga.entityUrl('groups'));
 
         const listView = entity.listView();
 
@@ -39,6 +39,6 @@
             nga.field('name')
         ]);
 
-        window.addEntity('group', entity);
+        nga.addEntity('group', entity);
     });
 })();

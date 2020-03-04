@@ -9,7 +9,7 @@
 
         const entity = nga.entity('marketing');
 
-        entity.url(window.entityUrl('marketing'));
+        entity.url(nga.entityUrl('marketing'));
 
         const listView = entity.listView();
 
@@ -65,6 +65,6 @@
             nga.field('email', 'email')
         ]);
 
-        window.addEntity('marketing', entity);
+        nga.addEntity('marketing', entity);
     });
 })();

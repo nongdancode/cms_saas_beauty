@@ -4,11 +4,11 @@
     module.config(function (NgAdminConfigurationProvider) {
         const nga = NgAdminConfigurationProvider;
 
-        const serviceEntity = nga.entity('service').url(window.entityUrl('services'));
+        const serviceEntity = nga.entity('service').url(nga.entityUrl('services'));
 
         const entity = nga.entity('user');
 
-        entity.url(window.entityUrl('employees'));
+        entity.url(nga.entityUrl('employees'));
 
         const listView = entity.listView();
 
@@ -116,6 +116,6 @@
                 )
         ]);
 
-        window.addEntity('user', entity);
+        nga.addEntity('user', entity);
     });
 })();

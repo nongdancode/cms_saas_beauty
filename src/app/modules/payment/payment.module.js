@@ -30,6 +30,6 @@
             nga.field('charge_at', 'date')
         ]);
 
-        window.addEntity('payment', entity);
+        nga.addEntity('payment', entity);
     });
 })();
