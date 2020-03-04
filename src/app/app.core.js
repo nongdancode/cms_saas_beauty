@@ -159,8 +159,8 @@ window.menu.ref = [
   {
     key: 'schedule-view',
     name: 'Schedule View',
-    icon: '/staff/schedule',
-    src: 'glyphicon glyphicon-eye-open',
+    icon: 'glyphicon glyphicon-eye-open',
+    src: '/staff/schedule',
     active: path => path == '/staff/schedule'
   },
   {
