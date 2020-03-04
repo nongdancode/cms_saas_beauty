@@ -63,8 +63,14 @@
             nga.field('stepping', 'number')
                 .label('Duration'),
             nga.field('userIds', 'reference_many')
+                .label('Employees')
                 .targetEntity(userEntity)
+                .targetField(nga.field('name')),
+            nga.field('groupIds', 'reference_many')
+                .label('Groups')
+                .targetEntity(groupEntity)
                 .targetField(nga.field('name'))
+
         ]);
 
         const editionView = entity.editionView();
@@ -80,7 +86,12 @@
             nga.field('stepping', 'number')
                 .label('Duration'),
             nga.field('userIds', 'reference_many')
+                .label('Employees')
                 .targetEntity(userEntity)
+                .targetField(nga.field('name')),
+            nga.field('groupIds', 'reference_many')
+                .label('Groups')
+                .targetEntity(groupEntity)
                 .targetField(nga.field('name'))
         ]);
 
