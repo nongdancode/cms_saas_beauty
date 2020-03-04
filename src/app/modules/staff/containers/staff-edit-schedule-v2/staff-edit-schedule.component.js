@@ -20,14 +20,31 @@
         $onInit() {
             this.data.staff = this.$resolve.staff;
 
-            this.data.events = this.$resolve.schedules;
+            this.data.events = [
+                ...(this.$resolve.shifts),
+                ...(this.$resolve.tasks_v2)
+            ];
 
-            this.data.tasks = this.$resolve.tasks.map(task => {
-                return {
-                    ...task,
-                    color: window.models.TaskType[task.type].color
-                };
-            });
+            this.data.shifts = [
+                {
+                    id: 1,
+                    name: "2h",
+                    stepping: 2 * 60,
+                    type: "shift"
+                },
+                {
+                    id: 2,
+                    name: "4h",
+                    stepping: 4 * 60,
+                    type: "shift"
+                },
+                {
+                    id: 3,
+                    name: "8h",
+                    stepping: 8 * 60,
+                    type: "shift"
+                }
+            ];
 
             self = this;
 
@@ -83,7 +100,8 @@
                         center: 'title',
                         right: 'today prev,next'
                     },
-                    minTime: moment()
+                    minTime: moment(),
+                    defaultView: 'agendaDay'
                 }
             };
 
@@ -91,13 +109,13 @@
                 const events = newValue.map(event => {
                     event = {
                         ...event,
-                        id: event.task ? event.task.id : -1,
-                        title: (event.task || {}).name,
+                        id: event.id,
+                        title: event.name,
                         start: moment.unix(event.start).valueOf(),
                         end: moment.unix(event.end).valueOf(),
                         editable: event.type !== 'disable',
                         durationEditable: false,
-                        backgroundColor: window.models.TaskType[event.type].color
+                        backgroundColor: this.getEventColor(event.type)
                     };
 
                     event._id = `${event.id}-${event.start}-${event.end}`;
@@ -113,8 +131,11 @@
                     ]
                 };
             });
-
         };
+
+        getEventColor(type) {
+            return window.models.TaskType[type] ? window.models.TaskType[type].color : '#3ea';
+        }
 
         isInvalidEvent(event){
             const array = $('.calendar').fullCalendar('clientEvents');

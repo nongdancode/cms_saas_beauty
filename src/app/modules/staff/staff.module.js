@@ -36,6 +36,12 @@
                     },
                     staff: function ($stateParams, StaffService) {
                         return StaffService.getStaffs().then(staffs => staffs.find(staff => +staff.id === +$stateParams.id));
+                    },
+                    tasks_v2: function($stateParams, StaffService) {
+                        return StaffService.getTasks($stateParams.id);
+                    },
+                    shifts: function($stateParams, StaffService) {
+                        return StaffService.getShifts($stateParams.id);
                     }
                 }
             });

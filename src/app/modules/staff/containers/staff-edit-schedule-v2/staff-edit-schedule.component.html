@@ -64,9 +64,9 @@
   </div>
   <div class="col-sm-3">
     <div class="external-events">
-      <p><strong>Tasks</strong></p>
-      <div ng-repeat="task in $ctrl.data.tasks" class="fc-event" data-item="{{ task }}" style="background-color: {{ task.color }}" draggable>
-        {{ task.name }} ({{ task.stepping }} mins)
+      <p><strong>Shifts</strong></p>
+      <div ng-repeat="shift in $ctrl.data.shifts" class="fc-event" data-item="{{ shift }}" style="background-color: {{ shift.color }}" draggable>
+        {{ shift.name }} ({{ shift.stepping }} mins)
       </div>
     </div>
     <hr/>

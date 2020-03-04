@@ -35,30 +35,30 @@
             return HttpService.get(HttpService.generateUrl(`schedules/${id}/tasks`))
                 .then(res => res.data || [
                     {
-                        id: "2",
-                        name: "Hybrid Lash",
+                        id: 1,
+                        name: "Hybrid Lash 1",
                         stepping: 60,
                         img: "",
-                        start: 1582914600,
-                        end: 1582918200,
+                        start: moment().unix(),
+                        end: moment().add(2, 'hours').unix(),
                         type: "active"
                     },
                     {
-                        id: "2",
-                        name: "Hybrid Lash",
+                        id: 2,
+                        name: "Hybrid Lash 2",
                         stepping: 60,
                         img: "",
-                        start: 1582914600,
-                        end: 1582918200,
+                        start: moment().add(2, 'hours').unix(),
+                        end: moment().add(4, 'hours').unix(),
                         type: "booking"
                     },
                     {
-                        id: "2",
-                        name: "Hybrid Lash",
+                        id: 3,
+                        name: "Hybrid Lash 3",
                         stepping: 60,
                         img: "",
-                        start: 1582914600,
-                        end: 1582918200,
+                        start: moment().add(4, 'hours').unix(),
+                        end: moment().add(6, 'hours').unix(),
                         type: "disable"
                     }
                 ]);
@@ -68,12 +68,12 @@
             return HttpService.get(HttpService.generateUrl(`schedules/${id}/shifts`))
                 .then(res => res.data || [
                     {
-                        start: 1582914600,
-                        end: 1582918200,
+                        start: moment().unix(),
+                        end: moment().add(8, 'hours').unix(),
                     },
                     {
-                        start: 1582914600,
-                        end: 1582918200,
+                        start: moment().add(1, 'days').unix(),
+                        end: moment().add(1, 'days').add(8, 'hours').unix(),
                     }
                 ]);
         };
