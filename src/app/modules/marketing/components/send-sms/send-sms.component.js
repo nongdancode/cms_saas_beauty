@@ -12,7 +12,7 @@
         }
 
         $onInit() {
-            this.uploader = new this.UtilityService.upload();
+            this.uploader = new this.UtilityService.upload('mms');
 
             this.form = {
                 message: '',

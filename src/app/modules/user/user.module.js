@@ -39,8 +39,6 @@
                 .label('Social SN'),
             nga.field('email'),
             nga.field('phone_number'),
-            nga.field('image', 'file')
-                .uploadInformation({ 'url': window.config.baseApiUrl + 'upload-image', 'apifilename': 'user_{{ entry.values.id }}' }),
             nga.field('base_salary', 'number'),
             nga.field('commision_type'),
             nga.field('payment_type')
@@ -61,6 +59,14 @@
             nga.field('email'),
             nga.field('phone_number'),
             nga.field('base_salary', 'number'),
+            nga.field('image', 'file')
+                .uploadInformation({
+                    url: window.config.baseApiUrl + 'upload-image',
+                    apifilename: 'user_{{ entry.values.id }}',
+                    data: {
+                        type: 'user'
+                    }
+                }),
             nga.field('commision_type', 'choice')
                 .choices(
                     window.models.arrayMetadata(window.models.EmployeeCommissionType).map(row => {
@@ -93,7 +99,13 @@
             nga.field('email'),
             nga.field('phone_number'),
             nga.field('image', 'file')
-                .uploadInformation({ 'url': window.config.baseApiUrl + 'upload-image', 'apifilename': 'user_{{ entry.values.id }}' }),
+                .uploadInformation({
+                    url: window.config.baseApiUrl + 'upload-image',
+                    apifilename: 'user_{{ entry.values.id }}',
+                    data: {
+                        type: 'user'
+                    }
+                }),
             nga.field('base_salary', 'number'),
             nga.field('commision_type', 'choice')
                 .choices(

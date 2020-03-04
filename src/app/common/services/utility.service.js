@@ -20,9 +20,16 @@
       });
     };
 
-    service.upload = function() {
+    service.upload = function(type) {
       const url = window.config.baseApiUrl + 'upload-image';
-      const uploader = new FileUploader({ url });
+      const uploader = new FileUploader({
+        url: url,
+        formData: [
+          {
+            data: JSON.stringify({ type })
+          }
+        ]
+      });
 
       uploader.filters.push({
         name: 'file',
