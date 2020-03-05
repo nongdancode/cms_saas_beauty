@@ -77,10 +77,10 @@
               name: 'Name 1',
               phone: 'Phone 1',
               status: 'booking',
-              deposit: 0,
               invoice: {
                 id: 1,
                 tax: 10,
+                deposit: 10,
                 about: {
                   companyName: 'The lash supply',
                   phone: '8327744593',

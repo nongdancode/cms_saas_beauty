@@ -12,9 +12,13 @@
         }
 
         total() {
-            return this.invoice.services.reduce((result, service) => {
+            const total = this.invoice.services.reduce((result, service) => {
                 return result + (service.price - (service.price * +service.discount / 100));
             }, 0);
+
+            const tax = total * this.invoice.tax / 100;
+
+            return total + tax - this.invoice.deposit;
         };
 
         add() {
