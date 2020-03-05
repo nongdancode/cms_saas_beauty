@@ -32,7 +32,7 @@
         };
 
         service.getTasks = function(id) {
-            return HttpService.get(HttpService.generateUrl(`schedules/${id}/tasks`))
+            return HttpService.get(HttpService.generateUrl(`shifts/${id}/tasks`))
                 .then(res => res.data || [
                     {
                         id: 1,
@@ -68,12 +68,20 @@
             return HttpService.get(HttpService.generateUrl(`schedules/${id}/shifts`))
                 .then(res => res.data || [
                     {
+                        id: 1,
                         start: moment().unix(),
                         end: moment().add(8, 'hours').unix(),
+                        count: {
+                            booking: 10
+                        }
                     },
                     {
+                        id: 2,
                         start: moment().add(1, 'days').unix(),
                         end: moment().add(1, 'days').add(8, 'hours').unix(),
+                        count: {
+                            booking: 20
+                        }
                     }
                 ]);
         };
