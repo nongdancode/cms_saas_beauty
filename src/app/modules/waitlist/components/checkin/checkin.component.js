@@ -2,12 +2,11 @@
     const module = angular.module('module.waitlist.components.checkin', []);
 
     class CheckinComponent {
-        constructor($scope, $state, $uibModal, progression, notification, BookingService) {
+        constructor($scope, $state, ModalService, progression, BookingService) {
             this.$scope = $scope;
             this.$state = $state;
-            this.$uibModal = $uibModal;
+            this.ModalService = ModalService;
             this.progression = progression;
-            this.notification = notification;
             this.BookingService = BookingService;
         }
 
@@ -118,7 +117,7 @@
         };
 
         showModal() {
-            this.modal = this.$uibModal.open({
+            this.modal = this.ModalService.create({
                 animation: true,
                 templateUrl: 'checkin-modal.html',
                 size: 'md',

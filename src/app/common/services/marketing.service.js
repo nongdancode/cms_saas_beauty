@@ -1,7 +1,7 @@
 (function(){
   angular.module('service.marketing', [])
     .factory('MarketingService', MarketingService);
-  function MarketingService(HttpService, notification) {
+  function MarketingService(HttpService, ModalService) {
     var service = {};
 
     service.sendSms = function(data) {
@@ -9,9 +9,9 @@
 
       return HttpService.post(window.config.baseApiUrl + endpoint, data).then(res => {
         if (res.code === 0) {
-          notification.log('Send SMS successfully!', { addnCls: 'humane-flatty-success' });
+          ModalService.success('Send SMS successfully!');
         } else {
-          notification.log('Send SMS failed!', { addnCls: 'humane-flatty-error' });
+          ModalService.error('Send SMS failed!');
         }
 
         return res.data;

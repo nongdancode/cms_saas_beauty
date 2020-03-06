@@ -2,7 +2,7 @@
     angular.module('service.booking', [])
         .factory('BookingService', BookingService);
 
-    function BookingService(notification, $uibModal, HttpService) {
+    function BookingService(ModalService, HttpService) {
         var service = {};
 
         service.getWaitList = function() {
@@ -96,9 +96,9 @@
             return HttpService.post(window.config.baseApiUrl + 'checkin/confirm', data)
                 .then(res => {
                     if (res.code === 0) {
-                        notification.log('Checkin confirm successfully!', { addnCls: 'humane-flatty-success' });
+                        ModalService.success('Checkin confirm successfully!');
                     } else {
-                        notification.log('Checkin confirm failed!', { addnCls: 'humane-flatty-error' });
+                        ModalService.error('Checkin confirm failed!');
                     }
 
                     return res.data;
@@ -109,9 +109,9 @@
             return HttpService.post(window.config.baseApiUrl + 'checkout/confirm', data)
                 .then(res => {
                     if (res.code === 0) {
-                        notification.log('Checkout confirm successfully!', { addnCls: 'humane-flatty-success' });
+                        ModalService.success('Checkout confirm successfully!');
                     } else {
-                        notification.log('Checkout confirm failed!', { addnCls: 'humane-flatty-error' });
+                        ModalService.error('Checkout confirm failed!');
                     }
 
                     return res.data;

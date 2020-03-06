@@ -1,7 +1,7 @@
 (function(){
     angular.module('service.staff', [])
         .factory('StaffService', StaffService);
-    function StaffService(HttpService, notification) {
+    function StaffService(HttpService, ModalService) {
         var service = {};
 
         service.getStaffs = function() {
@@ -22,9 +22,9 @@
             return HttpService.post(HttpService.generateUrl(`schedules/${id}/tasks`), schedules)
                 .then(res => {
                     if (res.code === 0) {
-                        notification.log('Update schedules successfully!', { addnCls: 'humane-flatty-success' });
+                        ModalService.success('Update schedules successfully!');
                     } else {
-                        notification.log('Update schedules failed!', { addnCls: 'humane-flatty-error' });
+                        ModalService.error('Update schedules failed!');
                     }
 
                     return res.data;

@@ -2,10 +2,10 @@
     const module = angular.module('module.waitlist.components.checkout', []);
 
     class CheckoutComponent {
-        constructor($scope, $state, $uibModal, UtilityService, BookingService) {
+        constructor($scope, $state, ModalService, UtilityService, BookingService) {
             this.$scope = $scope;
             this.$state = $state;
-            this.$uibModal = $uibModal;
+            this.ModalService = ModalService;
             this.UtilityService = UtilityService;
             this.BookingService = BookingService;
         }
@@ -24,7 +24,7 @@
         };
 
         showModal() {
-            this.modal = this.$uibModal.open({
+            this.modal = this.ModalService.create({
                 animation: true,
                 templateUrl: 'invoice-modal.html',
                 size: 'lg',

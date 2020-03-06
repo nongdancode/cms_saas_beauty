@@ -26,6 +26,7 @@ angular.module('app.resources', []);
 
 angular.module('app.services', [
     'service.http',
+    'service.modal',
     'service.utility',
     'service.user',
     'service.auth',

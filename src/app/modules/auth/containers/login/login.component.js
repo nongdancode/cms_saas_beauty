@@ -2,10 +2,10 @@
     const module = angular.module('module.auth.containers.login', []);
 
     class LoginComponent {
-        constructor($scope, $location, notification, AuthService, UserService) {
+        constructor($scope, $location, ModalService, AuthService, UserService) {
             this.$scope = $scope;
             this.$location = $location;
-            this.notification = notification;
+            this.ModalService = ModalService;
             this.AuthService = AuthService;
             this.UserService = UserService;
         }
@@ -27,12 +27,12 @@
                             role: res.data.role
                         });
 
-                        this.notification.log('Login successfully !', { addnCls: 'humane-flatty-success' });
+                        this.ModalService.success('Login successfully !');
 
                         window.location.href = '/#/dashboard';
                         window.location.reload();
                     } else {
-                        this.notification.log('Username or password is incorrect !', { addnCls: 'humane-flatty-error' });
+                        this.ModalService.error('Username or password is incorrect !');
                     }
                 });
         };

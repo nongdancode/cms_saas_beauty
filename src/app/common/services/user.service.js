@@ -1,7 +1,7 @@
 (function(){
   angular.module('service.user', [])
     .factory('UserService', UserService);
-  function UserService(HttpService, $localStorage, notification) {
+  function UserService(HttpService, $localStorage, ModalService) {
     var service = {};
 
     service.getUser = function() {
@@ -20,9 +20,9 @@
       return HttpService.post(HttpService.generateUrl(`password-change`), data)
         .then(res => {
           if (res.code === 0) {
-            notification.log('Change password successfully!', { addnCls: 'humane-flatty-success' });
+            ModalService.success('Change password successfully!');
           } else {
-            notification.log('Change password failed!', { addnCls: 'humane-flatty-error' });
+            ModalService.error('Change password failed!');
           }
 
           return res.data;

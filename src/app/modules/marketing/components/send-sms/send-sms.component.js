@@ -2,11 +2,10 @@
     const module = angular.module('module.marketing.components.send-sms', []);
 
     class SendSmsComponent {
-        constructor($scope, $timeout, $uibModal, notification, UtilityService, MarketingService) {
+        constructor($scope, $timeout, ModalService, UtilityService, MarketingService) {
             this.$scope = $scope;
             this.$timeout = $timeout;
-            this.$uibModal = $uibModal;
-            this.notification = notification;
+            this.ModalService = ModalService;
             this.UtilityService = UtilityService;
             this.MarketingService = MarketingService;
         }
@@ -24,7 +23,7 @@
         showModal() {
             this.names = this.selection.map(entry => entry.values.name).join(', ');
 
-            this.modal = this.$uibModal.open({
+            this.modal = this.ModalService.create({
                 animation: true,
                 templateUrl: 'send-sms-modal.html',
                 size: 'md',

@@ -2,10 +2,10 @@
     const module = angular.module('module.auth.containers.change-password', []);
 
     class ChangePasswordComponent {
-        constructor($scope, $location, notification, UserService) {
+        constructor($scope, $location, ModalService, UserService) {
             this.$scope = $scope;
             this.$location = $location;
-            this.notification = notification;
+            this.ModalService = ModalService;
             this.UserService = UserService;
         }
 
@@ -23,9 +23,9 @@
             this.UserService.changePassword(this.state)
                 .then(res => {
                     if (res.code === 0) {
-                        this.notification.log('Change password successfully!', { addnCls: 'humane-flatty-success' });
+                        this.ModalService.success('Change password successfully!');
                     } else {
-                        this.notification.log('Change password failed!', { addnCls: 'humane-flatty-error' });
+                        this.ModalService.error('Change password failed!');
                     }
 
                     return res.data;

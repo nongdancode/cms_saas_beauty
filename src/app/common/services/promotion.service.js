@@ -1,7 +1,7 @@
 (function(){
     angular.module('service.promotion', [])
         .factory('PromotionService', PromotionService);
-    function PromotionService(HttpService, notification) {
+    function PromotionService(HttpService, ModalService) {
         var service = {};
 
         service.getPromotions = function() {
@@ -12,9 +12,9 @@
             return HttpService.post(window.config.baseApiUrl + `promotions/${id}`, data)
                 .then(res => {
                     if (res.code === 0) {
-                        notification.log('Update promotion successfully!', { addnCls: 'humane-flatty-success' });
+                        ModalService.success('Update promotion successfully!');
                     } else {
-                        notification.log('Update promotion failed!', { addnCls: 'humane-flatty-error' });
+                        ModalService.error('Update promotion failed!');
                     }
 
                     return res.data;

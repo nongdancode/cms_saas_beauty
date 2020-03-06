@@ -4,11 +4,10 @@
     class HistoryCustomerComponent {
         data = {};
 
-        constructor($scope, $timeout, $uibModal, notification, MarketingService) {
+        constructor($scope, $timeout, ModalService, MarketingService) {
             this.$scope = $scope;
             this.$timeout = $timeout;
-            this.$uibModal = $uibModal;
-            this.notification = notification;
+            this.ModalService = ModalService;
             this.MarketingService = MarketingService;
         }
 
@@ -34,7 +33,7 @@
         showModal() {
             this.MarketingService.historyCustomer(this.id);
 
-            this.modal = this.$uibModal.open({
+            this.modal = this.ModalService.create({
                 animation: true,
                 templateUrl: 'history-customer-modal.html',
                 size: 'md',
