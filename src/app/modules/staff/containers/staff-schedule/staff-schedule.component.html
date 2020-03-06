@@ -59,17 +59,7 @@
 </div>
 
 <div class="row">
-  <div class="col-sm-9 center">
+  <div class="col-sm-12 center">
     <div class="calendar" ui-calendar="$ctrl.uiConfig.calendar" ng-model="$ctrl.data.eventSources"></div>
-  </div>
-  <div class="col-sm-3">
-    <div class="external-events">
-      <p><strong>Shifts</strong></p>
-      <div ng-repeat="shift in $ctrl.data.shifts" class="fc-event" data-item="{{ shift }}" style="background-color: {{ shift.color }}" draggable>
-        {{ shift.name }} ({{ shift.stepping }} mins)
-      </div>
-    </div>
-    <hr/>
-    <button class="btn btn-block btn-success" ng-click="$ctrl.submit()">Submit</button>
   </div>
 </div>

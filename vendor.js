@@ -18,6 +18,7 @@ module.exports = {
         "node_modules/highcharts-ng/dist/highcharts-ng.min.js",
         "node_modules/ngstorage/ngStorage.min.js",
         "node_modules/angular-file-upload/dist/angular-file-upload.min.js",
+        "node_modules/angular-bootstrap-contextmenu/contextMenu.js",
         "src/assets/js/datetimepicker.js"
     ],
     css: [

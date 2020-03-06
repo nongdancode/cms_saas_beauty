@@ -38,8 +38,17 @@
         .then(res => res.data);
     };
 
+    service.put = function(url, body) {
+      return $http.put(url, body)
+        .then(res => res.data);
+    };
+
+    service.delete = function(url, params) {
+      return $http.delete(url, params)
+        .then(res => res.data);
+    };
+
     service.upload = function(url, field) {
-      console.log(field);
       return function(file) {
         const fd = new FormData();
         fd.append(field, file);

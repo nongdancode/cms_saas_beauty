@@ -20,7 +20,6 @@
         login(username, password) {
             this.AuthService.login(username, password)
                 .then(res => {
-                    console.log(res);
                     if (res.code === 0) {
                         this.UserService.setUser({
                             id: res.data.id,

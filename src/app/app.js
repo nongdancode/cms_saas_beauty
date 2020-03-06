@@ -1,6 +1,7 @@
 angular.module('app.third-party', [
     'ng-admin',
     'ui.bootstrap',
+    'ui.bootstrap.contextMenu',
     'ui.calendar',
     'ui.select',
     'ui.mask',

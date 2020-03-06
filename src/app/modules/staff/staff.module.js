@@ -2,7 +2,7 @@
     const module = angular.module('module.staff', [
         'module.staff.containers.staff-view-schedule',
         'module.staff.containers.staff-edit-schedule',
-        'module.staff.containers.staff-edit-schedule-v2'
+        'module.staff.containers.staff-schedule'
     ]);
 
     module.config(function($stateProvider) {
@@ -26,20 +26,8 @@
             .state('staff-edit-schedule', {
                 parent: 'ng-admin',
 	              url: '/staff/schedule/:id/edit',
-	              template: '<staff-edit-schedule-v2 $resolve="$resolve"></staff-edit-schedule-v2>',
+	              template: '<staff-schedule $resolve="$resolve"></staff-schedule>',
                 resolve: {
-                    schedules: function($stateParams, StaffService) {
-                        return StaffService.getStaffSchedules(+$stateParams.id);
-                    },
-                    tasks: function($stateParams, StaffService) {
-                        return StaffService.getStaffTasks(+$stateParams.id);
-                    },
-                    staff: function ($stateParams, StaffService) {
-                        return StaffService.getStaffs().then(staffs => staffs.find(staff => +staff.id === +$stateParams.id));
-                    },
-                    tasks_v2: function($stateParams, StaffService) {
-                        return StaffService.getTasks($stateParams.id);
-                    },
                     shifts: function($stateParams, StaffService) {
                         return StaffService.getShifts($stateParams.id);
                     }

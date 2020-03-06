@@ -2,7 +2,7 @@
     angular.module('service.booking', [])
         .factory('BookingService', BookingService);
 
-    function BookingService(notification, HttpService) {
+    function BookingService(notification, $uibModal, HttpService) {
         var service = {};
 
         service.getWaitList = function() {

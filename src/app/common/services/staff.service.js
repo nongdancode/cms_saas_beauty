@@ -86,6 +86,10 @@
                 ]);
         };
 
+        service.deleteShift = function(id) {
+            return HttpService.delete(HttpService.generateUrl(`shifts/${id}`));
+        };
+
         return service;
     }
 })();

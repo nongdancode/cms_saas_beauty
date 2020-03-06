@@ -70,7 +70,9 @@
             const url = new URL(config.url);
             const id = url.searchParams.get('id');
 
-            config.url = url.origin + url.pathname + '/' + id;
+            if (id) {
+              config.url = url.origin + url.pathname + '/' + id;
+            }
           }
           return config;
         },
