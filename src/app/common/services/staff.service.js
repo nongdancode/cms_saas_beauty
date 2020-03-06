@@ -64,6 +64,10 @@
                 ]);
         };
 
+        service.deleteTask = function(id) {
+            return HttpService.delete(HttpService.generateUrl(`tasks/${id}`));
+        };
+
         service.getShifts = function(id) {
             return HttpService.get(HttpService.generateUrl(`schedules/${id}/shifts`))
                 .then(res => res.data || [

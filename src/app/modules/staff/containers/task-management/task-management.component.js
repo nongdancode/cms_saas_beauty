@@ -2,11 +2,13 @@
     const module = angular.module('module.staff.containers.task-management', []);
 
     class TaskManagementComponent {
-        constructor($scope, $state, $stateParams, $resolve, ModalService, StaffService) {
+        constructor($scope, $compile, $state, $stateParams, $resolve, ModalService, StaffService) {
             this.$scope = $scope;
+            this.$compile = $compile;
             this.$state = $state;
             this.$stateParams = $stateParams;
             this.$resolve = $resolve;
+            this.ModalService = ModalService;
             this.StaffService = StaffService;
         }
 
@@ -82,7 +84,31 @@
         }
 
         formatElement(event, element) {
-            return element;
+            const el = angular.element(element);
+            el.attr('context-menu', 'menuOptions');
+
+            return this.$compile(el)(
+                angular.extend(this.$scope.$new(), {
+                    menuOptions: [
+                        {
+                            text: 'Delete',
+                            click: () => {
+                                this.ModalService.confirm({
+                                    title: 'Delete Task',
+                                    message: 'Delete task: ' + event.id
+                                }).then((confirm => {
+                                    this.StaffService.deleteTask(event.id)
+                                        .then(res => this.deleteEvent(event));
+                                }));
+                            }
+                        }
+                    ]
+                })
+            );
+        }
+
+        deleteEvent(event) {
+            $('.calendar').fullCalendar('removeEvents', event._id);
         }
     }
 
