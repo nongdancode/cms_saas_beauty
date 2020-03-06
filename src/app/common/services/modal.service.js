@@ -20,6 +20,32 @@
       });
     };
 
+    service.prompt = ({template, title, textOK, textCancel, scope}) => {
+      const modal = service.create({
+        size: 'sm',
+        template: '<div class="modal-header">\
+                            <h4 class="modal-title" ng-bind="title"></h4>\
+                        </div>\
+                        <div class="modal-body" ng-include="template"></div>\
+                        <div class="modal-footer">\
+                            <button class="btn btn-default" ng-click="modal.dismiss()">{{ textCancel }}</button>\
+                            <button class="btn btn-primary" ng-click="modal.close()">{{ textOK }}</button>\
+                        </div>',
+        controller: function ($scope, $uibModalInstance) {
+          angular.extend($scope, scope);
+
+          $scope.modal = $uibModalInstance;
+
+          $scope.title = title || 'Confirm';
+          $scope.template = template;
+          $scope.textOK = textOK || 'OK';
+          $scope.textCancel = textCancel || '';
+        }
+      });
+
+      return modal.result;
+    };
+
     service.confirm = ({message, title}) => {
       const modal = service.create({
         size: 'sm',
@@ -38,8 +64,6 @@
           $scope.message = message || '';
         }
       });
-
-      modal.result.then(console.log);
 
       return modal.result;
     };

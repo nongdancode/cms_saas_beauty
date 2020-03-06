@@ -86,6 +86,19 @@
                 ]);
         };
 
+        service.createShift = function(data) {
+            return HttpService.post(HttpService.generateUrl('shifts'), data)
+                .then(res => {
+                    if (res.code === 0) {
+                        ModalService.success('Create shift successfully!');
+                    } else {
+                        ModalService.error('Create shift failed!');
+                    }
+
+                    return res.data;
+                });
+        };
+
         service.deleteShift = function(id) {
             return HttpService.delete(HttpService.generateUrl(`shifts/${id}`));
         };

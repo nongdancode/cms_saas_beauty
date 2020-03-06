@@ -45,10 +45,18 @@
                         daysOfWeek: [0,1,2,3,4,5,6]
                     },
                     allDaySlot: false,
+                    customButtons: {
+                        addShift: {
+                            text: '+',
+                            click: () => {
+                                this.add();
+                            }
+                        }
+                    },
                     header:{
                         left: 'month agendaWeek agendaDay',
                         center: 'title',
-                        right: 'today prev,next'
+                        right: 'today prev,next, addShift'
                     },
                     minTime: moment(),
                     defaultView: 'month'
@@ -133,6 +141,34 @@
 
             return false;
         };
+
+        add() {
+            const self = this;
+
+            const scope = {
+                shift: {
+                    date: moment(),
+                    duration: 4
+                }
+            };
+
+            const modal = this.ModalService.prompt({
+                template: 'add-shift.html',
+                title: 'Add Shift',
+                textOK: 'Add',
+                textCancel: 'Cancel',
+                scope: scope
+            });
+
+            modal.then(res => {
+                return this.StaffService.createShift({
+                    date: moment(scope.date).unix(),
+                    duration: scope.shift.duration
+                });
+            }).then(res => {
+                this.$state.reload();
+            });
+        }
 
         submit() {};
     }
