@@ -16,7 +16,7 @@
     "bootstrap": "^3.3.7",
     "daterangepicker": "^3.0.5",
     "eonasdan-bootstrap-datetimepicker": "^4.17.47",
-    "fullcalendar": "^2.9.1",
+    "fullcalendar": "^3.10",
     "highcharts": "^8.0.0",
     "highcharts-ng": "^1.2.1",
     "jquery": "^3.4.1",

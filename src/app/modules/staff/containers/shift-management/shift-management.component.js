@@ -1,13 +1,14 @@
 (function(){
-    const module = angular.module('module.staff.containers.staff-schedule', []);
+    const module = angular.module('module.staff.containers.shift-management', []);
 
-    class StaffScheduleComponent {
-        constructor($scope, $compile, $state, $stateParams, $resolve, StaffService) {
+    class ShiffManagementComponent {
+        constructor($scope, $compile, $state, $stateParams, $resolve, ModalService, StaffService) {
             this.$scope = $scope;
             this.$compile = $compile;
             this.$state = $state;
             this.$stateParams = $stateParams;
             this.$resolve = $resolve;
+            this.ModalService = ModalService;
             this.StaffService = StaffService;
         }
 
@@ -50,7 +51,7 @@
                         right: 'today prev,next'
                     },
                     minTime: moment(),
-                    defaultView: 'agendaDay'
+                    defaultView: 'month'
                 }
             };
 
@@ -73,13 +74,7 @@
                     return event;
                 });
 
-                this.uiConfig.calendar = {
-                    ...this.uiConfig.calendar,
-                    events: [
-                        ...(this.uiConfig.calendar.events || []),
-                        ...events
-                    ]
-                };
+                this.data.eventSources.push(events);
             });
         };
 
@@ -93,14 +88,19 @@
                         {
                             text: 'View Detail',
                             click: () => {
+                                this.$state.go('task-management', { id: event.id });
                             }
                         },
                         {
                             text: 'Delete',
                             click: () => {
-                                this.StaffService.deleteShift(event.id).then(res => {
-                                    this.deleteEvent(event);
-                                });
+                                this.ModalService.confirm({
+                                    title: 'Delete Shift',
+                                    message: 'Delete shift: ' + event.id
+                                }).then((confirm => {
+                                    this.StaffService.deleteShift(event.id)
+                                        .then(res => this.deleteEvent(event));
+                                }));
                             }
                         }
                     ]
@@ -137,11 +137,11 @@
         submit() {};
     }
 
-    module.component('staffSchedule', {
+    module.component('shiftManagement', {
         bindings: {
             '$resolve': '<'
         },
-        controller: StaffScheduleComponent,
-        templateUrl: 'app/modules/staff/containers/staff-schedule/staff-schedule.component.html'
+        controller: ShiffManagementComponent,
+        templateUrl: 'app/modules/staff/containers/shift-management/shift-management.component.html'
     });
 })();

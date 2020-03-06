@@ -1,8 +1,8 @@
 (function(){
     const module = angular.module('module.staff', [
         'module.staff.containers.staff-view-schedule',
-        'module.staff.containers.staff-edit-schedule',
-        'module.staff.containers.staff-schedule'
+        'module.staff.containers.shift-management',
+        'module.staff.containers.task-management'
     ]);
 
     module.config(function($stateProvider) {
@@ -23,13 +23,26 @@
                     }
                 }
             })
-            .state('staff-edit-schedule', {
+            .state('shift-management', {
                 parent: 'ng-admin',
-	              url: '/staff/schedule/:id/edit',
-	              template: '<staff-schedule $resolve="$resolve"></staff-schedule>',
+	              url: '/staff/schedule/:id/shift',
+	              template: '<shift-management $resolve="$resolve"></shift-management>',
                 resolve: {
                     shifts: function($stateParams, StaffService) {
                         return StaffService.getShifts($stateParams.id);
+                    },
+                    staff: function ($stateParams, StaffService) {
+                        return StaffService.getStaffs().then(staffs => staffs.find(staff => +staff.id === +$stateParams.id));
+                    }
+                }
+            })
+            .state('task-management', {
+                parent: 'ng-admin',
+	              url: '/staff/shift/:id',
+	              template: '<task-management $resolve="$resolve"></task-management>',
+                resolve: {
+                    tasks: function($stateParams, StaffService, UserService) {
+                        return StaffService.getTasks($stateParams.id);
                     }
                 }
             });
@@ -56,7 +69,7 @@
                 .template('<img src="{{ entry.values.image }}" height="42" width="42" />'),
             nga.field()
                 .label('Action')
-                .template('<a class="btn btn-sm btn-primary" ui-sref="staff-edit-schedule({ id: {{ entry.values.id }} })">Schedule</a>')
+                .template('<a class="btn btn-sm btn-primary" ui-sref="shift-management({ id: {{ entry.values.id }} })">Schedule</a>')
                 .cssClasses('staff-edit-schedule-action')
         ]);
 
