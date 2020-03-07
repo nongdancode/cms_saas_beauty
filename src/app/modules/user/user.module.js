@@ -52,25 +52,33 @@
             .title('Employee');
 
         creationView.fields([
-            nga.field('name'),
-            nga.field('password', 'password'),
+            nga.field('name')
+                .validation({ required: true }),
+            nga.field('password', 'password')
+                .validation({ required: true }),
             nga.field('social_sn')
-                .label('Social SN'),
-            nga.field('email'),
-            nga.field('phone_number'),
-            nga.field('base_salary', 'number'),
+                .label('Social SN')
+                .validation({ required: true }),
+            nga.field('email')
+                .validation({ required: true }),
+            nga.field('phone_number')
+                .validation({ required: true }),
+            nga.field('base_salary', 'number')
+                .validation({ required: true }),
             nga.field('image', 'file')
                 .uploadInformation({
                     url: window.config.baseApiUrl + 'upload-image',
-                    apifilename: 'user_{{ entry.values.id }}',
+                    apifilename: 'data',
+                    accept: 'image/*',
                     data: {
                         type: 'user'
                     }
-                }),
+                })
+                .validation({ required: true }),
             nga.field('commision_type', 'number')
-                .validation({ maxlength: 2 }),
+                .validation({ required: true, maxlength: 2 }),
             nga.field('payment_type', 'number')
-                .validation({ maxlength: 2 })
+                .validation({ required: true, maxlength: 2 })
         ]);
 
         const editionView = entity.editionView();
@@ -79,24 +87,31 @@
             .title('Edit Employee: {{ entry.values.name }}');
 
         editionView.fields([
-            nga.field('name'),
+            nga.field('name')
+                .validation({ required: true }),
             nga.field('social_sn')
-                .label('Social SN'),
-            nga.field('email'),
-            nga.field('phone_number'),
+                .label('Social SN')
+                .validation({ required: true }),
+            nga.field('email')
+                .validation({ required: true }),
+            nga.field('phone_number')
+                .validation({ required: true }),
             nga.field('image', 'file')
                 .uploadInformation({
                     url: window.config.baseApiUrl + 'upload-image',
-                    apifilename: 'user_{{ entry.values.id }}',
+                    apifilename: 'data',
+                    accept: 'image/*',
                     data: {
                         type: 'user'
                     }
-                }),
-            nga.field('base_salary', 'number'),
+                })
+                .validation({ required: true }),
+            nga.field('base_salary', 'number')
+                .validation({ required: true }),
             nga.field('commision_type', 'number')
-                .validation({ maxlength: 2 }),
+                .validation({ required: true, maxlength: 2 }),
             nga.field('payment_type', 'number')
-                .validation({ maxlength: 2 })
+                .validation({ required: true, maxlength: 2 })
         ]);
 
         nga.addEntity('user', entity);

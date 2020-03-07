@@ -56,27 +56,33 @@
         const creationView = entity.creationView();
 
         creationView.fields([
-            nga.field('name'),
+            nga.field('name')
+                .validation({ required: true }),
             nga.field('img', 'file')
                 .uploadInformation({
                     url: window.config.baseApiUrl + 'upload-image',
-                    apifilename: 'service_{{ entry.values.id }}',
+                    apifilename: 'data',
+                    accept: 'image/*',
                     data: {
                         type: 'service'
                     }
-                }),
-            nga.field('price', 'number'),
+                })
+                .validation({ required: true }),
+            nga.field('price', 'number')
+                .validation({ required: true }),
             nga.field('stepping', 'number')
-                .label('Duration'),
+                .label('Duration')
+                .validation({ required: true }),
             nga.field('userIds', 'reference_many')
                 .label('Employees')
                 .targetEntity(userEntity)
-                .targetField(nga.field('name')),
+                .targetField(nga.field('name'))
+                .validation({ required: true }),
             nga.field('groupIds', 'reference_many')
                 .label('Groups')
                 .targetEntity(groupEntity)
                 .targetField(nga.field('name'))
-
+                .validation({ required: true })
         ]);
 
         const editionView = entity.editionView();
@@ -85,26 +91,33 @@
             .title('Edit Service: {{ entry.values.name }}');
 
         editionView.fields([
-            nga.field('name'),
+            nga.field('name')
+                .validation({ required: true }),
             nga.field('img', 'file')
                 .uploadInformation({
                     url: window.config.baseApiUrl + 'upload-image',
-                    apifilename: 'service_{{ entry.values.id }}',
+                    apifilename: 'data',
+                    accept: 'image/*',
                     data: {
                         type: 'service'
                     }
-                }),
-            nga.field('price', 'number'),
+                })
+                .validation({ required: true }),
+            nga.field('price', 'number')
+                .validation({ required: true }),
             nga.field('stepping', 'number')
-                .label('Duration'),
+                .label('Duration')
+                .validation({ required: true }),
             nga.field('userIds', 'reference_many')
                 .label('Employees')
                 .targetEntity(userEntity)
-                .targetField(nga.field('name')),
+                .targetField(nga.field('name'))
+                .validation({ required: true }),
             nga.field('groupIds', 'reference_many')
                 .label('Groups')
                 .targetEntity(groupEntity)
                 .targetField(nga.field('name'))
+                .validation({ required: true })
         ]);
 
         nga.addEntity('service', entity);
