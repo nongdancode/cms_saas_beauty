@@ -47,7 +47,7 @@
                     allDaySlot: false,
                     customButtons: {
                         addShift: {
-                            text: '+',
+                            text: 'Add Shift',
                             click: () => {
                                 this.add();
                             }
