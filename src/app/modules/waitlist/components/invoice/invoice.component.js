@@ -18,7 +18,7 @@
 
             const tax = total * this.invoice.tax / 100;
 
-            return total + tax - this.invoice.deposit;
+            return this.invoice.total = total + tax - this.invoice.deposit;
         };
 
         add() {
