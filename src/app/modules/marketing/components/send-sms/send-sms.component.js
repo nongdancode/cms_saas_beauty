@@ -65,7 +65,7 @@
                 type: 'sms',
             };
 
-            this.uploader.clearQueue();
+            this.uploader.__clearQueue();
         }
 
         get isShow() {

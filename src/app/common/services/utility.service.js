@@ -39,7 +39,7 @@
         }
       });
 
-      const result = [];
+      let result = [];
 
       uploader.onSuccessItem = (fileItem, response, status, headers) => {
         result.push(response.data);
@@ -56,6 +56,11 @@
           reject();
         };
       });
+
+      uploader.__clearQueue = () => {
+        result = [];
+        uploader.clearQueue();
+      };
 
       return uploader;
     };
