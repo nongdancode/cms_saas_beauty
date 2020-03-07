@@ -67,24 +67,10 @@
                         type: 'user'
                     }
                 }),
-            nga.field('commision_type', 'choice')
-                .choices(
-                    window.models.arrayMetadata(window.models.EmployeeCommissionType).map(row => {
-                        return {
-                            label: row.text,
-                            value: row.key
-                        };
-                    })
-                ),
-            nga.field('payment_type', 'choice')
-                .choices(
-                    window.models.arrayMetadata(window.models.EmployeePaymentType).map(row => {
-                        return {
-                            label: row.text,
-                            value: row.key
-                        };
-                    })
-                )
+            nga.field('commision_type', 'number')
+                .validation({ maxlength: 2 }),
+            nga.field('payment_type', 'number')
+                .validation({ maxlength: 2 })
         ]);
 
         const editionView = entity.editionView();
@@ -107,24 +93,10 @@
                     }
                 }),
             nga.field('base_salary', 'number'),
-            nga.field('commision_type', 'choice')
-                .choices(
-                    window.models.arrayMetadata(window.models.EmployeeCommissionType).map(row => {
-                        return {
-                            label: row.text,
-                            value: row.key
-                        };
-                    })
-                ),
-            nga.field('payment_type', 'choice')
-                .choices(
-                    window.models.arrayMetadata(window.models.EmployeePaymentType).map(row => {
-                        return {
-                            label: row.text,
-                            value: row.key
-                        };
-                    })
-                )
+            nga.field('commision_type', 'number')
+                .validation({ maxlength: 2 }),
+            nga.field('payment_type', 'number')
+                .validation({ maxlength: 2 })
         ]);
 
         nga.addEntity('user', entity);
