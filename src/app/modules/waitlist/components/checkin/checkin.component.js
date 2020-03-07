@@ -18,6 +18,7 @@
             };
 
             this.form = {
+                groupIds: [],
                 serviceIds: [],
                 employees: {},
                 dates: {},
@@ -25,6 +26,7 @@
             };
 
             this.data = {
+                groups: [],
                 services: [],
                 servicesMap: {},
                 employees: [],
@@ -37,9 +39,12 @@
 
         init() {
             Promise.all([
+                this.BookingService.getCheckinGroups(),
                 this.BookingService.getCheckinServices(),
                 this.BookingService.getCheckinEmployees()
-            ]).then(([services, employees]) => {
+            ]).then(([groups, services, employees]) => {
+                this.data.groups = groups;
+
                 this.data.services = services;
 
                 this.data.servicesMap = this.data.services.reduce((result, item) => {
@@ -126,6 +131,12 @@
 
         };
 
+        get serviceList() {
+            return this.data.services.filter(service => {
+                return this.form.groupIds.some(id => service.groupIds.includes(id));
+            });
+        }
+
         get isDisabledCheckin() {
             return this.form.serviceIds.length === 0 || this.form.serviceIds.some(id => {
                 return !(this.form.employees[id] && this.form.dates[id] && this.form.times[id]);
@@ -170,7 +181,8 @@
                 serviceIds: [],
                 employees: {},
                 dates: {},
-                times: {}
+                times: {},
+                groupIds: []
             };
         };
     }

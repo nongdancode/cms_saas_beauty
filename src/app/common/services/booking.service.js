@@ -75,8 +75,28 @@
                 ]);
         };
 
+        service.getCheckinGroups = function() {
+            return HttpService.get(window.config.baseUrl + 'api/booking/list_groups')
+                .then(res => [
+                    {
+                        id: 1,
+                        name: 'Lash'
+                    },
+                    {
+                        id: 2,
+                        name: 'Wax'
+                    }
+                ]);
+        };
+
         service.getCheckinServices = function() {
-            return HttpService.get(window.config.baseUrl + 'api/booking/list_services');
+            return HttpService.get(window.config.baseUrl + 'api/booking/list_services')
+                .then(res => res.map((item, index) => {
+                    return {
+                        ...item,
+                        groupIds: [(index % 2) + 1]
+                    };
+                }));
         };
 
         service.getCheckinEmployees = function() {

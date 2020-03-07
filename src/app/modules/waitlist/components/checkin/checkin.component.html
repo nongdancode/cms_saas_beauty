@@ -48,12 +48,25 @@
   <div class="modal-body" id="modal-body">
     <div class="form">
       <div class="form-group">
+        <label>Groups</label>
+        <ui-select multiple ng-model="$ctrl.form.groupIds" theme="bootstrap" title="Choose groups">
+          <ui-select-match placeholder="Select groups">
+            {{ $item.name }}
+          </ui-select-match>
+          <ui-select-choices repeat="group.id as group in $ctrl.data.groups | propsFilter: { name: $select.search }">
+            <div class="flex-item select-item">
+              <div class="text" ng-bind-html="group.name | highlight: $select.search"></div>
+            </div>
+          </ui-select-choices>
+        </ui-select>
+      </div>
+      <div class="form-group">
         <label>Services</label>
         <ui-select multiple ng-model="$ctrl.form.serviceIds" theme="bootstrap" title="Choose services">
           <ui-select-match placeholder="Select services">
             {{ $item.name }}
           </ui-select-match>
-          <ui-select-choices repeat="service.id as service in $ctrl.data.services | propsFilter: { name: $select.search }">
+          <ui-select-choices repeat="service.id as service in $ctrl.serviceList | propsFilter: { name: $select.search }">
             <div class="flex-item select-item">
               <div class="img">
                 <img alt="" ng-src="{{ service.img }}"/>
