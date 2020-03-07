@@ -201,8 +201,8 @@ window.menu.ref = [
   {
     key: 'customer-report',
     name: 'Customer Report',
-    icon: '/report/customer',
-    src: 'glyphicon glyphicon-equalizer',
+    icon: 'glyphicon glyphicon-equalizer',
+    src: '/report/customer',
     active: path => path == '/report/customer',
     role: [window.models.Role.OWNER]
   },

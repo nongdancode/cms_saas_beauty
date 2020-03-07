@@ -6,97 +6,15 @@
         var service = {};
 
         service.getWaitList = function() {
-            return HttpService.get(window.config.baseApiUrl + 'staffs')
-                .then(err => [
-                    {
-                        id: 1,
-                        name: 'Name 1',
-                        phone: 'Phone 1',
-                        status: 'booking',
-                        deposit: 0,
-                        invoice: {
-                            id: 1,
-                            tax: 10,
-                            about: {
-                                companyName: 'The lash supply',
-                                phone: '8327744593',
-                                address: {
-                                    streetAddress: 'Bellard',
-                                    city: 'Houston',
-                                    state: 'Texas'
-                                }
-                            },
-                            services: [
-                                {
-                                    name: 'Service 1',
-                                    discount: 10,
-                                    price: 10
-                                },
-                                {
-                                    name: 'Service 2',
-                                    discount: 20,
-                                    price: 20
-                                }
-                            ]
-                        }
-                    },
-                    {
-                        id: 2,
-                        name: 'Name 2',
-                        phone: 'Phone 2',
-                        status: 'checkin',
-                        deposit: 0,
-                        invoice: {
-                            id: 2,
-                            tax: 10,
-                            about: {
-                                companyName: 'The lash supply',
-                                phone: '8327744593',
-                                address: {
-                                    streetAddress: 'Bellard',
-                                    city: 'Houston',
-                                    state: 'Texas'
-                                }
-                            },
-                            services: [
-                                {
-                                    name: 'Service 1',
-                                    discount: 10,
-                                    price: 10
-                                },
-                                {
-                                    name: 'Service 2',
-                                    discount: 20,
-                                    price: 20
-                                }
-                            ]
-                        }
-                    }
-                ]);
+            return HttpService.get(window.config.baseApiUrl + 'staffs');
         };
 
         service.getCheckinGroups = function() {
-            return HttpService.get(window.config.baseUrl + 'api/booking/list_groups')
-                .then(res => [
-                    {
-                        id: 1,
-                        name: 'Lash'
-                    },
-                    {
-                        id: 2,
-                        name: 'Wax'
-                    }
-                ]);
+            return HttpService.get(window.config.baseUrl + 'api/booking/list_groups');
         };
 
         service.getCheckinServices = function() {
-            return HttpService.get(window.config.baseUrl + 'api/booking/list_services')
-                .then(res => res.map((item, index) => {
-                    return {
-                        ...item,
-                        groupIds: [(index % 2) + 1]
-                    };
-                }));
+            return HttpService.get(window.config.baseUrl + 'api/booking/list_services');
         };
 
         service.getCheckinEmployees = function() {
