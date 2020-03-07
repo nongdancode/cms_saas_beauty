@@ -61,7 +61,7 @@ angular.module('app.modules', [
 angular.module('app', [
     'app.templates',
     'app.third-party',
-    'app.mock',
+    // 'app.mock',
     'app.core',
     'app.resources',
     'app.services',

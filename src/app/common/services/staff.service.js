@@ -103,8 +103,8 @@
                 });
         };
 
-        service.deleteShift = function(id) {
-            return HttpService.delete(HttpService.generateUrl(`shifts/${id}`));
+        service.deleteShift = function(id, employeeId) {
+            return HttpService.delete(HttpService.generateUrl(`shifts/${id}?employeeId=${employeeId}`));
         };
 
         return service;

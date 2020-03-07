@@ -106,7 +106,7 @@
                                     title: 'Delete Shift',
                                     message: 'Delete shift: ' + event.id
                                 }).then((confirm => {
-                                    this.StaffService.deleteShift(event.id)
+                                    this.StaffService.deleteShift(event.id, this.$stateParams.id)
                                         .then(res => this.deleteEvent(event));
                                 }));
                             }
@@ -162,6 +162,7 @@
 
             modal.then(res => {
                 return this.StaffService.createShift({
+                    employeeId: this.$stateParams.id,
                     date: moment(scope.date).unix(),
                     duration: scope.shift.duration
                 });
