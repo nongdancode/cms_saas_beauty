@@ -6,12 +6,12 @@
 
 <a class="btn btn-default btn-sm" ng-click="$ctrl.showModal()" style="width: 100px">
   <span class="glyphicon glyphicon-print" aria-hidden="true"></span>&nbsp;
-  <span class="hidden-xs ng-scope">{{ $ctrl.btnText }}</span>
+  <span class="hidden-xs ng-scope">{{ $ctrl.title }}</span>
 </a>
 
 <script type="text/ng-template" id="invoice-modal.html">
   <div class="modal-header">
-    <h3 class="modal-title" id="modal-title">Checkout</h3>
+    <h3 class="modal-title" id="modal-title">{{ $ctrl.title }}</h3>
   </div>
   <div class="modal-body" id="modal-body">
     <app-invoice customer="$ctrl.entry.values" invoice="$ctrl.data.invoice" view-type="$ctrl.data.viewType"></app-invoice>

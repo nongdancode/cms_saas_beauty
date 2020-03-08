@@ -18,7 +18,7 @@
             nga.field('invoice', 'template')
                 .label('Action')
                 .template(
-                    `<ma-checkout entry="entry" btn-text="Print" print-only="true"></ma-checkout>`
+                    `<ma-checkout entry="entry" title="Print" print-only="true"></ma-checkout>`
                 )
         ]);
 

@@ -11,7 +11,7 @@
         }
 
         $onInit() {
-            this.btnText = this.btnText || 'Checkout';
+            this.title = this.title || 'Checkout';
 
             this.data = {
                 invoice: this.entry.values.invoice,
@@ -67,7 +67,7 @@
     module.component('maCheckout', {
         bindings: {
             entry: '<',
-            btnText: '@',
+            title: '@',
             printOnly: '<'
         },
         controller: CheckoutComponent,
