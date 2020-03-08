@@ -245,7 +245,8 @@
 
     RestangularProvider.addResponseInterceptor(function(data, operation, what, url, response) {
       if (['get', 'getList'].includes(operation)) {
-        if (what === 'group') {
+        switch (what) {
+        case 'group': {
           return [
             {
               id: 1,
@@ -258,7 +259,7 @@
           ];
         }
 
-        if (what === 'service') {
+        case 'service': {
           return [
             {
               id: 1,
@@ -290,7 +291,7 @@
           ];
         }
 
-        if (what === 'promotion') {
+        case 'promotion': {
           return [
             {
               id: 1,
@@ -303,7 +304,7 @@
             {
               id: 2,
               name: 'Promotion 2',
-              description: 'Scelerisque eleifend donec pretium vulputate.',
+              description: 'Scelerisque eleifed donec pretium vulputate.',
               status: 'Status 2',
               discount_rate: 30,
               active: false
@@ -311,7 +312,7 @@
           ];
         }
 
-        if (what === 'waitlist') {
+        case 'waitlist': {
           return [
             {
               id: 1,
@@ -378,6 +379,54 @@
               }
             }
           ];
+        }
+
+        case 'transaction': {
+          return [
+            {
+              type: 'debit',
+              created: 1583647976,
+              invoice: {
+                id: 2,
+                tax: 10,
+                total: 17.5,
+                about: {
+                  companyName: 'The lash supply',
+                  phone: '8327744593',
+                  address: {
+                    streetAddress: 'Bellard',
+                    city: 'Houston',
+                    state: 'Texas'
+                  }
+                },
+                services: [
+                  {
+                    name: 'Service 1',
+                    discount: 10,
+                    price: 10
+                  },
+                  {
+                    name: 'Service 2',
+                    discount: 20,
+                    price: 20
+                  }
+                ]
+              }
+            }
+          ];
+        }
+
+        case 'income': {
+          return [
+            {
+              name: 'Name 1' ,
+              currentIncome: 1000,
+              paymentType: 'Payment Type 1',
+              commissionType: 'Commission Type 1',
+              baseSalary: 100
+            }
+          ];
+        }
         }
       }
 
