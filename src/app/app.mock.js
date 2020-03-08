@@ -10,75 +10,6 @@
             .split('?')[0];
 
       switch (true) {
-      case /api\/admin\/staffs/.test(api): {
-        response.data = [
-          {
-            id: 1,
-            name: 'Name 1',
-            phone: 'Phone 1',
-            status: 'booking',
-            deposit: 0,
-            invoice: {
-              id: 1,
-              tax: 10,
-              about: {
-                companyName: 'The lash supply',
-                phone: '8327744593',
-                address: {
-                  streetAddress: 'Bellard',
-                  city: 'Houston',
-                  state: 'Texas'
-                }
-              },
-              services: [
-                {
-                  name: 'Service 1',
-                  discount: 10,
-                  price: 10
-                },
-                {
-                  name: 'Service 2',
-                  discount: 20,
-                  price: 20
-                }
-              ]
-            }
-          },
-          {
-            id: 2,
-            name: 'Name 2',
-            phone: 'Phone 2',
-            status: 'checkin',
-            deposit: 0,
-            invoice: {
-              id: 2,
-              tax: 10,
-              about: {
-                companyName: 'The lash supply',
-                phone: '8327744593',
-                address: {
-                  streetAddress: 'Bellard',
-                  city: 'Houston',
-                  state: 'Texas'
-                }
-              },
-              services: [
-                {
-                  name: 'Service 1',
-                  discount: 10,
-                  price: 10
-                },
-                {
-                  name: 'Service 2',
-                  discount: 20,
-                  price: 20
-                }
-              ]
-            }
-          }
-        ];
-        break;
-      }
       case /api\/booking\/list_groups/.test(api): {
         response.data = [
           {
@@ -330,6 +261,10 @@
                     streetAddress: 'Bellard',
                     city: 'Houston',
                     state: 'Texas'
+                  },
+                  customer: {
+                    name: 'Name 1',
+                    phone: 123456789
                   }
                 },
                 services: [
@@ -362,6 +297,10 @@
                     streetAddress: 'Bellard',
                     city: 'Houston',
                     state: 'Texas'
+                  },
+                  customer: {
+                    name: 'Name 2',
+                    phone: 123456789
                   }
                 },
                 services: [
@@ -385,10 +324,11 @@
           return [
             {
               type: 'debit',
-              created: 1583647976,
+              created: 1583647976000,
               invoice: {
                 id: 2,
                 tax: 10,
+                deposit: 10,
                 total: 17.5,
                 about: {
                   companyName: 'The lash supply',
@@ -397,6 +337,10 @@
                     streetAddress: 'Bellard',
                     city: 'Houston',
                     state: 'Texas'
+                  },
+                  customer: {
+                    name: 'Name 1',
+                    phone: 123456789
                   }
                 },
                 services: [

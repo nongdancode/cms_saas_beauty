@@ -7,7 +7,7 @@
                 items: this.invoice.services,
                 today: moment().format('LL'),
                 leftInfo: `${this.invoice.about.address.streetAddress}\n${this.invoice.about.address.city}\n${this.invoice.about.address.state}`,
-                rightInfo: `${this.customer.name}\n${this.customer.phone}`
+                rightInfo: `${this.invoice.about.customer.name}\n${this.invoice.about.customer.phone}`
             };
         }
 

@@ -11,21 +11,11 @@
     const app = nga.application('Lash Admin')
           .baseApiUrl(window.config.baseApiUrl); // main API endpoint
 
-    const { marketing, payment, staff, promotion, user, service, waitlist, group } = nga.entities;
-
-    app.addEntity(marketing);
-    app.addEntity(payment);
-    app.addEntity(staff);
-    app.addEntity(promotion);
-    app.addEntity(user);
-    app.addEntity(service);
-    app.addEntity(waitlist);
-    app.addEntity(group);
+    Object.keys(nga.entities).forEach(key => app.addEntity(nga.entities[key]));
 
     app.dashboard(
       nga.dashboard()
-        .addCollection(nga.collection(marketing))
-        .addCollection(nga.collection(payment))
+        .addCollection(nga.collection(nga.entities['marketing']))
     );
 
     const currentUser = (JSON.parse(window.localStorage.getItem('ngStorage-user')) || {});

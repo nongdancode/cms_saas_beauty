@@ -167,7 +167,7 @@ window.menu.ref = [
     key: 'transaction-history',
     name: 'Transaction History',
     icon: 'glyphicon glyphicon-usd',
-    src: '/payment/list',
+    src: '/transaction/list',
     role: [window.models.Role.OWNER]
   },
   {
@@ -215,10 +215,23 @@ window.menu.ref = [
     role: [window.models.Role.OWNER]
   },
   {
-    key: 'employee-management',
+    key: 'employee',
     name: 'Employee Management',
     icon: 'glyphicon glyphicon-user',
+    role: [window.models.Role.OWNER]
+  },
+  {
+    key: 'employee-management',
+    name: 'Employee Management',
+    icon: 'glyphicon glyphicon-tasks',
     src: '/user/list',
+    role: [window.models.Role.OWNER]
+  },
+  {
+    key: 'income-management',
+    name: 'Income Management',
+    icon: 'glyphicon glyphicon-usd',
+    src: '/income/list',
     role: [window.models.Role.OWNER]
   },
   {
@@ -317,7 +330,15 @@ window.menu.tree = [
     ]
   },
   {
-    key: 'employee-management'
+    key: 'employee',
+    children: [
+      {
+        key: 'employee-management'
+      },
+      {
+        key: 'income-management'
+      }
+    ]
   },
   {
     key: 'service',

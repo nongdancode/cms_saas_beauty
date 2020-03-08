@@ -48,11 +48,12 @@ angular.module('app.components', [
 angular.module('app.modules', [
     'module.auth',
     'module.marketing',
-    'module.payment',
+    'module.transaction',
     'module.report',
     'module.staff',
     'module.promotion',
     'module.user',
+    'module.income',
     'module.service',
     'module.waitlist',
     'module.group'
