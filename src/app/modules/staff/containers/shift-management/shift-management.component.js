@@ -163,7 +163,7 @@
             modal.then(res => {
                 return this.StaffService.createShift({
                     employeeId: this.$stateParams.id,
-                    date: moment(scope.date).unix(),
+                    date: moment(scope.shift.date).unix(),
                     duration: scope.shift.duration
                 });
             }).then(res => {
