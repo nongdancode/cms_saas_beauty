@@ -24,6 +24,10 @@
         select(category) {
             this.data.active = category;
         }
+
+        name(key) {
+            return key.toCamelCase();
+        }
     }
 
     module.component('config', {

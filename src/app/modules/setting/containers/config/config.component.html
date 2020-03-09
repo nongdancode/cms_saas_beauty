@@ -8,18 +8,19 @@
 
 <div class="row">
   <div class="col-sm-12 center">
-    <ul class="nav nav-tabs">
+    <ul class="nav nav-tabs nav-justified">
       <li ng-repeat="category in $ctrl.data.categories" ng-click="$ctrl.select(category)"
         ng-class="{ active: $ctrl.data.active === category }" >
-        <a>{{ category }}</a>
+        <a>{{ $ctrl.name(category) }}</a>
       </li>
     </ul>
 
-    <div ng-repeat="category in $ctrl.data.categories"
+    <form ng-repeat="category in $ctrl.data.categories" style="margin-top: 20px;"
       ng-if="$ctrl.data.active === category">
-      <div ng-repeat="config in $ctrl.data.config | propsFilter: { category: category }">
-        {{ config.key }}
+      <div class="form-group" ng-repeat="config in $ctrl.data.config | propsFilter: { category: category }">
+        <label>{{ $ctrl.name(config.key) }}</label>
+        <input class="form-control" name="" type="text" value=""/>
       </div>
-    </div>
+    </form>
   </div>
 </div>
