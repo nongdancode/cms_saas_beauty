@@ -17,7 +17,7 @@
 
     <form ng-repeat="category in $ctrl.data.categories" style="margin-top: 20px;"
       ng-if="$ctrl.data.active === category">
-      <div class="form-group" ng-repeat="config in $ctrl.data.config | propsFilter: { category: category }">
+      <div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-12" ng-repeat="config in $ctrl.data.config | propsFilter: { category: category }">
         <label for="{{ config.key }}">{{ $ctrl.name(config.key) }}</label>
         <input class="form-control" name="{{ config.key }}"
           type="{{ config.type }}" ng-model="config.value" />
