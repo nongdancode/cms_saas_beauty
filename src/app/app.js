@@ -34,7 +34,8 @@ angular.module('app.services', [
     'service.report',
     'service.staff',
     'service.promotion',
-    'service.booking'
+    'service.booking',
+    'service.config'
 ]);
 
 angular.module('app.directives', [
@@ -56,7 +57,8 @@ angular.module('app.modules', [
     'module.income',
     'module.service',
     'module.waitlist',
-    'module.group'
+    'module.group',
+    'module.setting'
 ]);
 
 angular.module('app', [

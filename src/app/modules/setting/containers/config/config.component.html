@@ -1,0 +1,25 @@
+<div class="row list-header ng-scope">
+  <div class="col-lg-12">
+    <div class="page-header">
+      <h1>Config</h1>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12 center">
+    <ul class="nav nav-tabs">
+      <li ng-repeat="category in $ctrl.data.categories" ng-click="$ctrl.select(category)"
+        ng-class="{ active: $ctrl.data.active === category }" >
+        <a>{{ category }}</a>
+      </li>
+    </ul>
+
+    <div ng-repeat="category in $ctrl.data.categories"
+      ng-if="$ctrl.data.active === category">
+      <div ng-repeat="config in $ctrl.data.config | propsFilter: { category: category }">
+        {{ config.key }}
+      </div>
+    </div>
+  </div>
+</div>

@@ -110,7 +110,7 @@
         };
         break;
       }
-      case /shifts\/\d+\/tasks/.test(api): {
+      case /api\/admin\/shifts\/\d+\/tasks/.test(api): {
         response.data = [
           {
             id: 1,
@@ -142,7 +142,7 @@
         ];
         break;
       }
-      case /schedules\/\d+\/shifts/.test(api): {
+      case /api\/admin\/schedules\/\d+\/shifts/.test(api): {
         response.data = [
           {
             id: 1,
@@ -159,6 +159,32 @@
             count: {
               booking: 20
             }
+          }
+        ];
+        break;
+      }
+      case /api\/admin\/configs/.test(api): {
+        response.data = [
+          {
+            id: 1,
+            key: 'banner-text',
+            category: 'promotion',
+            type: 'text',
+            value: ''
+          },
+          {
+            id: 2,
+            key: 'banner-color',
+            category: 'promotion',
+            type: 'color',
+            value: ''
+          },
+          {
+            id: 3,
+            key: 'test',
+            category: 'test',
+            type: 'color',
+            value: ''
           }
         ];
         break;

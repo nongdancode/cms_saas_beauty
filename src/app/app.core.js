@@ -273,6 +273,13 @@ window.menu.ref = [
     icon: 'glyphicon glyphicon-log-out',
     src: '/auth/logout',
     active: path => path == '/auth/logout'
+  },
+  {
+    key: 'config',
+    name: 'Config',
+    icon: 'glyphicon glyphicon-cog',
+    src: '/setting/config',
+    active: path => path == '/setting/config'
   }
 ];
 
@@ -354,6 +361,9 @@ window.menu.tree = [
   {
     key: 'setting',
     children: [
+      {
+        key: 'config'
+      },
       {
         key: 'change-password'
       },
