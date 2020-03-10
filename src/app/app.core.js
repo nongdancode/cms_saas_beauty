@@ -121,7 +121,7 @@ window.models.arrayMetadata = model => {
 };
 
 window.config = {
-  baseUrl: 'http://api.beautysalonappsolution.com/'
+  baseUrl: 'http://api.bpsgroup.us/'
 };
 
 window.config.baseApiUrl = window.config.baseUrl + 'api/admin/';
