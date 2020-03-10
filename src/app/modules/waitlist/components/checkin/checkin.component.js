@@ -66,41 +66,41 @@
                 const employeeIds = this.data.employees.map(employee => employee.id);
 
                 employeeIds.forEach(id => {
-                    this.data.availableTimes[id] = Object.keys((this.data.employeesMap[id].available || {}))
-                        .filter(timestamp => timestamp > moment().unix())
+                    this.data.availableTimes[id] = (this.data.employeesMap[id].available || {})
+                        .filter(timestamp => timestamp.start < timestamp.end && timestamp.start > moment().unix())
                         .reduce((result, timestamp) => {
-                            const availableOptions = [];
+                            const beginOfDay = moment.unix(timestamp.start).startOf('day').valueOf();
 
-                            this.data.employeesMap[id].available[timestamp].forEach(({start_time, end_time}) => {
-                                const serviceStepping = this.data.servicesMap[this.data.employeesMap[id].service_id].stepping;
+                            const availableOptions = result[beginOfDay] || [];
 
-                                let start = moment.unix(start_time);
-                                let end = moment.unix(end_time);
+                            const serviceStepping = this.data.servicesMap[this.data.employeesMap[id].service_id].stepping;
 
-                                while (moment(start).add(serviceStepping, 'minutes') <= end) {
-                                    let _start = moment(start);
-                                    let _end = moment(start).add(serviceStepping, 'minutes');
+                            let start = moment.unix(timestamp.start);
+                            let end = moment.unix(timestamp.end);
 
-                                    availableOptions.push({
-                                        text: `${_start.format('hh:mm A')}`,
-                                        value: {
-                                            start: _start,
-                                            end: _end
-                                        }
-                                    });
+                            while (moment(start).add(serviceStepping, 'minutes') <= end) {
+                                let _start = moment(start);
+                                let _end = moment(start).add(serviceStepping, 'minutes');
 
-                                    start = moment(start).add(serviceStepping, 'minutes');
-                                }
-                            });
+                                availableOptions.push({
+                                    text: `${_start.format('hh:mm A')}`,
+                                    value: {
+                                        start: _start,
+                                        end: _end
+                                    }
+                                });
+
+                                start = moment(start).add(serviceStepping, 'minutes');
+                            }
 
                             return {
                                 ...result,
-                                [moment.unix(timestamp).startOf('day').valueOf()]: availableOptions
+                                [beginOfDay]: availableOptions
                             };
                         }, {});
 
 
-                    this.form.dates[this.data.employeesMap[id].service_id] = moment(+Object.keys(this.data.availableTimes[id])[0]);
+                    this.form.dates[this.data.employeesMap[id].service_id] = moment().startOf('day').valueOf();
                 });
 
                 this.data.employees = employees
