@@ -110,7 +110,7 @@
           </ui-select-match>
           <ui-select-choices
             repeat="time.value as time in
-            $ctrl.data.availableTimes[$ctrl.form.employees[service.id]][$ctrl.form.dates[service.id].startOf('day').valueOf()] | propsFilter: { text: $select.search }">
+            $ctrl.data.availableTimes[$ctrl.form.employees[service.id]][$ctrl.form.dates[service.id]] | propsFilter: { text: $select.search }">
             <div class="flex-item">
               <div class="text" ng-bind-html="time.text | highlight: $select.search"></div>
             </div>

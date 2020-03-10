@@ -99,7 +99,6 @@
                             };
                         }, {});
 
-
                     this.form.dates[this.data.employeesMap[id].service_id] = moment().startOf('day').valueOf();
                 });
 
