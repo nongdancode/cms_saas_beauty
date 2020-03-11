@@ -25,6 +25,19 @@
             })
             .state('shift-management', {
                 parent: 'ng-admin',
+	              url: '/staff/shift',
+	              template: '<shift-management $resolve="$resolve" view-all="true"></shift-management>',
+                resolve: {
+                    shifts: function($stateParams, StaffService) {
+                        return StaffService.getAllShifts();
+                    },
+                    staffs: function (StaffService) {
+                        return StaffService.getStaffs();
+                    }
+                }
+            })
+            .state('shift-management-by-id', {
+                parent: 'ng-admin',
 	              url: '/staff/schedule/:id/shift',
 	              template: '<shift-management $resolve="$resolve"></shift-management>',
                 resolve: {
@@ -69,7 +82,7 @@
                 .template('<img src="{{ entry.values.image }}" height="42" width="42" />'),
             nga.field()
                 .label('Action')
-                .template('<a class="btn btn-sm btn-primary" ui-sref="shift-management({ id: {{ entry.values.id }} })">Schedule</a>')
+                .template('<a class="btn btn-sm btn-primary" ui-sref="shift-management-by-id({ id: {{ entry.values.id }} })">Schedule</a>')
                 .cssClasses('staff-edit-schedule-action')
         ]);
 

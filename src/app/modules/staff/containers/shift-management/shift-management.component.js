@@ -17,12 +17,16 @@
                 staff: {},
                 events: [],
                 tasks: [],
-                eventSources: []
+                eventSources: [],
             };
 
             this.data.staff = this.$resolve.staff;
 
             this.data.events = this.$resolve.shifts;
+
+            if (this.viewAll) {
+                this.initViewAll();
+            }
 
             self = this;
 
@@ -82,9 +86,40 @@
                     return event;
                 });
 
+                this.data.eventSources.length = 0;
+
                 this.data.eventSources.push(events);
             });
         };
+
+        initViewAll() {
+            this.data = {
+                ...this.data,
+                filter: {
+                    staffId: -1
+                },
+                options: {},
+                staffs: this.$resolve.staffs
+            };
+
+            this.data.options.staffs = [
+                {
+                    id: -1,
+                    name: 'All'
+                },
+                ...this.data.staffs
+            ];
+
+            this.$scope.$watch('$ctrl.data.filter.staffId', (newValue, oldValue) => {
+                if (newValue === -1) {
+                    this.data.events = this.$resolve.shifts;
+
+                    return;
+                }
+
+                this.data.events = this.$resolve.shifts.filter(shift => shift.staffId === newValue);
+            });
+        }
 
         formatElement(event, element) {
             const el = angular.element(element);
@@ -176,7 +211,8 @@
 
     module.component('shiftManagement', {
         bindings: {
-            '$resolve': '<'
+            '$resolve': '<',
+            'viewAll': '<'
         },
         controller: ShiffManagementComponent,
         templateUrl: 'app/modules/staff/containers/shift-management/shift-management.component.html'

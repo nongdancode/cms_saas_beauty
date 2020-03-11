@@ -11,25 +11,25 @@
 
       switch (true) {
       case /api\/booking\/list_groups/.test(api): {
-        response.data = [
-          {
-            id: 1,
-            name: 'Lash'
-          },
-          {
-            id: 2,
-            name: 'Wax'
-          }
-        ];
+        // response.data = [
+        //   {
+        //     id: 1,
+        //     name: 'Lash'
+        //   },
+        //   {
+        //     id: 2,
+        //     name: 'Wax'
+        //   }
+        // ];
         break;
       }
       case /api\/booking\/list_services/.test(api): {
-        response.data = response.data.map((item, index) => {
-          return {
-            ...item,
-            groupIds: [(index % 2) + 1]
-          };
-        });
+        // response.data = response.data.map((item, index) => {
+        //   return {
+        //     ...item,
+        //     groupIds: [(index % 2) + 1]
+        //   };
+        // });
         break;
       }
       case /api\/admin\/payment_report/.test(api): {
@@ -156,6 +156,38 @@
             id: 2,
             start: moment().add(1, 'days').unix(),
             end: moment().add(1, 'days').add(8, 'hours').unix(),
+            count: {
+              booking: 20
+            }
+          }
+        ];
+        break;
+      }
+      case /api\/admin\/shifts/.test(api): {
+        response.data = [
+          {
+            id: 1,
+            staffId: 3,
+            start: moment().unix(),
+            end: moment().add(8, 'hours').unix(),
+            count: {
+              booking: 10
+            }
+          },
+          {
+            id: 2,
+            staffId: 4,
+            start: moment().add(1, 'days').unix(),
+            end: moment().add(1, 'days').add(8, 'hours').unix(),
+            count: {
+              booking: 20
+            }
+          },
+          {
+            id: 3,
+            staffId: 3,
+            start: moment().unix(),
+            end: moment().add(8, 'hours').unix(),
             count: {
               booking: 20
             }

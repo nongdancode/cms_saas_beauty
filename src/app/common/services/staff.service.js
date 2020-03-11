@@ -43,6 +43,10 @@
             return HttpService.get(HttpService.generateUrl(`schedules/${id}/shifts`));
         };
 
+        service.getAllShifts = function(id) {
+            return HttpService.get(HttpService.generateUrl(`shifts`));
+        };
+
         service.createShift = function(data) {
             return HttpService.post(HttpService.generateUrl('shifts'), data)
                 .then(res => {

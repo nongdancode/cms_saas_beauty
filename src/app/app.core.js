@@ -161,7 +161,16 @@ window.menu.ref = [
     name: 'Schedule View',
     icon: 'glyphicon glyphicon-eye-open',
     src: '/staff/schedule',
-    active: path => path == '/staff/schedule'
+    active: path => path == '/staff/schedule',
+    role: [window.models.Role.STAFF]
+  },
+  {
+    key: 'schedule-summary',
+    name: 'Schedule Summary',
+    icon: 'glyphicon glyphicon-eye-open',
+    src: '/staff/shift',
+    active: path => path == '/staff/shift',
+    role: [window.models.Role.OWNER]
   },
   {
     key: 'transaction-history',
@@ -308,6 +317,9 @@ window.menu.tree = [
       },
       {
         key: 'schedule-view'
+      },
+      {
+        key: 'schedule-summary'
       }
     ]
   },
