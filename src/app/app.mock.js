@@ -167,7 +167,7 @@
         response.data = [
           {
             id: 1,
-            staffId: 3,
+            employee_id: 3,
             start: moment().unix(),
             end: moment().add(8, 'hours').unix(),
             count: {
@@ -176,7 +176,7 @@
           },
           {
             id: 2,
-            staffId: 4,
+            employee_id: 4,
             start: moment().add(1, 'days').unix(),
             end: moment().add(1, 'days').add(8, 'hours').unix(),
             count: {
@@ -185,7 +185,7 @@
           },
           {
             id: 3,
-            staffId: 3,
+            employee_id: 3,
             start: moment().unix(),
             end: moment().add(8, 'hours').unix(),
             count: {

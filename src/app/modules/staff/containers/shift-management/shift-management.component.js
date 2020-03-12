@@ -96,7 +96,7 @@
             this.data = {
                 ...this.data,
                 filter: {
-                    staffId: -1
+                    employee_id: -1
                 },
                 options: {},
                 staffs: this.$resolve.staffs
@@ -110,14 +110,14 @@
                 ...this.data.staffs
             ];
 
-            this.$scope.$watch('$ctrl.data.filter.staffId', (newValue, oldValue) => {
+            this.$scope.$watch('$ctrl.data.filter.employee_id', (newValue, oldValue) => {
                 if (newValue === -1) {
                     this.data.events = this.$resolve.shifts;
 
                     return;
                 }
 
-                this.data.events = this.$resolve.shifts.filter(shift => shift.staffId === newValue);
+                this.data.events = this.$resolve.shifts.filter(shift => shift.employee_id === newValue);
             });
         }
 
