@@ -35,8 +35,6 @@
             };
 
             this.init();
-
-            this.showModal();
         }
 
         init() {
@@ -181,6 +179,8 @@
 
             const data = {
                 id: this.entry.values.id,
+                name: this.entry.values.name,
+                phone: this.entry.values.phone,
                 services: this.form.serviceIds.map(id => {
                     return {
                         serviceId: id,
