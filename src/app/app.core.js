@@ -40,13 +40,13 @@ window.models = {
     }
   },
   EmployeePaymentType: {
-    'm50/50': '50/50',
-    'm70/30': '70/30',
-    '50/50': {
-      text: '50/50'
+    'CASH': 'cash',
+    'CHECK': 'check',
+    'cash': {
+      text: 'Cash'
     },
-    '70/30': {
-      text: '70/30'
+    'check': {
+      text: 'Check'
     }
   },
   EmployeeCommissionType: {

@@ -11,6 +11,10 @@
             };
         }
 
+        round(num) {
+            return Math.round((num + Number.EPSILON) * 100) / 100;
+        }
+
         total() {
             const total = this.invoice.services.reduce((result, service) => {
                 return result + (service.price - (service.price * +service.discount / 100));
@@ -18,7 +22,7 @@
 
             const tax = total * this.invoice.tax / 100;
 
-            return this.invoice.total = total + tax - this.invoice.deposit;
+            return this.invoice.total = this.round(total + tax - this.invoice.deposit);
         };
 
         add() {

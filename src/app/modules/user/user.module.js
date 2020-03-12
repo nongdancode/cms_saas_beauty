@@ -77,8 +77,15 @@
                 .validation({ required: true }),
             nga.field('commision_type', 'number')
                 .validation({ required: true, maxlength: 2 }),
-            nga.field('payment_type', 'number')
-                .validation({ required: true, maxlength: 2 })
+            nga.field('payment_type', 'choice')
+                .choices(
+                    window.models.arrayMetadata(window.models.EmployeePaymentType).map(row => {
+                        return {
+                            label: row.text,
+                            value: row.key
+                        };
+                    })
+                )
         ]);
 
         const editionView = entity.editionView();
@@ -110,8 +117,15 @@
                 .validation({ required: true }),
             nga.field('commision_type', 'number')
                 .validation({ required: true, maxlength: 2 }),
-            nga.field('payment_type', 'number')
-                .validation({ required: true, maxlength: 2 })
+            nga.field('payment_type', 'choice')
+                .choices(
+                    window.models.arrayMetadata(window.models.EmployeePaymentType).map(row => {
+                        return {
+                            label: row.text,
+                            value: row.key
+                        };
+                    })
+                )
         ]);
 
         nga.addEntity('user', entity);
