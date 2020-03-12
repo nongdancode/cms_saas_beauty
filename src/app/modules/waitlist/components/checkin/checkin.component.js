@@ -35,6 +35,8 @@
             };
 
             this.init();
+
+            this.showModal();
         }
 
         init() {
@@ -66,7 +68,7 @@
                 const employeeIds = this.data.employees.map(employee => employee.id);
 
                 employeeIds.forEach(id => {
-                    this.data.availableTimes[id] = (this.data.employeesMap[id].available || {})
+                    this.data.availableTimes[id] = (this.data.employeesMap[id].available || [])
                         .filter(timestamp => timestamp.start < timestamp.end && timestamp.start > moment().unix())
                         .reduce((result, timestamp) => {
                             const beginOfDay = moment.unix(timestamp.start).startOf('day').valueOf();
@@ -138,9 +140,39 @@
 
         get isDisabledCheckin() {
             return this.form.serviceIds.length === 0 || this.form.serviceIds.some(id => {
-                return !(this.form.employees[id] && this.form.dates[id] && this.form.times[id]);
+                return !(this.form.employees[id] && this.form.dates[id] && this.form.times[id])
+                    || this.getOverlap().length;
             });
         };
+
+        isOverlap(a, b) {
+            return (a.start < b.start && a.end > b.start)
+                || (a.start < b.end && a.end > b.end)
+                || (a.start >= b.start && a.end <= b.end);
+        }
+
+
+        isCurrentServiceOverlap(id) {
+            const overlap = this.getOverlap();
+
+            return overlap.some(overlap => +overlap.id === +id);
+        }
+
+        getOverlap() {
+            const times = Object.keys(this.form.times).reduce((result, id) => {
+                return [
+                    ...result,
+                    { id, ...this.form.times[id] }
+                ];
+            }, []);
+
+            const overlap = times
+                  .filter((time, index) => times
+                          .filter((inner, innerIndex) => index !== innerIndex)
+                          .some(inner => this.isOverlap(inner, time)));
+
+            return overlap;
+        }
 
         checkin() {
             this.modal.close();

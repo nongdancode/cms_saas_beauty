@@ -25,10 +25,14 @@
   }
 
   .service-detail-form {
-    margin-bottom: 0 20px 20px 20px;
+    margin-bottom: 10px;
     padding: 10px 20px;
     border: 2px solid #eee;
     border-radius: 4px;
+  }
+
+  .service-detail-form.error {
+    border: 1px solid red;
   }
 
   .service-detail-form > h3 {
@@ -79,7 +83,10 @@
       </div>
     </div>
 
-    <div class="service-detail-form" ng-repeat="service in $ctrl.data.services" ng-if="$ctrl.form.serviceIds.includes(service.id)">
+    <div class="service-detail-form"
+      ng-class="{ error: $ctrl.isCurrentServiceOverlap(service.id) }"
+      ng-repeat="service in $ctrl.data.services"
+      ng-if="$ctrl.form.serviceIds.includes(service.id)">
       <h3>{{ service.name }}</h3>
 
       <hr/>
@@ -90,7 +97,7 @@
           <ui-select-match placeholder="Select a employee">
             {{ $select.selected.name }}
           </ui-select-match>
-          <ui-select-choices repeat="employee.id as employee in $ctrl.data.employees | filter:{ service_id: service.id } | propsFilter: { name: $select.search }">
+          <ui-select-choices repeat="employee.id as employee in $ctrl.data.employees | filter:{ service_id: service.id }: true | propsFilter: { name: $select.search }">
             <div class="flex-item select-item">
               <div class="img">
                 <img alt="" ng-src="{{ employee.img }}"/>
@@ -118,6 +125,8 @@
         </ui-select>
       </div>
     </div>
+
+    <em ng-if="$ctrl.getOverlap().length" style="color: red">Services are overlapped time. Please repick.</em>
   </div>
   <div class="modal-footer">
     <button class="btn btn-primary" type="button" ng-click="$ctrl.checkin()" ng-disabled="$ctrl.isDisabledCheckin">Checkin</button>

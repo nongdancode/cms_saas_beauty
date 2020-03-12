@@ -24,7 +24,8 @@
                         return {
                             ...row,
                             employee_id: row.id,
-                            id: row.id + '_' + row.service_id
+                            id: row.id + '_' + row.service_id,
+                            service_id: +row.service_id
                         };
                     });
                 });
