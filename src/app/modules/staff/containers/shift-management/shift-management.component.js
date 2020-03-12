@@ -141,7 +141,7 @@
                                     title: 'Delete Shift',
                                     message: 'Delete shift: ' + event.id
                                 }).then((confirm => {
-                                    this.StaffService.deleteShift(event.id, this.$stateParams.id)
+                                    this.StaffService.deleteShift(event.id, event.employee_id || this.$stateParams.id)
                                         .then(res => this.deleteEvent(event));
                                 }));
                             }
@@ -186,6 +186,12 @@
                     duration: 4
                 }
             };
+
+            if (this.viewAll) {
+                scope.staffs = this.data.staffs;
+                scope.shift.employee_id = scope.staffs && scope.staffs[0] && scope.staffs[0].id;
+            }
+
 
             const modal = this.ModalService.prompt({
                 template: 'add-shift.html',
