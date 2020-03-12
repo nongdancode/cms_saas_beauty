@@ -41,7 +41,8 @@
                 '<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>&nbsp;' +
                 '<span class="hidden-xs ng-scope">Detail</span>' +
                 '</a>' +
-                '<ma-edit-button entry="entry" entity="entity" size="xs"></ma-edit-button>'
+                '<ma-edit-button entry="entry" entity="entity" size="xs"></ma-edit-button>' +
+                '<ma-delete-button entry="entry" entity="entity" size="xs"></ma-delete-button>'
         );
 
         const creationView = entity.creationView();
