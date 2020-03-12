@@ -34,19 +34,28 @@
 
         send() {
             if (confirm('Send Message to: ' + this.names)) {
-                this.uploader.__uploadAll().then((result) => {
-                    const ids = this.selection.map(function (entry) {
-                        return entry.identifierValue;
-                    });
+                const ids = this.selection.map(function (entry) {
+                    return entry.identifierValue;
+                });
 
+                if (this.form.type === 'sms') {
                     this.MarketingService.sendSms({
                         customerIds: ids,
-                        images: result,
                         ...this.form
                     }).then(res => {
                         this.close();
                     });
-                });
+                } else {
+                    this.uploader.__uploadAll().then((result) => {
+                        this.MarketingService.sendSms({
+                            customerIds: ids,
+                            images: result,
+                            ...this.form
+                        }).then(res => {
+                            this.close();
+                        });
+                    });
+                }
             }
         };
 
