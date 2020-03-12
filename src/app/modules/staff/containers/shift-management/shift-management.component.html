@@ -83,7 +83,7 @@
 
 <script type="text/ng-template" id="add-shift.html">
   <form novalidate>
-    <div class="form-group">
+    <div class="form-group" ng-if="$ctrl.viewAll">
       <label for="">Employee</label>
 
       <select class="form-control" ng-model="shift.employee_id"
