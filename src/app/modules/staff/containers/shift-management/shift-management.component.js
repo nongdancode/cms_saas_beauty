@@ -68,11 +68,20 @@
             };
 
             this.$scope.$watch('$ctrl.data.events', (newValue, oldValue) => {
+                const title = event => {
+                    if (this.viewAll) {
+                        const employee = this.data.staffs.find(staff => +staff.id === +event.employee_id);
+                        return `${employee.name}: ${event.count.booking}`;
+                    }
+
+                    return `Tasks: ${event.count.booking}`;
+                };
+
                 const events = newValue.map(event => {
                     event = {
                         ...event,
                         id: event.id,
-                        title: `Tasks: ${event.count.booking}`,
+                        title: title(event),
                         description: `Tasks: ${event.count.booking}`,
                         start: moment.unix(event.start).valueOf(),
                         end: moment.unix(event.end).valueOf(),
