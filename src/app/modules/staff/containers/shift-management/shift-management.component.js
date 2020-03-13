@@ -184,7 +184,8 @@
                 shift: {
                     date: moment(),
                     duration: 4
-                }
+                },
+                $ctrl: this
             };
 
             if (this.viewAll) {
