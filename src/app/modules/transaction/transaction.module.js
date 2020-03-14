@@ -13,6 +13,7 @@
             .perPage(10);
 
         listView.fields([
+            nga.field('customer_name'),
             nga.field('type'),
             nga.field('created', 'datetime'),
             nga.field('invoice', 'template')
