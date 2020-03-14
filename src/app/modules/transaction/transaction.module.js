@@ -14,7 +14,7 @@
 
         listView.fields([
             nga.field('type'),
-            nga.field('created', 'date'),
+            nga.field('created', 'datetime'),
             nga.field('invoice', 'template')
                 .label('Action')
                 .template(
