@@ -13,7 +13,8 @@
             .perPage(10);
 
         listView.fields([
-            nga.field('customer_name'),
+            nga.field('name').label('Customer Name')
+                .template('{{ entry.values.invoice.about.customer.name }}'),
             nga.field('type'),
             nga.field('created', 'datetime'),
             nga.field('invoice', 'template')
