@@ -47,6 +47,11 @@
 
         print() {
             this.UtilityService.print('app-invoice').then(res => {
+                if (this.printOnly) {
+                    this.$state.reload();
+                    return;
+                }
+
                 const { id, name, status, phone, deposit, invoice } = this.entry.values;
 
                 const { paymentType, note } = this.data;
