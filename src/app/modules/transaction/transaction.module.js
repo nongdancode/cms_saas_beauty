@@ -10,7 +10,7 @@
 
         listView
             .title('Transaction')
-            .perPage(10);
+            .perPage(20);
 
         listView.fields([
             nga.field('name').label('Customer Name')

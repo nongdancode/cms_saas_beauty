@@ -15,7 +15,7 @@
 
         listView
             .title('Service')
-            .perPage(10);
+            .perPage(20);
 
         listView.fields([
             nga.field('name'),

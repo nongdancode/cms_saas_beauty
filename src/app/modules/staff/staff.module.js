@@ -74,7 +74,7 @@
 
         listView
             .title('Staff Management')
-            .perPage(10);
+            .perPage(20);
 
         listView.fields([
             nga.field('name'),
