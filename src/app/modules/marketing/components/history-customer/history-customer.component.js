@@ -2,7 +2,9 @@
     const module = angular.module('module.marketing.components.history-customer', []);
 
     class HistoryCustomerComponent {
-        data = {};
+        data = {
+            history: []
+        };
 
         constructor($scope, $timeout, ModalService, MarketingService) {
             this.$scope = $scope;
@@ -12,22 +14,10 @@
         }
 
         $onInit() {
-            this.data.history = [
-                {
-                    id: 1,
-                    service_name: 'Lash 1',
-                    count: 10,
-                    staff: 'Jenny',
-                    note: ''
-                },
-                {
-                    id: 2,
-                    service_name: 'Lash 2',
-                    count: 6,
-                    staff: 'Alice',
-                    note: ''
-                }
-            ];
+            this.MarketingService.historyCustomer(this.id)
+                .then(history => {
+                    this.data.history = history;
+                });
         }
 
         showModal() {
