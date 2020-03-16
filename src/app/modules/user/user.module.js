@@ -23,7 +23,7 @@
             nga.field('email'),
             nga.field('phone_number'),
             // nga.field('base_salary', 'number'),
-            // nga.field('commision_type'),
+            // nga.field('commission_type'),
             // nga.field('payment_type'),
             nga.field('services', 'reference_many')
                 .targetEntity(serviceEntity)
@@ -40,7 +40,7 @@
             nga.field('email'),
             nga.field('phone_number'),
             nga.field('base_salary', 'number'),
-            nga.field('commision_type'),
+            nga.field('commission_type'),
             nga.field('payment_type')
         ]);
 
@@ -75,7 +75,7 @@
                     }
                 })
                 .validation({ required: true }),
-            nga.field('commision_type', 'number')
+            nga.field('commission_type', 'number')
                 .validation({ required: true, maxlength: 2 }),
             nga.field('payment_type', 'choice')
                 .choices(
@@ -115,7 +115,7 @@
                 .validation({ required: true }),
             nga.field('base_salary', 'number')
                 .validation({ required: true }),
-            nga.field('commision_type', 'number')
+            nga.field('commission_type', 'number')
                 .validation({ required: true, maxlength: 2 }),
             nga.field('payment_type', 'choice')
                 .choices(
