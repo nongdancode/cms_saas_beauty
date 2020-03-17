@@ -2,13 +2,36 @@
     const module = angular.module('module.waitlist.components.invoice', []);
 
     class InvoiceComponent {
+        constructor($scope, CrudService) {
+            this.$scope = $scope;
+            this.CrudService = CrudService;
+        }
+
         $onInit() {
             this.data = {
                 items: this.invoice.services,
                 today: moment().format('LL'),
                 leftInfo: `${this.invoice.about.address.streetAddress}\n${this.invoice.about.address.city}\n${this.invoice.about.address.state}`,
-                rightInfo: `${this.invoice.about.customer.name}\n${this.invoice.about.customer.phone}`
+                rightInfo: `${this.invoice.about.customer.name}\n${this.invoice.about.customer.phone}`,
+                services: [],
+                employees: []
             };
+
+            this.CrudService.find('service').then(res => {
+                this.data.services = res;
+            });
+
+            this.CrudService.find('employee').then(res => {
+                this.data.employees = res;
+            });
+
+            this.$scope.$watch('$ctrl.data.items', function(newVal, oldVal){
+                newVal.forEach(item => {
+                    if (item.service && item.employee) {
+                        item.name = item.service + ' - ' + item.employee;
+                    }
+                });
+            }, true);
         }
 
         round(num) {

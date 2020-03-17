@@ -6,7 +6,7 @@
 
         const serviceEntity = nga.entity('service').url(nga.entityUrl('services'));
 
-        const entity = nga.entity('user');
+        const entity = nga.entity('employee');
 
         entity.url(nga.entityUrl('employees'));
 
@@ -128,6 +128,6 @@
                 )
         ]);
 
-        nga.addEntity('user', entity);
+        nga.addEntity('employee', entity);
     });
 })();

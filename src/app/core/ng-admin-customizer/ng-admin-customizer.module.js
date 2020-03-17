@@ -1,8 +1,13 @@
 (function() {
   const module = angular.module('core.ng-admin-customizer', [
-    'core.ng-admin-customizer.types.custom',
-    'core.ng-admin-customizer.types.daterange'
+    'core.ng-admin-customizer.type.custom',
+    'core.ng-admin-customizer.type.daterange',
+    'core.ng-admin-customizer.service.crud'
   ]);
+
+  module.config(function (NgAdminConfigurationProvider) {
+    window.nga = NgAdminConfigurationProvider;
+  });
 
   module.config(function (NgAdminConfigurationProvider, $injector) {
     const nga = NgAdminConfigurationProvider;

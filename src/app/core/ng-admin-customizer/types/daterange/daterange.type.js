@@ -1,5 +1,5 @@
 (function() {
-  const module = angular.module('core.ng-admin-customizer.types.daterange', []);
+  const module = angular.module('core.ng-admin-customizer.type.daterange', []);
 
   class DaterangeFilterComponent {
     options = {

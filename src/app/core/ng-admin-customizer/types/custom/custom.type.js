@@ -1,5 +1,5 @@
 (function() {
-  const module = angular.module('core.ng-admin-customizer.types.custom', []);
+  const module = angular.module('core.ng-admin-customizer.type.custom', []);
 
   class CustomFilterComponent {
     $onInit() {

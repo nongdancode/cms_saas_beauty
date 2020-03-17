@@ -172,7 +172,15 @@
     <tr class="item" ng-repeat="item in $ctrl.data.items" ng-if="$ctrl.viewType === 'edit'">
       <td style="width: 70%">
         <button ng-click="$ctrl.remove($index)" class="btn btn-danger" style="width: 80px; margin-top: -1px;">Remove</button>
-        <input class="form-control" ng-model="item.name" type="text" style="display: inline-block; margin-left: 10px; width: calc(100% - 100px);" />
+        <select class="form-control" style="display: inline-block; width: 200px;"
+          ng-model="item.service" ng-options="service.name as service.name for service in $ctrl.data.services"
+          ng-change="">
+          <option value="" disabled selected>Pick Service</option>
+        </select>
+        <select class="form-control" style="display: inline-block; width: 200px;"
+          ng-model="item.employee" ng-options="employee.name as employee.name for employee in $ctrl.data.employees">
+          <option value="" disabled selected>Pick Employee</option>
+        </select>
       </td>
       <td style="width: 15%; text-align: right;">
         <input class="form-control" ng-model="item.discount" style="width: 100%" type="text"
