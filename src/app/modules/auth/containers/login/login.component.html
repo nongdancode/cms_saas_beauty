@@ -1,110 +1,111 @@
 <style>
-    @CHARSET "UTF-8";
-    /*
-       over-ride "Weak" message, show font in dark grey
-     */
+  @CHARSET "UTF-8";
+  /*
+     over-ride "Weak" message, show font in dark grey
+   */
 
-    .progress-bar {
-        color: #333;
-    }
+  .progress-bar {
+    color: #333;
+  }
 
-    .form-control {
-        position: relative;
-        font-size: 16px;
-        height: auto;
-        padding: 10px;
-        @include box-sizing(border-box);
+  .form-control {
+    position: relative;
+    font-size: 16px;
+    height: auto;
+    padding: 10px;
+    @include box-sizing(border-box);
 
-        &:focus {
-            z-index: 2;
-        }
+    &:focus {
+      z-index: 2;
     }
+  }
 
-    .login-container {
-        background: url(assets/images/background.jpg) no-repeat center center fixed;
-        -webkit-background-size: cover;
-        -moz-background-size: cover;
-        -o-background-size: cover;
-        background-size: cover;
+  .login-container {
+    background: url(assets/images/background.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 
-        overflow: hidden;
-    }
+    overflow: hidden;
+  }
 
-    .login-container > .blur {
-        backdrop-filter: blur(10px);
+  .login-container > .blur {
+    backdrop-filter: blur(10px);
 
-        height: 100vh;
-    }
+    height: 100vh;
+  }
 
-    .login-form {
-        margin-top: 60px;
-    }
+  .login-form {
+    margin-top: 60px;
+  }
 
-    form[role=login] {
-        color: #5d5d5d;
-        background: #f2f2f2;
-        padding: 26px;
-        border-radius: 10px;
-        -moz-border-radius: 10px;
-        -webkit-border-radius: 10px;
-    }
-    form[role=login] img {
-        display: block;
-        margin: 0 auto;
-        margin-bottom: 35px;
-    }
-    form[role=login] input,
-    form[role=login] button {
-        font-size: 18px;
-        margin: 16px 0;
-    }
-    form[role=login] > div {
-        text-align: center;
-    }
+  form[role=login] {
+    color: #5d5d5d;
+    background: #f2f2f2;
+    padding: 26px;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+  }
+  form[role=login] img {
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 35px;
+  }
+  form[role=login] input,
+  form[role=login] button {
+    font-size: 18px;
+    margin: 16px 0;
+  }
+  form[role=login] > div {
+    text-align: center;
+  }
 
-    .form-links {
-        text-align: center;
-        margin-top: 1em;
-        margin-bottom: 50px;
-    }
-    .form-links a {
-        color: #fff;
-    }
+  .form-links {
+    text-align: center;
+    margin-top: 1em;
+    margin-bottom: 50px;
+  }
+  .form-links a {
+    color: #fff;
+  }
 
-    .logo {
-        display: flex;
-        justify-content: center;
+  .logo {
+    display: flex;
+    justify-content: center;
 
-        border-bottom: 2px solid #eee;
-    }
+    border-bottom: 2px solid #eee;
+  }
 
-    .logo > img {
-        width: 200px;
-        margin-bottom: 10px !important;
-    }
+  .logo > img {
+    width: 200px;
+    max-height: 100px;
+    margin-bottom: 10px !important;
+  }
 </style>
 
 <div class="login-container">
-    <div class="row blur">
-        <div class="col-md-4"></div>
-        <div class="col-md-4">
-            <section class="login-form">
-                <form ng-submit="$ctrl.login($ctrl.state.username, $ctrl.state.password)" role="login">
-                    <div class="logo">
-                        <img alt="Logo" src="assets/images/logo-2.png"/>
-                    </div>
+  <div class="row blur">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      <section class="login-form">
+        <form ng-submit="$ctrl.login($ctrl.state.username, $ctrl.state.password)" role="login">
+          <div class="logo">
+            <img alt="Logo" src="assets/images/logo-2.png"/>
+          </div>
 
-                    <input ng-model="$ctrl.state.username" type="text" name="username" placeholder="Username" required class="form-control input-lg" />
+          <input ng-model="$ctrl.state.username" type="text" name="username" placeholder="Username" required class="form-control input-lg" />
 
-                    <input ng-model="$ctrl.state.password" type="password" class="form-control input-lg" id="password" placeholder="Password" required="" />
-
-
-                    <div class="pwstrength_viewport_progress"></div>
+          <input ng-model="$ctrl.state.password" type="password" class="form-control input-lg" id="password" placeholder="Password" required="" />
 
 
-                    <button type="submit" class="btn btn-lg btn-primary btn-block" style="background: #8088E8; border-color: #8C96FF;">Log in</button>
-                </form>
-            </section>
-        </div>
+          <div class="pwstrength_viewport_progress"></div>
+
+
+          <button type="submit" class="btn btn-lg btn-primary btn-block" style="background: #8088E8; border-color: #8C96FF;">Log in</button>
+        </form>
+      </section>
     </div>
+  </div>
 </div>
