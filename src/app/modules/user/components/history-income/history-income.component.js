@@ -1,16 +1,16 @@
 (function(){
-    const module = angular.module('module.marketing.components.history-customer', []);
+    const module = angular.module('module.income.components.history-income', []);
 
-    class HistoryCustomerComponent {
+    class HistoryIncomeComponent {
         data = {
             history: []
         };
 
-        constructor($scope, $timeout, ModalService, MarketingService) {
+        constructor($scope, $timeout, ModalService, UserService) {
             this.$scope = $scope;
             this.$timeout = $timeout;
             this.ModalService = ModalService;
-            this.MarketingService = MarketingService;
+            this.UserService = UserService;
         }
 
         $onInit() {
@@ -18,14 +18,14 @@
         }
 
         showModal() {
-            this.MarketingService.historyCustomer(this.id)
+            this.UserService.historyIncome(this.id)
                 .then(history => {
                     this.data.history = history;
                 });
 
             this.modal = this.ModalService.create({
                 animation: true,
-                templateUrl: 'history-customer-modal.html',
+                templateUrl: 'history-income-modal.html',
                 size: 'md',
                 scope: this.$scope
             });
@@ -37,11 +37,11 @@
         }
     }
 
-    module.component('maHistoryCustomer', {
+    module.component('maHistoryIncome', {
         bindings: {
             id: '<'
         },
-        controller: HistoryCustomerComponent,
-        templateUrl: 'app/modules/marketing/components/history-customer/history-customer.component.html'
+        controller: HistoryIncomeComponent,
+        templateUrl: 'app/modules/user/components/history-income/history-income.component.html'
     });
 })();

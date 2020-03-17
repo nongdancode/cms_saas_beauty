@@ -221,6 +221,27 @@
         ];
         break;
       }
+
+      case /api\/admin\/history-income\/\d+/.test(api): {
+        response.data = [
+          {
+            id: 1,
+            month: 1,
+            income: 1000
+          },
+          {
+            id: 2,
+            month: 2,
+            income: 1500
+          },
+          {
+            id: 3,
+            month: 3,
+            income: 1000
+          }
+        ];
+        break;
+      }
       }
 
       return response;
@@ -421,6 +442,7 @@
         case 'income': {
           return [
             {
+              id: 1,
               name: 'Name 1' ,
               currentIncome: 1000,
               paymentType: 'Payment Type 1',

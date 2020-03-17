@@ -1,5 +1,7 @@
 (function(){
-    const module = angular.module('module.income', []);
+    const module = angular.module('module.income', [
+        'module.income.components.history-income'
+    ]);
 
     module.config(function (NgAdminConfigurationProvider) {
         const nga = NgAdminConfigurationProvider;
@@ -25,6 +27,10 @@
                 .label('Base Salary')
                 .format('$0,0.00')
         ]);
+
+        listView.listActions(
+            '<ma-history-income id="entry.values.id"></ma-history-income>'
+        );
 
         nga.addEntity('income', entity);
     });

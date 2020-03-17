@@ -29,6 +29,10 @@
         });
     };
 
+    service.historyIncome = function(id) {
+      return HttpService.get(HttpService.generateUrl(`history-income/${id}`));
+    };
+
     return service;
   }
 })();
