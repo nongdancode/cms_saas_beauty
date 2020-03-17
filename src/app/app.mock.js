@@ -1,7 +1,7 @@
 (function() {
   const module = angular.module('app.mock', []);
 
-  module.factory('HttpMockInterceptor', function(){
+  module.factory('HttpMockInterceptor', function() {
     var service = {};
 
     service.response = function(response) {

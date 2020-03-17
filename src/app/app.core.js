@@ -233,7 +233,7 @@ window.menu.ref = [
     key: 'employee-management',
     name: 'Employee Management',
     icon: 'glyphicon glyphicon-tasks',
-    src: '/user/list',
+    src: '/employee/list',
     role: [window.models.Role.OWNER]
   },
   {
