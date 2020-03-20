@@ -1,7 +1,7 @@
 (function() {
   const module = angular.module('core.ng-admin-customizer.type.custom', []);
 
-  class CustomFilterComponent {
+  class CustomFieldComponent {
     $onInit() {
       this.ngModel = {
         ..._.pickBy(this.ngModel, (value, key) => ['type', 'data'].includes(key)),
@@ -41,12 +41,12 @@
     }
   }
 
-  module.component('maCustomFilter', {
+  module.component('maCustomField', {
     bindings: {
       default: '=',
       ngModel: '='
     },
-    controller: CustomFilterComponent,
+    controller: CustomFieldComponent,
     template: '<div style="display:flex; justify-content: space-between;">' +
       '<input type="text" class="form-control" style="display:inline-block; width: 32%;" ng-model="$ctrl.ngModel.data.field" />' +
       '<select ng-options="operator.key as operator.text for operator in $ctrl.operators" class="form-control" style="display:inline-block; width: 32%;" ng-model="$ctrl.ngModel.data.operator"><select/>' +

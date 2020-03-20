@@ -78,8 +78,7 @@
 
         listView.fields([
             nga.field('name'),
-            nga.field('image')
-                .template('<img src="{{ entry.values.image }}" height="42" width="42" />'),
+            nga.field('image', 'image'),
             nga.field()
                 .label('Action')
                 .template('<a class="btn btn-sm btn-primary" ui-sref="shift-management-by-id({ id: {{ entry.values.id }} })">Schedule</a>')

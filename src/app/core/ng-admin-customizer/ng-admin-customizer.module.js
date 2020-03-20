@@ -2,6 +2,7 @@
   const module = angular.module('core.ng-admin-customizer', [
     'core.ng-admin-customizer.type.custom',
     'core.ng-admin-customizer.type.daterange',
+    'core.ng-admin-customizer.type.image',
     'core.ng-admin-customizer.service.crud'
   ]);
 

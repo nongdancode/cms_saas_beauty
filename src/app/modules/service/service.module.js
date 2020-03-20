@@ -4,7 +4,7 @@
     module.config(function (NgAdminConfigurationProvider) {
         const nga = NgAdminConfigurationProvider;
 
-        const userEntity = nga.entity('user').url(nga.entityUrl('employees'));
+        const employeeEntity = nga.entity('employee').url(nga.entityUrl('employees'));
         const groupEntity = nga.entity('group').url(nga.entityUrl('groups'));
 
         const entity = nga.entity('service');
@@ -25,7 +25,7 @@
                 .label('Duration'),
             nga.field('userIds', 'reference_many')
                 .label('Employees')
-                .targetEntity(userEntity)
+                .targetEntity(employeeEntity)
                 .targetField(nga.field('name'))
                 .singleApiCall(function (ids) {
                     return { ids };
@@ -58,11 +58,10 @@
         creationView.fields([
             nga.field('name')
                 .validation({ required: true }),
-            nga.field('img', 'file')
+            nga.field('img', 'image')
                 .uploadInformation({
                     url: window.config.baseApiUrl + 'upload-image',
                     apifilename: 'data',
-                    accept: 'image/*',
                     data: {
                         type: 'service'
                     }
@@ -75,7 +74,7 @@
                 .validation({ required: true }),
             nga.field('userIds', 'reference_many')
                 .label('Employees')
-                .targetEntity(userEntity)
+                .targetEntity(employeeEntity)
                 .targetField(nga.field('name'))
                 .validation({ required: true }),
             nga.field('groupIds', 'reference_many')
@@ -93,11 +92,10 @@
         editionView.fields([
             nga.field('name')
                 .validation({ required: true }),
-            nga.field('img', 'file')
+            nga.field('img', 'image')
                 .uploadInformation({
                     url: window.config.baseApiUrl + 'upload-image',
                     apifilename: 'data',
-                    accept: 'image/*',
                     data: {
                         type: 'service'
                     }
@@ -110,7 +108,7 @@
                 .validation({ required: true }),
             nga.field('userIds', 'reference_many')
                 .label('Employees')
-                .targetEntity(userEntity)
+                .targetEntity(employeeEntity)
                 .targetField(nga.field('name'))
                 .validation({ required: true }),
             nga.field('groupIds', 'reference_many')

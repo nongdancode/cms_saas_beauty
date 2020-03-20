@@ -65,11 +65,10 @@
                 .validation({ required: true }),
             nga.field('base_salary', 'number')
                 .validation({ required: true }),
-            nga.field('image', 'file')
+            nga.field('image', 'image')
                 .uploadInformation({
                     url: window.config.baseApiUrl + 'upload-image',
                     apifilename: 'data',
-                    accept: 'image/*',
                     data: {
                         type: 'user'
                     }
@@ -103,11 +102,10 @@
                 .validation({ required: true }),
             nga.field('phone_number')
                 .validation({ required: true }),
-            nga.field('image', 'file')
+            nga.field('image', 'image')
                 .uploadInformation({
                     url: window.config.baseApiUrl + 'upload-image',
                     apifilename: 'data',
-                    accept: 'image/*',
                     data: {
                         type: 'user'
                     }
