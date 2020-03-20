@@ -2,13 +2,14 @@
     const module = angular.module('module.setting.containers.config', []);
 
     class ConfigComponent {
-        constructor($scope, $compile, $state, $stateParams, $resolve, ModalService) {
+        constructor($scope, $compile, $state, $stateParams, $resolve, ModalService, ConfigService) {
             this.$scope = $scope;
             this.$compile = $compile;
             this.$state = $state;
             this.$stateParams = $stateParams;
             this.$resolve = $resolve;
             this.ModalService = ModalService;
+            this.ConfigService = ConfigService;
         }
 
         $onInit() {
@@ -27,6 +28,10 @@
 
         name(key) {
             return key.toCamelCase();
+        }
+
+        save() {
+            this.ConfigService.save(this.data.config);
         }
     }
 

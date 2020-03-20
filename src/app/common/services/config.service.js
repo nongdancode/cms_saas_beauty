@@ -10,6 +10,10 @@
       return HttpService.get(HttpService.generateUrl(`configs`));
     };
 
+    service.save = function(data) {
+      return HttpService.post(HttpService.generateUrl(`configs`), data);
+    };
+
     return service;
   }
 })();
