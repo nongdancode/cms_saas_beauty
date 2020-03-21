@@ -51,7 +51,8 @@
         add() {
             this.data.items.push({
                 name: '',
-                price: ''
+                price: '',
+                discount: '00'
             });
         };
 

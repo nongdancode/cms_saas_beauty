@@ -37,12 +37,20 @@
 
         get disablePrint() {
             return this.data.viewType !== 'view'
-                || this.data.invoice.services.some(service => !service.name || typeof service.price !== 'number');
+                || this.data.invoice.services.some(
+                    service => !service.name
+                        || typeof service.price !== 'number'
+                        || !service.discount
+                );
         };
 
         get disableToggle() {
             return this.data.invoice.services.length === 0
-                || this.data.invoice.services.some(service => !service.name || typeof service.price !== 'number');
+                || this.data.invoice.services.some(
+                    service => !service.name
+                        || typeof service.price !== 'number'
+                        || !service.discount
+                );
         };
 
         print() {
