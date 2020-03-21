@@ -69,11 +69,7 @@
         };
 
         add() {
-            this.data.items.push({
-                name: '',
-                price: '',
-                discount: '00'
-            });
+            this.data.items.push({});
         };
 
         remove(index) {
