@@ -173,12 +173,11 @@
       <td style="width: 70%">
         <button ng-click="$ctrl.remove($index)" class="btn btn-danger" style="width: 80px; margin-top: -1px;">Remove</button>
         <select class="form-control" style="display: inline-block; width: 200px;"
-          ng-model="item.service" ng-options="service.name as service.name for service in $ctrl.data.services"
-          ng-change="">
+          ng-model="item.service_id" ng-options="service.id as service.name for service in $ctrl.data.services">
           <option value="" disabled selected>Pick Service</option>
         </select>
         <select class="form-control" style="display: inline-block; width: 200px;"
-          ng-model="item.employee" ng-options="employee.name as employee.name for employee in $ctrl.data.employees">
+          ng-model="item.employee_id" ng-options="employee.id as employee.name for employee in $ctrl.data.employees">
           <option value="" disabled selected>Pick Employee</option>
         </select>
       </td>
