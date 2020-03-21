@@ -7,6 +7,7 @@
     }
 
     $onInit() {
+
     }
 
     change() {
@@ -22,33 +23,46 @@
 
   module.component('maImageField', {
     bindings: {
-      'field': '&',
+      'field': '=',
       'value': '='
     },
     controller: ImageFieldComponent,
-    template: '<img ng-show="$ctrl.value" src="{{ $ctrl.value }}" height="42" width="42" ng-click="$ctrl.upload()" />' +
-      '<ma-file-field ng-hide="$ctrl.value" id="uploader" field="$ctrl.field()" value="$ctrl.value"></ma-file-field>'
+    template: '<img ng-show="$ctrl.value" src="{{ $ctrl.value }}" height="{{ $ctrl.field._size.height }}" width="{{ $ctrl.field._size.width }}" ng-click="$ctrl.upload()" />' +
+      '<ma-file-field ng-hide="$ctrl.value" id="uploader" field="$ctrl.field" value="$ctrl.value"></ma-file-field>'
   });
 
   class Type extends Field {
     constructor(name) {
       super(name);
+
       this._type = 'image';
+
+      this._size = {
+        width: 64,
+        height: 64
+      };
+
       this._uploadInformation = {
-        url: '/upload',
         accept: 'image/*'
       };
     }
 
+    size(size) {
+      this._size = size;
+    }
+
     uploadInformation(information) {
       if (!arguments.length) return this._uploadInformation;
-      this._uploadInformation = information;
+      this._uploadInformation = {
+        ...this._uploadInformation,
+        ...information
+      };
       return this;
     }
   }
 
   const View = {
-    getReadWidget: () => '<img src="{{ value }}" height="42" width="42" />',
+    getReadWidget: () => '<img src="{{ value }}" height="{{ field._size.height }}" width="{{ field._size.width }}" />',
     getLinkWidget: () => '',
     getFilterWidget: () => '',
     getWriteWidget: () => '<ma-image-field field="field" value="value"></ma-image-field>'
