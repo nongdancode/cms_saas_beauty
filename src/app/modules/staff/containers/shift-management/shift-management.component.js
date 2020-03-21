@@ -192,7 +192,8 @@
             const scope = {
                 shift: {
                     date: moment(),
-                    duration: 4
+                    duration: 4,
+                    entireMonth: false
                 },
                 $ctrl: this
             };
@@ -212,9 +213,36 @@
             });
 
             modal.then(res => {
+                let dates = [moment(scope.shift.date)];
+
+                if (scope.shift.entireMonth) {
+                    const date = scope.shift.date;
+
+                    const beginOfMonth = moment(date).startOf('month');
+                    const endOfMonth = moment(date).endOf('month');
+
+                    let current = date;
+
+                    dates = [];
+
+                    while (current <= endOfMonth) {
+                        dates.push(current);
+                        current = moment(current).add(1, 'days');
+                    }
+                }
+
+                const formatDate = (dates, duration) => {
+                    return dates.map(date => {
+                        return {
+                            start: date.unix(),
+                            end: date.add(duration, 'hours').unix()
+                        };
+                    });
+                };
+
                 return this.StaffService.createShift({
                     employeeId: scope.shift.employee_id || this.$stateParams.id,
-                    date: moment(scope.shift.date).unix(),
+                    date: formatDate(dates, scope.shift.duration),
                     duration: scope.shift.duration
                 });
             }).then(res => {
