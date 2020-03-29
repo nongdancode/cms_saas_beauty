@@ -17,41 +17,43 @@
                 employees: []
             };
 
-            this.CrudService.find('service').then(res => {
-                this.data.services = res;
+            Promise.all([
+                this.CrudService.find('service'),
+                this.CrudService.find('employee')
+            ]).then(([services, employees]) => {
+                this.data.services = services;
                 this.data.servicesMap = this.data.services.reduce((result, item) => {
                     return {
                         ...result,
                         [item.id]: item
                     };
                 }, {});
-            });
 
-            this.CrudService.find('employee').then(res => {
-                this.data.employees = res;
+                this.data.employees = employees;
                 this.data.employeesMap = this.data.employees.reduce((result, item) => {
                     return {
                         ...result,
                         [item.id]: item
                     };
                 }, {});
+
+                this.$scope.$watch('$ctrl.data.items', (newVal, oldVal) => {
+                    newVal.forEach(item => {
+                        if (item.service_id) {
+                            item.service = this.data.servicesMap[item.service_id].name;
+                            item.price = this.data.servicesMap[item.service_id].price;
+                        }
+
+                        if (item.employee_id) {
+                            item.employee = this.data.employeesMap[item.employee_id].name;
+                        }
+
+                        if (item.service && item.employee) {
+                            item.name = item.service + ' - ' + item.employee;
+                        }
+                    });
+                }, true);
             });
-
-            this.$scope.$watch('$ctrl.data.items', (newVal, oldVal) => {
-                newVal.forEach(item => {
-                    if (item.service_id) {
-                        item.service = this.data.servicesMap[item.service_id].name;
-                    }
-
-                    if (item.employee_id) {
-                        item.employee = this.data.employeesMap[item.employee_id].name;
-                    }
-
-                    if (item.service && item.employee) {
-                        item.name = item.service + ' - ' + item.employee;
-                    }
-                });
-            }, true);
         }
 
         round(num) {
