@@ -23,8 +23,13 @@
       ng-if="$ctrl.data.active === category">
       <div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-12" ng-repeat="config in $ctrl.data.config | propsFilter: { category: category }">
         <label for="{{ config.key }}">{{ $ctrl.name(config.key) }}</label>
-        <input class="form-control" name="{{ config.key }}"
-          type="{{ config.type }}" ng-model="config.value" />
+        <span ng-switch on="config.type">
+          <select ng-switch-when="boolean" class="form-control" name="{{ config.key }}"
+            ng-options="operator for operator in [true, false]" ng-model="config.value">
+          </select>
+          <input ng-switch-default class="form-control" name="{{ config.key }}"
+            type="{{ config.type }}" ng-model="config.value" />
+        </span>
       </div>
     </form>
   </div>

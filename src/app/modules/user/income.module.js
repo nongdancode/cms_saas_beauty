@@ -6,7 +6,8 @@
     module.config(function (NgAdminConfigurationProvider) {
         const nga = NgAdminConfigurationProvider;
 
-        const entity = nga.entity('income');
+        const entity = nga.entity('income')
+              .identifier(nga.field('employee_id'));
 
         const listView = entity.listView();
 
@@ -15,16 +16,14 @@
             .perPage(20);
 
         listView.fields([
-            nga.field('name'),
-            nga.field('currentIncome', 'number')
-                .label('Current Income')
+            nga.field('employee_name'),
+            nga.field('payment_type'),
+            nga.field('commission_type'),
+            nga.field('base_salary', 'number')
                 .format('$0,0.00'),
-            nga.field('paymentType')
-                .label('Payment Type'),
-            nga.field('commissionType')
-                .label('Commission Type'),
-            nga.field('baseSalary', 'number')
-                .label('Base Salary')
+            nga.field('salary_total', 'number')
+                .format('$0,0.00'),
+            nga.field('income_service', 'number')
                 .format('$0,0.00')
         ]);
 

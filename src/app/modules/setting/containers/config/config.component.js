@@ -2,6 +2,24 @@
     const module = angular.module('module.setting.containers.config', []);
 
     class ConfigComponent {
+        defaultConfig = {
+            'banner-text': {
+                category: 'promotion',
+                type: 'text',
+                value: ''
+            },
+            'banner-color': {
+                category: 'promotion',
+                type: 'color',
+                value: 'blue'
+            },
+            'enable-client': {
+                category: 'client',
+                type: 'boolean',
+                value: true
+            }
+        };
+
         constructor($scope, $compile, $state, $stateParams, $resolve, ModalService, ConfigService) {
             this.$scope = $scope;
             this.$compile = $compile;
@@ -15,12 +33,27 @@
         $onInit() {
             this.data = {};
 
-            this.data.config = this.$resolve.config;
+            this.data.config = this.mergeByKey(this.defaultConfig, this.$resolve.config);
 
             this.data.categories = [...new Set(this.data.config.map(row => row.category))];
 
             this.data.active = this.data.categories && this.data.categories[0];
         };
+
+        mergeByKey(defaultConfig, config) {
+            const result = _.cloneDeep(defaultConfig);
+
+            config.forEach(item => {
+                result[item.key] = item;
+            });
+
+            return Object.keys(result).map(key => {
+                return {
+                    ...result[key],
+                    key: key
+                };
+            });
+        }
 
         select(category) {
             this.data.active = category;
