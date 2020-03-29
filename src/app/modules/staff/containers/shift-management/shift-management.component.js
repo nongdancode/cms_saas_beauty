@@ -108,7 +108,7 @@
                     employee_id: -1
                 },
                 options: {},
-                staffs: this.$resolve.staffs
+                staffs: this.$resolve.staffs || []
             };
 
             this.data.options.staffs = [
@@ -226,7 +226,10 @@
                     dates = [];
 
                     while (current <= endOfMonth) {
-                        dates.push(current);
+                        if (current.day() !== 0) {
+                            dates.push(current);
+                        }
+
                         current = moment(current).add(1, 'days');
                     }
                 }
