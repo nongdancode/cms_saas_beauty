@@ -43,10 +43,7 @@
                         daysOfWeek: [0,1,2,3,4,5,6]
                     },
                     allDaySlot: false,
-                    header:{
-                        left: 'listWeek, listMonth, listYear',
-                        right: 'today prev,next'
-                    },
+                    header: false,
                     views: {
 				                listDay: { buttonText: 'day' },
 				                listWeek: { buttonText: 'week' },
