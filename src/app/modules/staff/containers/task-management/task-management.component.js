@@ -44,7 +44,7 @@
                     },
                     allDaySlot: false,
                     header:{
-                        left: 'listDay, listWeek, listMonth',
+                        left: 'listWeek, listMonth, listYear',
                         right: 'today prev,next'
                     },
                     views: {
@@ -53,7 +53,7 @@
                         listMonth: { buttonText: 'month' }
 			              },
                     minTime: moment(),
-                    defaultView: 'listDay'
+                    defaultView: 'listYear'
                 }
             };
 
