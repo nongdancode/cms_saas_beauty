@@ -17,6 +17,11 @@
                 category: 'client',
                 type: 'boolean',
                 value: true
+            },
+            'disable-client-text': {
+                category: 'client',
+                type: 'text',
+                value: 'We are temporary closed , sorry and see you soon'
             }
         };
 
