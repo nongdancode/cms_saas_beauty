@@ -59,7 +59,7 @@
                     event = {
                         ...event,
                         id: event.id,
-                        title: event.name,
+                        title: this.generateTitleElement(event),
                         start: moment.unix(event.start).valueOf(),
                         end: moment.unix(event.end).valueOf(),
                         editable: false,
@@ -75,6 +75,24 @@
                 this.data.eventSources.push(events);
             });
         };
+
+        generateTitleElement(event) {
+            let el = `Service: ${event.name}`;
+
+            if (event.cus_name) {
+                el += `\nCustomer Name: ${event.cus_name}`;
+            }
+
+            if (event.cus_phone) {
+                el += `\nCustomer Phone: ${event.cus_phone}`;
+            }
+
+            if (event.cus_note) {
+                el += `\nCustomer Note: ${event.cus_note}`;
+            }
+
+            return el;
+        }
 
         getEventColor(type) {
             return window.models.TaskType[type] ? window.models.TaskType[type].color : '#1976d2';

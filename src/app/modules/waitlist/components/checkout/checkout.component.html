@@ -35,6 +35,7 @@
       ng-if="!$ctrl.printOnly"
       ng-click="$ctrl.toggleViewType()" ng-disabled="$ctrl.disableToggle">{{ $ctrl.data.viewType === 'view' ? 'Edit' : 'View' }}</button>
     <button class="btn btn-primary" type="button" ng-click="$ctrl.print()" ng-disabled="$ctrl.disablePrint">Print</button>
+    <button class="btn btn-primary" type="button" ng-click="$ctrl.finish()" ng-if="!$ctrl.printOnly">Finish</button>
     <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
   </div>
 </script>

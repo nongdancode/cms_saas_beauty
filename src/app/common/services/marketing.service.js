@@ -18,6 +18,18 @@
       });
     };
 
+    service.sendSmsBill = function(data) {
+      return HttpService.post(window.config.baseApiUrl + 'sms-bill', data).then(res => {
+        if (res.code === 0) {
+          ModalService.success('Send SMS successfully!');
+        } else {
+          ModalService.error('Send SMS failed!');
+        }
+
+        return res.data;
+      });
+    };
+
     service.historyCustomer = function(id) {
       return HttpService.get(window.config.baseApiUrl + 'history-customer/' + id);
     };

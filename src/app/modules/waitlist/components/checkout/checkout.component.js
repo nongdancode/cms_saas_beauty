@@ -62,11 +62,15 @@
 
                 const checkout = { id, name, status, phone, deposit, invoice, paymentType, note };
 
-                this.BookingService
-                    .confirmCheckout(checkout)
-                    .finally(() => this.$state.reload());
+                this.finish();
             });
         };
+
+        finish(checkout) {
+            this.BookingService
+                .confirmCheckout(checkout)
+                .finally(() => this.$state.reload());
+        }
 
         cancel() {
             this.modal.close();
