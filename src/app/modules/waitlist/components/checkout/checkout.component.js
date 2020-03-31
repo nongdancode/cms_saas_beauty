@@ -50,7 +50,7 @@
         };
 
         print() {
-            this.UtilityService.print('app-invoice').then(res => {
+            this.UtilityService.print('print-content').then(res => {
                 if (this.printOnly) {
                     this.$state.reload();
                     return;

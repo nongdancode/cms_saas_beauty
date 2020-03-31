@@ -19,6 +19,7 @@ module.exports = {
         "node_modules/ngstorage/ngStorage.min.js",
         "node_modules/angular-file-upload/dist/angular-file-upload.min.js",
         "node_modules/angular-bootstrap-contextmenu/contextMenu.js",
+        "node_modules/print-js/dist/print.js",
         "src/assets/js/datetimepicker.js"
     ],
     css: [
@@ -30,6 +31,7 @@ module.exports = {
         "node_modules/jquery-ui-dist/jquery-ui.min.css",
         "node_modules/ng-admin/build/ng-admin.min.css",
         "node_modules/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css",
-        "node_modules/ui-select/dist/select.min.css"
+        "node_modules/ui-select/dist/select.min.css",
+        "node_modules/print-js/dist/print.css"
     ]
 };
