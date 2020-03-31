@@ -56,17 +56,17 @@
                     return;
                 }
 
-                const { id, name, status, phone, deposit, invoice } = this.entry.values;
-
-                const { paymentType, note } = this.data;
-
-                const checkout = { id, name, status, phone, deposit, invoice, paymentType, note };
-
                 this.finish();
             });
         };
 
-        finish(checkout) {
+        finish() {
+            const { id, name, status, phone, deposit, invoice } = this.entry.values;
+
+            const { paymentType, note } = this.data;
+
+            const checkout = { id, name, status, phone, deposit, invoice, paymentType, note };
+
             this.BookingService
                 .confirmCheckout(checkout)
                 .finally(() => this.$state.reload());
