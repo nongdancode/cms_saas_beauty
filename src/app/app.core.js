@@ -121,7 +121,7 @@ window.models.arrayMetadata = model => {
 };
 
 window.config = {
-  baseUrl: 'http://api.bpsgroup.us/'
+  baseUrl: '//api.bpsgroup.us/'
 };
 
 window.config.baseApiUrl = window.config.baseUrl + 'api/admin/';
