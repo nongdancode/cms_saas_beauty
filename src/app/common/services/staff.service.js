@@ -19,16 +19,9 @@
         };
 
         service.updateSchedules = function(id, schedules) {
-            return HttpService.post(HttpService.generateUrl(`schedules/${id}/tasks`), schedules)
-                .then(res => {
-                    if (res.code === 0) {
-                        ModalService.success('Update schedules successfully!');
-                    } else {
-                        ModalService.error('Update schedules failed!');
-                    }
-
-                    return res.data;
-                });
+            return HttpService.post(HttpService.generateUrl(`schedules/${id}/tasks`), schedules, {
+                errorHandleStrategy: HttpService.strategy.show
+            });
         };
 
         service.getTasks = function(id) {
@@ -48,16 +41,9 @@
         };
 
         service.createShift = function(data) {
-            return HttpService.post(HttpService.generateUrl('shifts'), data)
-                .then(res => {
-                    if (res.code === 0) {
-                        ModalService.success('Create shift successfully!');
-                    } else {
-                        ModalService.error('Create shift failed!');
-                    }
-
-                    return res.data;
-                });
+            return HttpService.post(HttpService.generateUrl('shifts'), data, {
+                errorHandleStrategy: HttpService.strategy.show
+            });
         };
 
         service.deleteShift = function(id, employeeId) {

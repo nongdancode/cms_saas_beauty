@@ -7,26 +7,14 @@
     service.sendSms = function(data) {
       const endpoint = data.type === 'sms' ? 'sms_sending' : 'mms_sending';
 
-      return HttpService.post(window.config.baseApiUrl + endpoint, data).then(res => {
-        if (res.code === 0) {
-          ModalService.success('Send SMS successfully!');
-        } else {
-          ModalService.error('Send SMS failed!');
-        }
-
-        return res.data;
+      return HttpService.post(window.config.baseApiUrl + endpoint, data, {
+        errorHandleStrategy: HttpService.strategy.show
       });
     };
 
     service.sendSmsBill = function(data) {
-      return HttpService.post(window.config.baseApiUrl + 'sms-bill', data).then(res => {
-        if (res.code === 0) {
-          ModalService.success('Send SMS successfully!');
-        } else {
-          ModalService.error('Send SMS failed!');
-        }
-
-        return res.data;
+      return HttpService.post(window.config.baseApiUrl + 'sms-bill', data, {
+        errorHandleStrategy: HttpService.strategy.show
       });
     };
 

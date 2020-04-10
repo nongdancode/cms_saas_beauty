@@ -17,16 +17,9 @@
     };
 
     service.changePassword = function(data) {
-      return HttpService.post(HttpService.generateUrl(`password-change`), data)
-        .then(res => {
-          if (res.code === 0) {
-            ModalService.success('Change password successfully!');
-          } else {
-            ModalService.error('Change password failed!');
-          }
-
-          return res.data;
-        });
+      return HttpService.post(HttpService.generateUrl(`password-change`), data, {
+        errorHandleStrategy: HttpService.strategy.show
+      });
     };
 
     service.historyIncome = function(id) {

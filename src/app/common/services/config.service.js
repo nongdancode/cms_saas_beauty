@@ -11,14 +11,9 @@
     };
 
     service.save = function(data) {
-      return HttpService.post(HttpService.generateUrl(`configs`), { data: JSON.stringify(data) })
-        .then(res => {
-          if (res.code === 0) {
-            ModalService.success('Save config successfully!');
-          } else {
-            ModalService.error('Save config failed!');
-          }
-        });
+      return HttpService.post(HttpService.generateUrl(`configs`), { data: JSON.stringify(data) }, {
+        errorHandleStrategy: HttpService.strategy.show
+      });
     };
 
     return service;

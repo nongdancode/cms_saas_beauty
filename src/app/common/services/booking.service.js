@@ -32,29 +32,15 @@
         };
 
         service.confirmCheckin = function(data) {
-            return HttpService.post(window.config.baseApiUrl + 'checkin/confirm', data)
-                .then(res => {
-                    if (res.code === 0) {
-                        ModalService.success('Checkin confirm successfully!');
-                    } else {
-                        ModalService.error('Checkin confirm failed!');
-                    }
-
-                    return res.data;
-                });
+            return HttpService.post(window.config.baseApiUrl + 'checkin/confirm', data, {
+                errorHandleStrategy: HttpService.strategy.show
+            });
         };
 
         service.confirmCheckout = function(data) {
-            return HttpService.post(window.config.baseApiUrl + 'checkout/confirm', data)
-                .then(res => {
-                    if (res.code === 0) {
-                        ModalService.success('Checkout confirm successfully!');
-                    } else {
-                        ModalService.error('Checkout confirm failed!');
-                    }
-
-                    return res.data;
-                });
+            return HttpService.post(window.config.baseApiUrl + 'checkout/confirm', data, {
+                errorHandleStrategy: HttpService.strategy.show
+            });
         };
 
         return service;
