@@ -7,7 +7,9 @@
     const service = {};
 
     service.getConfig = function() {
-      return HttpService.get(HttpService.generateUrl(`configs`));
+      return HttpService.get(HttpService.generateUrl(`configs`), {}, {
+        errorHandleStrategy: HttpService.strategy.show
+      });
     };
 
     service.save = function(data) {

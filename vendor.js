@@ -2,6 +2,7 @@ module.exports = {
     js: [
         "node_modules/jquery/dist/jquery.min.js",
         "node_modules/moment/min/moment.min.js",
+        "node_modules/moment-timezone/builds/moment-timezone-with-data-10-year-range.min.js",
         "node_modules/jquery-ui-dist/jquery-ui.min.js",
         "node_modules/ng-admin/build/ng-admin.min.js",
         "node_modules/angular-ui-mask/dist/mask.min.js",

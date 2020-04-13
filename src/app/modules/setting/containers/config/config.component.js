@@ -22,8 +22,15 @@
                 category: 'client',
                 type: 'text',
                 value: 'We are temporary closed , sorry and see you soon'
+            },
+            'timezone': {
+                category: 'client',
+                type: 'timezone',
+                value: ''
             }
         };
+
+        moment = moment;
 
         constructor($scope, $compile, $state, $stateParams, $resolve, ModalService, ConfigService) {
             this.$scope = $scope;
