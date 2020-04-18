@@ -5,17 +5,21 @@
         var service = {};
 
         service.getStaffs = function() {
-            return HttpService.get(HttpService.generateUrl('staffs'));
+            return HttpService.get(HttpService.generateUrl('staffs'), {} , {
+                errorHandleStrategy: HttpService.strategy.show
+            });
         };
 
         service.getStaffTasks = function(id) {
-            return HttpService.get(HttpService.generateUrl(`staffs/${id}/tasks`))
-                .then(res => res.data || []);
+            return HttpService.get(HttpService.generateUrl(`staffs/${id}/tasks`), {} , {
+                errorHandleStrategy: HttpService.strategy.show
+            });
         };
 
         service.getStaffSchedules = function(id) {
-            return HttpService.get(HttpService.generateUrl(`staffs/${id}/schedules`))
-                .then(res => res.data || []);
+            return HttpService.get(HttpService.generateUrl(`staffs/${id}/schedules`), {} , {
+                errorHandleStrategy: HttpService.strategy.show
+            });
         };
 
         service.updateSchedules = function(id, schedules) {
@@ -25,19 +29,27 @@
         };
 
         service.getTasks = function(id) {
-            return HttpService.get(HttpService.generateUrl(`shifts/${id}/tasks`));
+            return HttpService.get(HttpService.generateUrl(`shifts/${id}/tasks`), {} , {
+                errorHandleStrategy: HttpService.strategy.show
+            });
         };
 
         service.deleteTask = function(id) {
-            return HttpService.delete(HttpService.generateUrl(`tasks/${id}`));
+            return HttpService.delete(HttpService.generateUrl(`tasks/${id}`), {} , {
+                errorHandleStrategy: HttpService.strategy.show
+            });
         };
 
         service.getShifts = function(id) {
-            return HttpService.get(HttpService.generateUrl(`schedules/${id}/shifts`));
+            return HttpService.get(HttpService.generateUrl(`schedules/${id}/shifts`), {} , {
+                errorHandleStrategy: HttpService.strategy.show
+            });
         };
 
         service.getAllShifts = function(id) {
-            return HttpService.get(HttpService.generateUrl(`shifts`));
+            return HttpService.get(HttpService.generateUrl(`shifts`), {} , {
+                errorHandleStrategy: HttpService.strategy.show
+            });
         };
 
         service.createShift = function(data) {
@@ -47,7 +59,9 @@
         };
 
         service.deleteShift = function(id, employeeId) {
-            return HttpService.delete(HttpService.generateUrl(`shifts/${id}?employeeId=${employeeId}`));
+            return HttpService.delete(HttpService.generateUrl(`shifts/${id}?employeeId=${employeeId}`), {} , {
+                errorHandleStrategy: HttpService.strategy.show
+            });
         };
 
         return service;

@@ -121,7 +121,7 @@ window.models.arrayMetadata = model => {
 };
 
 window.config = {
-  baseUrl: '//api.bpsgroup.us/'
+  baseUrl: window.location.hostname === 'localhost' ? '//thelash.bpsgroup.us/' : '/'
 };
 
 window.config.baseApiUrl = window.config.baseUrl + 'api/admin/';

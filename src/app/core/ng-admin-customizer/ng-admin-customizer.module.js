@@ -109,6 +109,8 @@
           dataList = response.data;
         }
 
+        data = data && data.data;
+
         if (Array.isArray(data)) {
           dataList = data;
         }
