@@ -73,7 +73,7 @@
       return {
         request: function(config) {
           if (config.method === 'DELETE') {
-            const url = new URL(config.url);
+            const url = new URL(window.resolveUrl(config.url));
             const id = url.searchParams.get('id');
 
             if (id) {

@@ -120,6 +120,13 @@ window.models.arrayMetadata = model => {
   return Object.values(window.models.metadata(model));
 };
 
+window.resolveUrl = function resolveUrl( url ){
+  var a = document.createElement('a');
+  a.href=url; // set string url
+  url = a.href; // get qualified url
+  return url;
+};
+
 window.config = {
   baseUrl: window.location.hostname === 'localhost' ? '//thelash.bpsgroup.us/' : '/'
 };
