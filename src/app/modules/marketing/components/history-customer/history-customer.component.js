@@ -20,7 +20,9 @@
         showModal() {
             this.MarketingService.historyCustomer(this.id)
                 .then(history => {
-                    this.data.history = history;
+                    this.$timeout(() => {
+                        this.data.history = history;
+                    });
                 });
 
             this.modal = this.ModalService.create({

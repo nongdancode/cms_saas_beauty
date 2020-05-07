@@ -9,7 +9,7 @@
     service.getConfig = function() {
       return HttpService.get(HttpService.generateUrl(`configs`), {}, {
         errorHandleStrategy: HttpService.strategy.show
-      });
+      }).then(JSON.parse).catch(err => {});
     };
 
     service.save = function(data) {
