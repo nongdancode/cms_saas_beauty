@@ -18,6 +18,7 @@
                 type: 'sms'
             };
 
+            this.messageLength = 160;
         }
 
         showModal() {

@@ -51,8 +51,8 @@
         </div>
       </div>
       <div class="form-group">
-        <label for="">Message</label>
-        <textarea name="message" ng-model="$ctrl.form.message" class="form-control" rows="10" maxlength="160" style="resize: none;" required></textarea>
+        <label for="">Message (Maximum {{ $ctrl.messageLength }} characters)</label>
+        <textarea name="message" ng-model="$ctrl.form.message" class="form-control" rows="10" maxlength="{{ $ctrl.messageLength }}" style="resize: none;" required></textarea>
       </div>
     </form>
   </div>
