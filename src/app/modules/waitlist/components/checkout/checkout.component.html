@@ -31,6 +31,7 @@
     </form>
   </div>
   <div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="$ctrl.sendSms()" ng-if="!$ctrl.printOnly">Send SMS</button>
     <button class="btn btn-primary" type="button"
       ng-if="!$ctrl.printOnly"
       ng-click="$ctrl.toggleViewType()" ng-disabled="$ctrl.disableToggle">{{ $ctrl.data.viewType === 'view' ? 'Edit' : 'View' }}</button>

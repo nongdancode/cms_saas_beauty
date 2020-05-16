@@ -58,7 +58,7 @@
     border-bottom: none;
   }
 
-  .invoice-box table tr.total td:nth-child(2) {
+  .invoice-box table tr.total td:nth-child(2), .invoice-box table tr.misc td:nth-child(2) {
     border-top: 2px solid #eee;
     font-weight: bold;
   }
@@ -189,6 +189,40 @@
       </td>
       <td style="width: 15%; text-align: right;">
         <input class="form-control" ng-model="item.price" style="width: 100%" type="number" />
+      </td>
+    </tr>
+
+    <tr class="misc">
+      <td></td>
+
+      <td class="form-inline" colspan="2" ng-if="$ctrl.viewType === 'edit'">
+        <div class="form-group">
+          <label for="">Tax: </label>
+          <input ng-model="$ctrl.invoice.tax"
+            ui-mask="99%"
+            ui-mask-placeholder
+            ui-mask-placeholder-char="_"
+            style="width: 48%;" class="form-control" name="" type="text" value=""/>
+        </div>
+      </td>
+
+      <td colspan="2" ng-if="$ctrl.viewType === 'view'">
+        <span>Tax: {{ $ctrl.invoice.tax || 0 }}%</span>
+      </td>
+    </tr>
+
+    <tr class="misc">
+      <td></td>
+
+      <td class="form-inline" colspan="2" ng-if="$ctrl.viewType === 'edit'">
+        <div class="form-group">
+          <label for="">Deposit: </label>
+          <input ng-model="$ctrl.invoice.deposit" style="width: 48%;" class="form-control" name="" type="text" value=""/>
+        </div>
+      </td>
+
+      <td colspan="2" ng-if="$ctrl.viewType === 'view'">
+        <span>Deposit: ${{ $ctrl.invoice.deposit || 0 }}</span>
       </td>
     </tr>
 

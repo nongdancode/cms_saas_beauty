@@ -67,7 +67,7 @@
 
             const tax = total * this.invoice.tax / 100;
 
-            return this.invoice.total = this.round(total + tax - this.invoice.deposit);
+            return this.invoice.total = Math.max(this.round(total + tax - this.invoice.deposit), 0);
         };
 
         add() {

@@ -9,9 +9,11 @@
             .replace(window.config.baseUrl, '')
             .split('?')[0];
 
+      let mock;
+
       switch (true) {
       case /api\/booking\/list_groups/.test(api): {
-        // response.data = [
+        // mock = [
         //   {
         //     id: 1,
         //     name: 'Lash'
@@ -24,7 +26,7 @@
         break;
       }
       case /api\/booking\/list_services/.test(api): {
-        // response.data = response.data.map((item, index) => {
+        // mock = response.data.map((item, index) => {
         //   return {
         //     ...item,
         //     groupIds: [(index % 2) + 1]
@@ -33,7 +35,7 @@
         break;
       }
       case /api\/admin\/payment_report/.test(api): {
-        response.data = {
+        mock = {
           [moment().startOf('day').unix()]: {
             'return': 10,
             'chargeback': 20,
@@ -74,7 +76,7 @@
         break;
       }
       case /api\/admin\/customer_report_by_date/.test(api): {
-        response.data = {
+        mock = {
           [moment().startOf('day').unix()]: {
             'customerNumber': 10,
             'amount': 20
@@ -103,7 +105,7 @@
         break;
       }
       case /api\/admin\/customer_report_by_age/.test(api): {
-        response.data = {
+        mock = {
           '20_35': 50,
           '35_50': 20,
           '50_60': 30
@@ -111,7 +113,7 @@
         break;
       }
       case /api\/admin\/shifts\/\d+\/tasks/.test(api): {
-        response.data = [
+        mock = [
           {
             id: 1,
             name: "Hybrid Lash 1",
@@ -143,7 +145,7 @@
         break;
       }
       case /api\/admin\/schedules\/\d+\/shifts/.test(api): {
-        response.data = [
+        mock = [
           {
             id: 1,
             start: moment().unix(),
@@ -164,7 +166,7 @@
         break;
       }
       case /api\/admin\/shifts/.test(api): {
-        response.data = [
+        mock = [
           {
             id: 1,
             employee_id: 3,
@@ -196,7 +198,7 @@
         break;
       }
       case /api\/admin\/configs/.test(api): {
-        response.data = [
+        mock = JSON.stringify([
           {
             id: 1,
             key: 'banner-text',
@@ -218,12 +220,12 @@
             type: 'color',
             value: ''
           }
-        ];
+        ]);
         break;
       }
 
       case /api\/admin\/history-income\/\d+/.test(api): {
-        response.data = [
+        mock = [
           {
             id: 1,
             month: 1,
@@ -244,6 +246,13 @@
       }
       }
 
+      if (mock) {
+        response.data = {
+          code: 0,
+          data: mock
+        };
+      }
+
       return response;
     };
 
@@ -255,9 +264,11 @@
 
     RestangularProvider.addResponseInterceptor(function(data, operation, what, url, response) {
       if (['get', 'getList'].includes(operation)) {
+        let mock;
+
         switch (what) {
         case 'group': {
-          return [
+          mock = [
             {
               id: 1,
               name: 'Group 1'
@@ -267,10 +278,11 @@
               name: 'Group 2'
             }
           ];
+          break;
         }
 
         case 'service': {
-          return [
+          mock = [
             {
               id: 1,
               img: 'https://eyelashexcellence.com/wp-content/uploads/2015/06/volume-lash-course.jpg',
@@ -299,10 +311,11 @@
               groupIds: [1, 2]
             }
           ];
+          break;
         }
 
         case 'promotion': {
-          return [
+          mock = [
             {
               id: 1,
               name: 'Promotion 1',
@@ -320,10 +333,11 @@
               active: false
             }
           ];
+          break;
         }
 
         case 'waitlist': {
-          return [
+          mock = [
             {
               id: 1,
               name: 'Name 1',
@@ -397,10 +411,11 @@
               }
             }
           ];
+          break;
         }
 
         case 'transaction': {
-          return [
+          mock = [
             {
               type: 'debit',
               created: 1583647976000,
@@ -437,10 +452,11 @@
               }
             }
           ];
+          break;
         }
 
         case 'income': {
-          return [
+          mock = [
             {
               id: 1,
               name: 'Name 1' ,
@@ -450,7 +466,15 @@
               baseSalary: 100
             }
           ];
+          break;
         }
+        }
+
+        if (mock) {
+          data = {
+            code: 0,
+            data: mock
+          };
         }
       }
 
