@@ -1,6 +1,7 @@
 (function(){
     const module = angular.module('module.setting', [
-        'module.setting.containers.config',
+        'module.setting.components.image-upload',
+        'module.setting.containers.config'
     ]);
 
     module.config(function($stateProvider) {

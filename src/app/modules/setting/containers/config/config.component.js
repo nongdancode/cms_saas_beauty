@@ -27,6 +27,11 @@
                 category: 'client',
                 type: 'timezone',
                 value: ''
+            },
+            'logo': {
+                category: 'general',
+                type: 'image',
+                value: ''
             }
         };
 

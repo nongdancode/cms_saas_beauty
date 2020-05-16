@@ -30,6 +30,9 @@
           <select ng-switch-when="boolean" class="form-control" name="{{ config.key }}"
             ng-options="operator for operator in [true, false]" ng-model="config.value">
           </select>
+          <ma-image-upload ng-switch-when="image"
+            name="{{ config.key }}" ng-model="config.value">
+          </ma-image-upload>
           <input ng-switch-default class="form-control" name="{{ config.key }}"
             type="{{ config.type }}" ng-model="config.value" />
         </span>

@@ -1,0 +1,6 @@
+<label>
+  <img style="width:100%; max-width:300px; max-height: 100px;"
+    ng-src="{{ $ctrl.ngModel }}"/>
+
+  <input type="file" class="hidden" nv-file-select="" uploader="$ctrl.uploader" onchange="angular.element(this).scope().$ctrl.upload()" />
+</label>

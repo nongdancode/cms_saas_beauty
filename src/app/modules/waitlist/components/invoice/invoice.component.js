@@ -2,9 +2,11 @@
     const module = angular.module('module.waitlist.components.invoice', []);
 
     class InvoiceComponent {
-        constructor($scope, CrudService) {
+        constructor($scope, $timeout, CrudService, ConfigService) {
             this.$scope = $scope;
+            this.$timeout = $timeout;
             this.CrudService = CrudService;
+            this.ConfigService = ConfigService;
         }
 
         $onInit() {
@@ -14,13 +16,19 @@
                 leftInfo: `${this.invoice.about.address.streetAddress}\n${this.invoice.about.address.city}\n${this.invoice.about.address.state}`,
                 rightInfo: `${this.invoice.about.customer.name}\n${this.invoice.about.customer.phone}`,
                 services: [],
-                employees: []
+                employees: [],
+                config: {}
             };
 
             Promise.all([
                 this.CrudService.find('service'),
-                this.CrudService.find('employee')
-            ]).then(([services, employees]) => {
+                this.CrudService.find('employee'),
+                this.ConfigService.getConfigObject()
+            ]).then(([services, employees, config]) => {
+                this.$timeout(() => {
+                    this.data.config = config;
+                });
+
                 this.data.services = services;
                 this.data.servicesMap = this.data.services.reduce((result, item) => {
                     return {

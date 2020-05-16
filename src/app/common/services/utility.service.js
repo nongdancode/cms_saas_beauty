@@ -34,6 +34,20 @@
         result.push(response.data);
       };
 
+      uploader.__upload = () => new Promise((resolve, reject) => {
+        uploader.onAfterAddingFile = (item) => {
+          uploader.uploadItem(item);
+        };
+
+        uploader.onCompleteItem = (item, response, status, headers) => {
+          resolve(response.data);
+        };
+
+        uploader.onError = () => {
+          reject();
+        };
+      });
+
       uploader.__uploadAll = () => new Promise((resolve, reject) => {
         uploader.uploadAll();
 
