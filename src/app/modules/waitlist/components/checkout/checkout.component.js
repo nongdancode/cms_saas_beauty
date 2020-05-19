@@ -62,7 +62,7 @@
         };
 
         sendSms() {
-            this.MarketingService.sendSmsBill(this.entry.values.invoice);
+            this.MarketingService.sendSmsBillCheckout(this.entry.values.invoice);
         }
 
         finish() {
