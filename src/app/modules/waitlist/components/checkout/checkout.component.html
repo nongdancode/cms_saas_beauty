@@ -28,15 +28,21 @@
         <label>Note:</label>
         <textarea class="form-control" cols="30" rows="2" ng-model="$ctrl.data.note"></textarea>
       </div>
+
+      <section ng-if="$ctrl.data.showPayment">
+        <hr/>
+        <ma-payment ng-model="$ctrl.data.paymentForm"></ma-payment>
+      </section>
     </form>
   </div>
   <div class="modal-footer">
-    <button class="btn btn-primary" type="button" ng-click="$ctrl.sendSms()" ng-if="!$ctrl.printOnly">Send SMS</button>
+    <button class="btn" ng-class="{ 'btn-warning': !$ctrl.data.showPayment, 'btn-info': $ctrl.data.showPayment }" type="button" ng-click="$ctrl.data.showPayment = !$ctrl.data.showPayment" ng-if="!$ctrl.printOnly">Pay By Card</button>
+    <button class="btn btn-primary" type="button" ng-click="$ctrl.sendSms()" ng-disabled="$ctrl.disableFinish" ng-if="!$ctrl.printOnly">Send SMS</button>
     <button class="btn btn-primary" type="button"
       ng-if="!$ctrl.printOnly"
       ng-click="$ctrl.toggleViewType()" ng-disabled="$ctrl.disableToggle">{{ $ctrl.data.viewType === 'view' ? 'Edit' : 'View' }}</button>
     <button class="btn btn-primary" type="button" ng-click="$ctrl.print()" ng-disabled="$ctrl.disablePrint">Print</button>
-    <button class="btn btn-primary" type="button" ng-click="$ctrl.finish()" ng-if="!$ctrl.printOnly">Finish</button>
-    <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+    <button class="btn btn-primary" type="button" ng-click="$ctrl.finish()" ng-disabled="$ctrl.disableFinish" ng-if="!$ctrl.printOnly">Finish</button>
+    <button class="btn btn-danger" type="button" ng-click="$ctrl.cancel()">Cancel</button>
   </div>
 </script>

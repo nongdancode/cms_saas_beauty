@@ -2,7 +2,8 @@
     const module = angular.module('module.waitlist', [
         'module.waitlist.components.checkin',
         'module.waitlist.components.checkout',
-        'module.waitlist.components.invoice'
+        'module.waitlist.components.invoice',
+        'module.waitlist.components.payment'
     ]);
 
     module.config(function (NgAdminConfigurationProvider) {
@@ -21,11 +22,11 @@
             nga.field('phone'),
             nga.field('status'),
             nga.field('invoice', 'template')
-                .label('Action')
-                .template(
-                    `<ma-checkout ng-if="entry.values.status === 'booking'" entry="entry"></ma-checkout>` +
-                        `<ma-checkin ng-if="entry.values.status === 'checkin'" entry="entry"></ma-checkin>`
-                )
+               .label('Action')
+               .template(
+                   `<ma-checkout ng-if="entry.values.status === 'booking'" entry="entry"></ma-checkout>` +
+                   `<ma-checkin ng-if="entry.values.status === 'checkin'" entry="entry"></ma-checkin>`
+               )
         ]);
 
         listView.filters([

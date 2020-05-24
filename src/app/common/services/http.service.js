@@ -107,13 +107,20 @@
         request
           .then(response => response.data)
           .then(response => {
-            if (response.code) {
+            if (typeof response.code === 'undefined' || response.code) {
               const error = response.error || message;
-              return ModalService.error(error);
+              ModalService.error(error);
+
+              return reject(response);
             }
 
             return resolve(response.data);
-          }).catch(reject);
+          }).catch(response => {
+            const error = response.error || message;
+            ModalService.error(error);
+
+            return reject(response);
+          });
       });
     };
 

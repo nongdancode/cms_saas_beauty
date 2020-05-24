@@ -1,0 +1,73 @@
+<style>
+  .payment-header {
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+    padding-left: 2px;
+    margin-bottom: 10px;
+  }
+
+  .error {
+    border: 1px solid red;
+  }
+</style>
+
+<form name="$ctrl.ngModel" novalidate>
+  <span class="payment-header">Credit Card</span>
+
+  <div class="form-group">
+    <i class="zmdi zmdi-card"></i>
+    <input type="text" class="form-control" ng-class="{ error: $ctrl.ngModel['payment.cardNumber'].$touched && $ctrl.ngModel['payment.cardNumber'].$invalid }"
+      ui-mask="9999-9999-9999-9999"
+      ui-mask-placeholder
+      ui-mask-placeholder-char="_"
+      placeholder="Card Number" name="payment.cardNumber" ng-model="$ctrl.ngModel.payment.cardNumber" required>
+  </div>
+  <div class="form-group">
+    <i class="zmdi zmdi-account"></i>
+    <input type="text" class="form-control" ng-class="{ error: $ctrl.ngModel['payment.cardName'].$touched && $ctrl.ngModel['payment.cardName'].$invalid }"
+      placeholder="Name On Card" name="payment.cardName" ng-model="$ctrl.ngModel.payment.cardName" required>
+  </div>
+  <div class="row">
+    <div class="form-group col-xs-6">
+      <i class="zmdi zmdi-calendar"></i>
+      <input type="text" class="form-control" ng-class="{ error: $ctrl.ngModel['payment.cardExpiry'].$touched && $ctrl.ngModel['payment.cardExpiry'].$invalid }"
+        ui-mask="99/99"
+        ui-mask-placeholder
+        ui-mask-placeholder-char="_"
+        placeholder="Expiry Date" name="payment.cardExpiry" ng-model="$ctrl.ngModel.payment.cardExpiry" required>
+    </div>
+    <div class="form-group col-xs-6">
+      <i class="zmdi zmdi-shield-security"></i>
+      <input type="text" class="form-control" ng-class="{ error: $ctrl.ngModel['payment.cardCVV'].$touched && $ctrl.ngModel['payment.cardCVV'].$invalid }"
+        ui-mask="999"
+        ui-mask-placeholder
+        ui-mask-placeholder-char="_"
+        placeholder="Security Code" name="payment.cardCVV" ng-model="$ctrl.ngModel.payment.cardCVV" required>
+    </div>
+  </div>
+
+  <span class="payment-header">Billing Address</span>
+  <div class="form-group">
+    <i class="zmdi zmdi-city"></i>
+    <input type="text" class="form-control" ng-class="{ error: $ctrl.ngModel['address.streetAddress'].$touched && $ctrl.ngModel['address.streetAddress'].$invalid }"
+      placeholder="Street Address" name="address.streetAddress" ng-model="$ctrl.ngModel.address.streetAddress" required>
+  </div>
+  <div class="row">
+    <div class="form-group col-xs-4">
+      <i class="zmdi zmdi-city-alt"></i>
+      <input type="text" class="form-control" ng-class="{ error: $ctrl.ngModel['address.city'].$touched && $ctrl.ngModel['address.city'].$invalid }"
+        placeholder="City" name="address.city" ng-model="$ctrl.ngModel.address.city" required>
+    </div>
+    <div class="form-group col-xs-4">
+      <i class="zmdi zmdi-folder-star-alt"></i>
+      <input type="text" class="form-control" ng-class="{ error: $ctrl.ngModel['address.state'].$touched && $ctrl.ngModel['address.state'].$invalid }"
+        placeholder="State" name="address.state" ng-model="$ctrl.ngModel.address.state" required>
+    </div>
+    <div class="form-group col-xs-4">
+      <i class="zmdi zmdi-code"></i>
+      <input type="text" class="form-control" ng-class="{ error: $ctrl.ngModel['address.zipCode'].$touched && $ctrl.ngModel['address.zipCode'].$invalid }"
+        placeholder="Zip Code" name="address.zipCode" ng-model="$ctrl.ngModel.address.zipCode" required>
+    </div>
+  </div>
+</form>
