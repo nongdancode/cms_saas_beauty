@@ -28,6 +28,12 @@
       return HttpService.get(window.config.baseApiUrl + 'history-customer/' + id);
     };
 
+    service.refund = function(data) {
+      return HttpService.post(window.config.baseApiUrl + 'refund', data, {
+        errorHandleStrategy: HttpService.strategy.show
+      });
+    };
+
     return service;
   }
 })();
