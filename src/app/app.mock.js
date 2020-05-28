@@ -198,29 +198,41 @@
         break;
       }
       case /api\/admin\/configs/.test(api): {
-        mock = JSON.stringify([
-          {
-            id: 1,
-            key: 'banner-text',
-            category: 'promotion',
-            type: 'text',
-            value: ''
+        mock = JSON.stringify({
+          promotion: {
+            'banner-text': {
+              type: 'text',
+              value: ''
+            },
+            'banner-color': {
+              type: 'color',
+              value: 'blue'
+            },
           },
-          {
-            id: 2,
-            key: 'banner-color',
-            category: 'promotion',
-            type: 'color',
-            value: ''
+          client: {
+            'enable-client': {
+              type: 'boolean',
+              value: true
+            },
+            'disable-client-text': {
+              type: 'text',
+              value: 'We are temporary closed , sorry and see you soon'
+            },
+            'timezone': {
+              type: 'timezone',
+              value: ''
+            }
           },
-          {
-            id: 3,
-            key: 'test',
-            category: 'test',
-            type: 'color',
-            value: ''
+          general: {
+            'logo': {
+              type: 'image',
+              value: ''
+            }
+          },
+          information: {
+
           }
-        ]);
+        });
         break;
       }
 

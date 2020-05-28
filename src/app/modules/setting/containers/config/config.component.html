@@ -19,21 +19,21 @@
       </li>
     </ul>
 
-    <form ng-repeat="category in $ctrl.data.categories" style="margin-top: 20px;"
+    <form ng-repeat="(category, configSection) in $ctrl.data.config" style="margin-top: 20px;"
       ng-if="$ctrl.data.active === category">
-      <div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-12" ng-repeat="config in $ctrl.data.config track by $index" ng-if="config.category === category">
-        <label for="{{ config.key }}">{{ $ctrl.name(config.key) }}</label>
+      <div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-12" ng-repeat="(key, config) in configSection">
+        <label for="{{ key }}">{{ $ctrl.name(key) }}</label>
         <span ng-switch on="config.type">
-          <select ng-switch-when="timezone" class="form-control" name="{{ config.key }}"
+          <select ng-switch-when="timezone" class="form-control" name="{{ key }}"
             ng-options="zone for zone in $ctrl.moment.tz.names()" ng-model="config.value">
           </select>
-          <select ng-switch-when="boolean" class="form-control" name="{{ config.key }}"
+          <select ng-switch-when="boolean" class="form-control" name="{{ key }}"
             ng-options="operator for operator in [true, false]" ng-model="config.value">
           </select>
           <ma-image-upload ng-switch-when="image"
-            name="{{ config.key }}" ng-model="config.value">
+            name="{{ key }}" ng-model="config.value">
           </ma-image-upload>
-          <input ng-switch-default class="form-control" name="{{ config.key }}"
+          <input ng-switch-default class="form-control" name="{{ key }}"
             type="{{ config.type }}" ng-model="config.value" />
         </span>
       </div>
