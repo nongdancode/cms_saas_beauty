@@ -120,3 +120,31 @@
     </div>
   </form>
 </script>
+
+<script type="text/ng-template" id="delete-entire.html">
+  <form novalidate>
+    <div class="form-group" ng-if="$ctrl.viewAll">
+      <label for="">Employee</label>
+
+      <select class="form-control" ng-model="shift.employee_id"
+        ng-options="staff.id as staff.name for staff in staffs">
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="">Date</label>
+      <div class="input-group date"
+        ng-model="shift.date" datetimepicker
+        options="{
+        format: 'MM/YYYY',
+        showClose: true,
+        minDate: moment()
+        }">
+        <input type="text" class="form-control" />
+        <span class="input-group-addon">
+          <span class="glyphicon glyphicon-calendar"></span>
+        </span>
+      </div>
+    </div>
+  </form>
+</script>
