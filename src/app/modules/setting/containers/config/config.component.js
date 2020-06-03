@@ -57,6 +57,55 @@
       }
     };
 
+    customCategories = {
+      'open-hours': {
+        timeToDate: time => {
+          const [hour, min] = time.split(':');
+
+          return moment().set('hour', hour).set('minutes', min);
+        },
+        dateToTime: date => {
+          return `${date.hours()}:${date.minutes()}`;
+        },
+        format: data => {
+          Object.values(data).forEach(config => {
+            config.from = this.timeToDate(config.from);
+            config.to = this.timeToDate(config.to);
+          })
+        },
+        data: {
+          mon: {
+            from: '08:00',
+            to: '17:00'
+          },
+          tue: {
+            from: '08:00',
+            to: '17:00'
+          },
+          wed: {
+            from: '08:00',
+            to: '17:00'
+          },
+          thu: {
+            from: '08:00',
+            to: '17:00'
+          },
+          fri: {
+            from: '08:00',
+            to: '17:00'
+          },
+          sat: {
+            from: '08:00',
+            to: '17:00'
+          },
+          sun: {
+            from: '08:00',
+            to: '17:00'
+          }
+        }
+      }
+    }
+
     moment = moment;
 
     constructor($scope, $compile, $state, $stateParams, $resolve, ModalService, ConfigService) {
@@ -74,7 +123,10 @@
 
       this.data.config = this.merge(this.defaultConfig, this.$resolve.config);
 
-      this.data.categories = Object.keys(this.data.config);
+      this.data.categories = [
+        ...Object.keys(this.data.config),
+        ...Object.keys(this.customCategories)
+      ];
 
       this.data.active = this.data.categories && this.data.categories[0];
     };

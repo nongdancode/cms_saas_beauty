@@ -30,6 +30,18 @@
       });
     };
 
+    service.getOpenHours = function() {
+      return HttpService.get(HttpService.generateUrl(`admin/open-hours`), {}, {
+        errorHandleStrategy: HttpService.strategy.show
+      }).then(JSON.parse).catch(err => {});
+    }
+
+    service.saveOpenHours = function(data) {
+      return HttpService.post(HttpService.generateUrl(`admin/open-hours`), { data: JSON.stringify(data) }, {
+        errorHandleStrategy: HttpService.strategy.show
+      });
+    }
+
     return service;
   }
 })();
