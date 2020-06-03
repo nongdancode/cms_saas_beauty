@@ -392,3 +392,7 @@ window.menu.tree = [
     ]
   }
 ];
+
+window.calendar = {
+  key: '0409969224-fcs-1591071223'
+};
