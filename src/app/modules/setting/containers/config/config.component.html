@@ -1,10 +1,6 @@
 <div class="row list-header ng-scope">
   <div class="col-lg-12">
     <div class="page-header">
-      <button type="button" class="btn btn-default pull-right" style="margin-top: 2px;" ng-click="$ctrl.save()">
-        <span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;<span class="hidden-xs ng-scope">Save</span>
-      </button>
-
       <h1>Config</h1>
     </div>
   </div>
@@ -21,56 +17,72 @@
 
     <form ng-repeat="(category, configSection) in $ctrl.data.config" style="margin-top: 20px;"
       ng-if="$ctrl.data.active === category">
-      <div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-12" ng-repeat="(key, config) in configSection">
-        <label for="{{ key }}">{{ $ctrl.name(key) }}</label>
-        <span ng-switch on="config.type">
-          <select ng-switch-when="timezone" class="form-control" name="{{ key }}"
-            ng-options="zone for zone in $ctrl.moment.tz.names()" ng-model="config.value">
-          </select>
-          <select ng-switch-when="boolean" class="form-control" name="{{ key }}"
-            ng-options="operator for operator in [true, false]" ng-model="config.value">
-          </select>
-          <ma-image-upload ng-switch-when="image"
-            name="{{ key }}" ng-model="config.value">
-          </ma-image-upload>
-          <input ng-switch-default class="form-control" name="{{ key }}"
-            type="{{ config.type }}" ng-model="config.value" />
-        </span>
+      <div class="row">
+        <div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-12" ng-repeat="(key, config) in configSection">
+          <label for="{{ key }}">{{ $ctrl.name(key) }}</label>
+          <span ng-switch on="config.type">
+            <select ng-switch-when="timezone" class="form-control" name="{{ key }}"
+              ng-options="zone for zone in $ctrl.moment.tz.names()" ng-model="config.value">
+            </select>
+            <select ng-switch-when="boolean" class="form-control" name="{{ key }}"
+              ng-options="operator for operator in [true, false]" ng-model="config.value">
+            </select>
+            <ma-image-upload ng-switch-when="image"
+              name="{{ key }}" ng-model="config.value">
+            </ma-image-upload>
+            <input ng-switch-default class="form-control" name="{{ key }}"
+              type="{{ config.type }}" ng-model="config.value" />
+          </span>
+        </div>
+      </div>
+
+      <div class="row" style="margin: 16px;">
+        <button type="button" class="btn btn-default pull-right" style="margin-top: 2px;" ng-click="$ctrl.save()">
+          <span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;<span class="hidden-xs ng-scope">Save</span>
+        </button>
       </div>
     </form>
 
     <form style="margin-top: 20px;" ng-if="$ctrl.data.active === 'open-hours'">
-      <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" style="padding: 10px"
-        ng-repeat="(key, config) in $ctrl.customCategories[$ctrl.data.active].data">
+      <div class="row">
+        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" style="padding: 10px"
+          ng-repeat="(key, config) in $ctrl.customCategories[$ctrl.data.active].data">
 
-        <div class="well">
-          <label for="">{{ key | uppercase }}</label>
-          <hr/>
-          <div class="row">
-            <div class="form-group col-xs-6">
-              <label for="">From</label>
+          <div class="well">
+            <label for="">{{ key | uppercase }}</label>
+            <hr/>
+            <div class="row">
+              <div class="form-group col-xs-6">
+                <label for="">From</label>
 
-              <input class="form-control"
-                datetimepicker
-                options="{
-                format: 'LT',
-                showClose: true
-                }"
-                ng-model="config.from" />
-            </div>
-            <div class="form-group col-xs-6">
-              <label for="">To</label>
+                <input class="form-control"
+                  datetimepicker
+                  options="{
+                  format: 'HH:mm',
+                  showClose: true
+                  }"
+                  ng-model="config.from" />
+              </div>
+              <div class="form-group col-xs-6">
+                <label for="">To</label>
 
-              <input class="form-control"
-                datetimepicker
-                options="{
-                format: 'LT',
-                showClose: true
-                }"
-                ng-model="config.to" />
+                <input class="form-control"
+                  datetimepicker
+                  options="{
+                  format: 'HH:mm',
+                  showClose: true
+                  }"
+                  ng-model="config.to" />
+              </div>
             </div>
           </div>
         </div>
+      </div>
+
+      <div class="row" style="margin: 16px;">
+        <button type="button" class="btn btn-default pull-right" style="margin-top: 2px;" ng-click="$ctrl.saveOpenHours()">
+          <span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;<span class="hidden-xs ng-scope">Save</span>
+        </button>
       </div>
     </form>
   </div>
