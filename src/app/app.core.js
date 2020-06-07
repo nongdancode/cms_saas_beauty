@@ -180,6 +180,14 @@ window.menu.ref = [
     role: [window.models.Role.OWNER]
   },
   {
+    key: 'schedule-timeline',
+    name: 'Schedule Timeline',
+    icon: 'glyphicon glyphicon-hourglass',
+    src: '/staff/shift-timeline',
+    active: path => path == '/staff/shift',
+    role: [window.models.Role.OWNER]
+  },
+  {
     key: 'transaction-history',
     name: 'Transaction History',
     icon: 'glyphicon glyphicon-usd',
