@@ -50,8 +50,6 @@
             <div class="form-group col-xs-6">
               <label for="">From</label>
 
-              {{ config.from }}
-
               <input class="form-control"
                 datetimepicker
                 options="{
@@ -66,7 +64,7 @@
               <input class="form-control"
                 datetimepicker
                 options="{
-                format: 'hh:mm',
+                format: 'LT',
                 showClose: true
                 }"
                 ng-model="config.to" />
