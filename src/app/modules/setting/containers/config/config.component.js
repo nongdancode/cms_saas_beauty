@@ -12,6 +12,14 @@
           type: 'color',
           value: 'blue'
         },
+        'banner-checkin-text': {
+          type: 'text',
+          value: ''
+        },
+        'banner-checkin-color': {
+          type: 'color',
+          value: 'blue'
+        }
       },
       client: {
         'enable-client': {

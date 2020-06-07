@@ -39,23 +39,45 @@ window.models = {
       text: 'Charge Back'
     }
   },
-  EmployeePaymentType: {
-    'CASH': 'cash',
-    'CHECK': 'check',
-    'cash': {
+  TransactionType: {
+    CASH: 'cash',
+    UNSETLED: 'unsetled',
+    SETLED: 'setled',
+    VOID: 'void',
+    REFUNDED: 'refunded',
+    cash: {
       text: 'Cash'
     },
-    'check': {
+    unsetled: {
+      text: 'Unsetled'
+    },
+    setled: {
+      text: 'Setled'
+    },
+    void: {
+      text: 'Void'
+    },
+    refunded: {
+      text: 'Refunded'
+    }
+  },
+  EmployeePaymentType: {
+      'CASH': 'cash',
+      'CHECK': 'check',
+      'cash': {
+      text: 'Cash'
+    },
+      'check': {
       text: 'Check'
     }
   },
   EmployeeCommissionType: {
-    '100_CHECK': '100_check',
-    '50CHECK_50CASH': '50check_50cash',
-    '100_check': {
+      '100_CHECK': '100_check',
+      '50CHECK_50CASH': '50check_50cash',
+      '100_check': {
       text: '100% Check'
     },
-    '50check_50cash': {
+      '50check_50cash': {
       text: '50% Check 50% Cash'
     }
   },
