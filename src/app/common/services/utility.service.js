@@ -20,13 +20,15 @@
         ]
       });
 
-      uploader.filters.push({
-        name: 'file',
-        fn: function(item, options) {
-          var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
-          return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
-        }
-      });
+      uploader.filters.push(
+        /* {
+         *   name: 'file',
+         *   fn: function(item, options) {
+         *     var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
+         *     return '|jpg|png|jpeg|bmp|gif|xlsx|'.indexOf(type) !== -1;
+         *   }
+         * } */
+      );
 
       let result = [];
 

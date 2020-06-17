@@ -1,0 +1,7 @@
+<label for="file-upload" class="btn btn-default btn-sm" style="height: 32px;">
+  <span class="glyphicon glyphicon-phone" aria-hidden="true"></span>&nbsp;
+  <span class="hidden-xs">Upload Customer List</span>
+  <input id="file-upload" type="file" class="hidden" nv-file-select=""
+    uploader="$ctrl.uploader"
+    onchange="angular.element(this).scope().$ctrl.upload()"/>
+</label>
