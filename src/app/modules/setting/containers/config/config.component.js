@@ -12,6 +12,14 @@
           type: 'color',
           value: 'blue'
         },
+        'banner-checkin-text': {
+          type: 'text',
+          value: ''
+        },
+        'banner-checkin-color': {
+          type: 'color',
+          value: 'blue'
+        }
       },
       client: {
         'enable-client': {
@@ -75,14 +83,22 @@
 
             return moment().set('hour', hour).set('minutes', min);
           },
-          dateToTime: date => {
-            return `${date.hours()}:${date.minutes()}`;
+          dateToTime: function(date) {
+            const formatNumber = num => {
+              return ("0" + num).slice(-2);
+            };
+
+            return `${formatNumber(date.hours())}:${formatNumber(date.minutes())}`;
           },
-          format: function(data) {
+          format: function(data, fn=this.timeToDate) {
+            data = _.cloneDeep(data);
+
             Object.values(data).forEach(config => {
-              config.from = this.timeToDate(config.from);
-              config.to = this.timeToDate(config.to);
+              config.from = fn(config.from);
+              config.to = fn(config.to);
             })
+
+            return data;
           },
           data: {
             mon: {
@@ -116,14 +132,18 @@
           }
         }
       }
-
-      this.customCategories['open-hours'].format(this.customCategories['open-hours'].data);
     }
 
     $onInit() {
       this.data = {};
 
       this.data.config = this.merge(this.defaultConfig, this.$resolve.config);
+
+      this.customCategories['open-hours'].data =
+        this.customCategories['open-hours'].format({
+          ...this.customCategories['open-hours'].data,
+          ...this.$resolve.openHours
+        });
 
       this.data.categories = [
         ...Object.keys(this.data.config),
@@ -146,7 +166,21 @@
     }
 
     save() {
-      this.ConfigService.save(this.data.config);
+      this.ConfigService.save(this.data.config)
+          .then(res => {
+            this.ModalService.success('Update config successfully!');
+          });
+    }
+
+    saveOpenHours() {
+      this.ConfigService.saveOpenHours(
+        this.customCategories['open-hours'].format(
+          this.customCategories['open-hours'].data,
+          this.customCategories['open-hours'].dateToTime
+        )
+      ).then(res => {
+        this.ModalService.success('Update open hours successfully!');
+      });
     }
   }
 

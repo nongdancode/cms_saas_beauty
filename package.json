@@ -21,6 +21,7 @@
     "daterangepicker": "^3.0.5",
     "eonasdan-bootstrap-datetimepicker": "^4.17.47",
     "fullcalendar": "^3.10",
+    "fullcalendar-scheduler": "^1.10.1",
     "highcharts": "^8.0.0",
     "highcharts-ng": "^1.2.1",
     "jquery": "^3.4.1",

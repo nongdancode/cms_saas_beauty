@@ -1,7 +1,7 @@
 (function(){
-  const module = angular.module('module.staff.containers.shift-management', []);
+  const module = angular.module('module.staff.containers.shift-management-summary', []);
 
-  class ShiffManagementComponent {
+  class ShiffManagementSummaryComponent {
     constructor($scope, $compile, $state, $stateParams, $resolve, ModalService, StaffService) {
       this.$scope = $scope;
       this.$compile = $compile;
@@ -20,13 +20,10 @@
         eventSources: [],
       };
 
-      this.data.staff = this.$resolve.staff;
-
       this.data.events = this.$resolve.shifts;
+      this.data.staffs = this.$resolve.staffs;
 
-      if (this.viewAll) {
-        this.initViewAll();
-      }
+      this.init();
 
       self = this;
 
@@ -44,11 +41,11 @@
             start: moment(),
             end: '2100-01-01'
           },
-          businessHours: {
-            start: moment().format('HH:mm'),
-            end: '23:59',
-            daysOfWeek: [0,1,2,3,4,5,6]
-          },
+          /* businessHours: {
+           *   start: moment().format('HH:mm'),
+           *   end: '23:59',
+           *   daysOfWeek: [0,1,2,3,4,5,6]
+           * }, */
           allDaySlot: false,
           customButtons: {
             addShift: {
@@ -65,23 +62,26 @@
             }
           },
           header:{
-            left: 'month agendaWeek agendaDay',
+            left: 'timelineDay, timelineWeek',
             center: 'title',
             right: 'today prev,next, addShift, deleteEntireMonth'
           },
-          minTime: moment(),
-          defaultView: 'month'
+          /* minTime: moment(), */
+          defaultView: 'timelineDay',
+          resourceLabelText: 'Employees',
+          resources: this.data.staffs.map(staff => {
+            return {
+              id: staff.id,
+              title: staff.name
+            };
+          })
         }
       };
 
       this.$scope.$watch('$ctrl.data.events', (newValue, oldValue) => {
         const title = event => {
-          if (this.viewAll) {
-            const employee = this.data.staffs.find(staff => +staff.id === +event.employee_id);
-            return `${employee.name}: ${event.count.booking}`;
-          }
-
-          return `Tasks: ${event.count.booking}`;
+          const employee = this.data.staffs.find(staff => +staff.id === +event.employee_id);
+          return `${employee.name}: ${event.count.booking}`;
         };
 
         const events = newValue.map(event => {
@@ -94,7 +94,8 @@
             end: moment.unix(event.end).valueOf(),
             editable: false,
             durationEditable: false,
-            backgroundColor: this.getEventColor(event.type)
+            backgroundColor: this.getEventColor(event.type),
+            resourceId: event.employee_id
           };
 
           event._id = `${event.id}-${event.start}-${event.end}`;
@@ -108,7 +109,7 @@
       });
     };
 
-    initViewAll() {
+    init() {
       this.data = {
         ...this.data,
         filter: {
@@ -205,10 +206,8 @@
         $ctrl: this
       };
 
-      if (this.viewAll) {
-        scope.staffs = this.data.staffs;
-        scope.shift.employee_id = scope.staffs && scope.staffs[0] && scope.staffs[0].id;
-      }
+      scope.staffs = this.data.staffs;
+      scope.shift.employee_id = scope.staffs && scope.staffs[0] && scope.staffs[0].id;
 
       const modal = this.ModalService.prompt({
         template: 'add-shift.html',
@@ -269,10 +268,8 @@
         $ctrl: this
       };
 
-      if (this.viewAll) {
-        scope.staffs = this.data.staffs;
-        scope.shift.employee_id = scope.staffs && scope.staffs[0] && scope.staffs[0].id;
-      }
+      scope.staffs = this.data.staffs;
+      scope.shift.employee_id = scope.staffs && scope.staffs[0] && scope.staffs[0].id;
 
       const modal = this.ModalService.prompt({
         template: 'delete-entire.html',
@@ -302,12 +299,11 @@
     submit() {};
   }
 
-  module.component('shiftManagement', {
+  module.component('shiftManagementSummary', {
     bindings: {
-      '$resolve': '<',
-      'viewAll': '<'
+      '$resolve': '<'
     },
-    controller: ShiffManagementComponent,
-    templateUrl: 'app/modules/staff/containers/shift-management/shift-management.component.html'
+    controller: ShiffManagementSummaryComponent,
+    templateUrl: 'app/modules/staff/containers/shift-management-summary/shift-management-summary.component.html'
   });
 })();
