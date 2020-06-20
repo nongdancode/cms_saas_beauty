@@ -357,6 +357,9 @@ window.menu.tree = [
       },
       {
         key: 'schedule-summary'
+      },
+      {
+        key: 'schedule-timeline'
       }
     ]
   },
