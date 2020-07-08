@@ -31,7 +31,9 @@
     "ng-admin": "^1.0.13",
     "ngstorage": "^0.3.11",
     "print-js": "^1.0.63",
-    "ui-select": "^0.19.8"
+    "ui-select": "^0.19.8",
+    "xlsx": "^0.14.5",
+    "comma-separated-values": "^3.6.4"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",

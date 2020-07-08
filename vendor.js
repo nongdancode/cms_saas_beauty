@@ -22,6 +22,8 @@ module.exports = {
     "node_modules/angular-file-upload/dist/angular-file-upload.min.js",
     "node_modules/angular-bootstrap-contextmenu/contextMenu.js",
     "node_modules/print-js/dist/print.js",
+    "node_modules/comma-separated-values/csv.min.js",
+    "node_modules/xlsx/dist/xlsx.min.js",
     "src/assets/js/datetimepicker.js"
   ],
   css: [
