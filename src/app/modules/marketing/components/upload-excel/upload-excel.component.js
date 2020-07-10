@@ -64,9 +64,11 @@
 
             return data.reduce((result, row) => {
               const parsed = row.reduce((result, value, index) => {
+                const key = fields[index].trim();
+
                 return {
                   ...result,
-                  [fields[index]]: value
+                  [key]: value
                 }
               }, {});
 
