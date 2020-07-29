@@ -28,6 +28,11 @@
       this.data.viewType = this.data.viewType === 'view' ? 'edit' : 'view';
     };
 
+    togglePayment() {
+      this.data.showPayment = !this.data.showPayment;
+      this.data.paymentType = this.data.showPayment ? 'check' : 'cash';
+    }
+
     showModal() {
       this.modal = this.ModalService.create({
         animation: true,

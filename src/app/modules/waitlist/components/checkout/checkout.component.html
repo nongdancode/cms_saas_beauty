@@ -36,7 +36,7 @@
     </form>
   </div>
   <div class="modal-footer">
-    <button class="btn" ng-class="{ 'btn-warning': !$ctrl.data.showPayment, 'btn-info': $ctrl.data.showPayment }" type="button" ng-click="$ctrl.data.showPayment = !$ctrl.data.showPayment" ng-if="!$ctrl.printOnly">Pay By Card</button>
+    <button class="btn" ng-class="{ 'btn-warning': !$ctrl.data.showPayment, 'btn-info': $ctrl.data.showPayment }" type="button" ng-click="$ctrl.togglePayment()" ng-if="!$ctrl.printOnly">Pay By Card</button>
     <button class="btn btn-primary" type="button" ng-click="$ctrl.sendSms()" ng-disabled="$ctrl.disableFinish" ng-if="!$ctrl.printOnly">Send SMS</button>
     <button class="btn btn-primary" type="button"
       ng-if="!$ctrl.printOnly"
