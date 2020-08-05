@@ -31,6 +31,9 @@
               name="{{ key }}" ng-model="config.value">
             </ma-image-upload>
             <input ng-switch-default class="form-control" name="{{ key }}"
+              ui-mask="{{ config.mask }}"
+              ui-mask-placeholder
+              ui-mask-placeholder-char="_"
               type="{{ config.type }}" ng-model="config.value" />
           </span>
         </div>

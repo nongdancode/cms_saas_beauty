@@ -56,11 +56,13 @@
         },
         'store-tax': {
           type: 'text',
-          value: ''
+          value: '',
+          mask: '99'
         },
         'store-phone': {
           type: 'text',
-          value: ''
+          value: '',
+          mask: '9999999999'
         },
       }
     };
