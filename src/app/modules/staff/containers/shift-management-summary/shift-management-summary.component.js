@@ -283,6 +283,7 @@
         const deletedEventIds =
           this.data.events
               .filter(event => moment.unix(event.start).isSame(scope.shift.date, 'month'))
+              .filter(event => typeof scope.shift.employee_id !== 'undefined' ? event.employee_id === scope.shift.employee_id : true)
               .map(event => event.id);
 
         if (deletedEventIds.length) {
