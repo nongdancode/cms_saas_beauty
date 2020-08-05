@@ -38,6 +38,16 @@
       return HttpService.post(window.config.baseApiUrl + 'customers/bulk', data, {
         errorHandleStrategy: HttpService.strategy.rest
       });
+    };
+
+    service.getConnectReview = function() {
+      return HttpService.get(window.config.baseApiUrl + 'marketing/reviews');
+    }
+
+    service.saveConnectReview = function(data) {
+      return HttpService.post(window.config.baseApiUrl + 'marketing/reviews', data, {
+        errorHandleStrategy: HttpService.strategy.show
+      });
     }
 
     return service;
