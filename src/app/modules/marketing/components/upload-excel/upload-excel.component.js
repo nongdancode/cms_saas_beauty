@@ -8,7 +8,6 @@
       this.ModalService = ModalService;
       this.UtilityService = UtilityService;
       this.MarketingService = MarketingService;
-      this.ModalService = ModalService;
     }
 
     $onInit() {
@@ -79,9 +78,11 @@
             }, []);
           })
           .then(data => {
-            this.MarketingService.importBulkCustomer(data).then(res => {
-              this.ModalService.success('Upload customer list successfully!');
-            });
+            this.MarketingService.importBulkCustomer(data)
+                .then(res => {
+                  this.ModalService.success('Upload customer list successfully!');
+                })
+                .catch(response => alert(response.error || 'Maintainence in progress.'));
           })
     }
   }

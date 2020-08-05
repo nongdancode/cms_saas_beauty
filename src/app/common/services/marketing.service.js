@@ -36,7 +36,7 @@
 
     service.importBulkCustomer = function(data) {
       return HttpService.post(window.config.baseApiUrl + 'customers/bulk', data, {
-        errorHandleStrategy: HttpService.strategy.show
+        errorHandleStrategy: HttpService.strategy.rest
       });
     }
 
