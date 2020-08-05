@@ -15,7 +15,7 @@
 
     app.dashboard(
       nga.dashboard()
-        .addCollection(nga.collection(nga.entities['marketing']))
+        .addCollection(nga.collection(nga.entities['customer']))
     );
 
     const currentUser = (JSON.parse(window.localStorage.getItem('ngStorage-user')) || {});

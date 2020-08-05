@@ -1,5 +1,5 @@
 (function(){
-  const module = angular.module('module.marketing.components.upload-excel', []);
+  const module = angular.module('module.customer.components.upload-excel', []);
 
   class UploadExcelComponent {
     constructor($scope, $timeout, ModalService, UtilityService, MarketingService) {
@@ -92,6 +92,6 @@
       selection: '<'
     },
     controller: UploadExcelComponent,
-    templateUrl: 'app/modules/marketing/components/upload-excel/upload-excel.component.html'
+    templateUrl: 'app/modules/customer/components/upload-excel/upload-excel.component.html'
   });
 })();

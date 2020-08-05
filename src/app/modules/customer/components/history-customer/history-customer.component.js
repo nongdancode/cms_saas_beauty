@@ -1,5 +1,5 @@
 (function(){
-    const module = angular.module('module.marketing.components.history-customer', []);
+    const module = angular.module('module.customer.components.history-customer', []);
 
     class HistoryCustomerComponent {
         data = {
@@ -44,6 +44,6 @@
             id: '<'
         },
         controller: HistoryCustomerComponent,
-        templateUrl: 'app/modules/marketing/components/history-customer/history-customer.component.html'
+        templateUrl: 'app/modules/customer/components/history-customer/history-customer.component.html'
     });
 })();

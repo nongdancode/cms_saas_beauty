@@ -168,7 +168,7 @@ window.menu.ref = [
     key: 'customer-management',
     name: 'Customer Management',
     icon: 'glyphicon glyphicon-shopping-cart',
-    src: '/marketing/list',
+    src: '/customer/list',
     role: [window.models.Role.OWNER]
   },
   {
@@ -214,6 +214,20 @@ window.menu.ref = [
     name: 'Transaction History',
     icon: 'glyphicon glyphicon-usd',
     src: '/transaction/list',
+    role: [window.models.Role.OWNER]
+  },
+  {
+    key: 'marketing',
+    name: 'Marketing',
+    icon: 'glyphicon glyphicon-phone',
+    active: path => path.includes('/marketing/'),
+    role: [window.models.Role.OWNER]
+  },
+  {
+    key: 'connect-review',
+    name: 'Connect review',
+    icon: 'glyphicon glyphicon-thumbs-up',
+    src: '/marketing/connect-review',
     role: [window.models.Role.OWNER]
   },
   {
@@ -365,6 +379,14 @@ window.menu.tree = [
   },
   {
     key: 'transaction-history'
+  },
+  {
+    key: 'marketing',
+    children: [
+      {
+        key: 'connect-review'
+      }
+    ]
   },
   {
     key: 'promotion',

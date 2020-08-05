@@ -1,5 +1,5 @@
 (function(){
-    const module = angular.module('module.marketing.components.send-sms', []);
+    const module = angular.module('module.customer.components.send-sms', []);
 
     class SendSmsComponent {
         constructor($scope, $timeout, ModalService, UtilityService, MarketingService) {
@@ -88,6 +88,6 @@
             selection: '<'
         },
         controller: SendSmsComponent,
-        templateUrl: 'app/modules/marketing/components/send-sms/send-sms.component.html'
+        templateUrl: 'app/modules/customer/components/send-sms/send-sms.component.html'
     });
 })();
