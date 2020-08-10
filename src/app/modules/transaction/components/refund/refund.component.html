@@ -1,10 +1,29 @@
-<span ng-switch="$ctrl.entry.values.type">
-  <a class="btn btn-default btn-sm" ng-switch-when="unsetled" ng-click="$ctrl.send()">
-    <span class="glyphicon glyphicon-backward" aria-hidden="true"></span>&nbsp;
-    <span class="hidden-xs ng-scope">Void</span>
-  </a>
-  <a class="btn btn-default btn-sm" ng-switch-when="setled" ng-click="$ctrl.send()">
+<span ng-if="$ctrl.entry.values.refund === 'on'">
+  <a class="btn btn-default btn-sm" ng-click="$ctrl.showModal()">
     <span class="glyphicon glyphicon-backward" aria-hidden="true"></span>&nbsp;
     <span class="hidden-xs ng-scope">Refund</span>
   </a>
 </span>
+
+<script type="text/ng-template" id="refund-modal.html">
+  <div class="modal-header">
+    <h3 class="modal-title" id="modal-title">Refund</h3>
+  </div>
+  <div class="modal-body" id="modal-body">
+    <form name="templateForm" action="">
+      <div class="form-group">
+        <label for="">Services</label>
+
+        <div class="checkbox" ng-repeat="service in $ctrl.entry.values.invoice.services">
+          <label><input ng-model="$ctrl.form.services[$ctrl.serviceIdentity(service)]" type="checkbox" value="{{service.name}}">{{ service.name }}</label>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" type="button"
+      ng-disabled="!$ctrl.formValid()"
+      ng-click="$ctrl.send()">Refund</button>
+    <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+  </div>
+</script>

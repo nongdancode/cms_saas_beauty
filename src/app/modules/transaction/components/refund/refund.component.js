@@ -8,14 +8,54 @@
       this.MarketingService = MarketingService;
     }
 
-    $onInit() { }
+    $onInit() {
+      // this.entry.values.refund = 'on';
+
+      this.form = {
+        services: {}
+      };
+    }
+
+    showModal() {
+      this.modal = this.ModalService.create({
+        animation: true,
+        templateUrl: 'refund-modal.html',
+        size: 'md',
+        scope: this.$scope
+      });
+    };
+
+    cancel() {
+      this.close();
+    };
+
+    close() {
+      this.modal.close();
+      this.reset();
+    }
+
+    reset() {
+
+    }
+
+    serviceIdentity(service) {
+      return `${service.name}-${service.price}-${service.discount}`;
+    }
+
+    formValid() {
+      return Object.values(this.form.services).some(status => status);
+    }
 
     send() {
       this.ModalService.confirm({
         title: 'Confirm',
         message: 'Refund?'
       }).then((confirm => {
-        this.MarketingService.refund(this.entry.values);
+        const data = this.entry.values;
+
+        data.invoice.services = data.invoice.services.filter(service => this.form.services[this.serviceIdentity(service)]);
+
+        this.MarketingService.refund(data);
       }));
     };
   }
