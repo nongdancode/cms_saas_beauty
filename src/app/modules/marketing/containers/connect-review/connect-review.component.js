@@ -10,6 +10,10 @@
       'yelp': {
         type: 'text',
         value: ''
+      },
+      'facebook': {
+        type: 'text',
+        value: ''
       }
     }
 

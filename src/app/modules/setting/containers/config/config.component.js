@@ -103,31 +103,31 @@
             return data;
           },
           data: {
-            mon: {
+            Mon: {
               from: '08:00',
               to: '17:00'
             },
-            tue: {
+            Tue: {
               from: '08:00',
               to: '17:00'
             },
-            wed: {
+            Wed: {
               from: '08:00',
               to: '17:00'
             },
-            thu: {
+            Thu: {
               from: '08:00',
               to: '17:00'
             },
-            fri: {
+            Fri: {
               from: '08:00',
               to: '17:00'
             },
-            sat: {
+            Sat: {
               from: '08:00',
               to: '17:00'
             },
-            sun: {
+            Sun: {
               from: '08:00',
               to: '17:00'
             }
