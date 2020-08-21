@@ -1,7 +1,8 @@
 (function(){
   const module = angular.module('module.transaction', [
     'module.transaction.components.send-sms',
-    'module.transaction.components.refund'
+    'module.transaction.components.refund',
+    'module.transaction.components.review'
   ]);
 
   module.config(function (NgAdminConfigurationProvider) {
@@ -23,6 +24,7 @@
       nga.field('invoice', 'template')
          .label('Action')
          .template(
+           `<ma-review entry="entry"></ma-review>` +
            `<ma-refund entry="entry"></ma-refund>` +
            `<ma-send-sms-bill entry="entry"></ma-send-sms-bill>` +
            `<ma-checkout entry="entry" title="Print" print-only="true"></ma-checkout>`

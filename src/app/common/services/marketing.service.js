@@ -50,6 +50,12 @@
       });
     }
 
+    service.reviewBill = function(data) {
+      return HttpService.post(window.config.baseApiUrl + 'reviews', data, {
+        errorHandleStrategy: HttpService.strategy.show
+      });
+    }
+
     return service;
   }
 })();
