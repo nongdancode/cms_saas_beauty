@@ -44,8 +44,9 @@
     };
 
     service.checkoutPayment = function(data) {
-      return HttpService.post(window.config.baseApiUrl + 'checkout/onlinecard-payment', data, {
-        errorHandleStrategy: HttpService.strategy.show
+      return service.confirmCheckout({
+        ...data,
+        paymentBy: 'card'
       });
     }
 
