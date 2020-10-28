@@ -56,6 +56,12 @@
       });
     }
 
+    service.deleteCustomer = function(data) {
+      return HttpService.post(window.config.baseApiUrl + 'marketing/delete-customer', data, {
+        errorHandleStrategy: HttpService.strategy.show
+      });
+    };
+
     return service;
   }
 })();

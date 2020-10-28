@@ -2,7 +2,8 @@
   const module = angular.module('module.customer', [
     'module.customer.components.send-sms',
     'module.customer.components.history-customer',
-    'module.customer.components.upload-excel'
+    'module.customer.components.upload-excel',
+    'module.customer.components.delete-customer'
   ]);
 
   module.config(function (NgAdminConfigurationProvider) {
@@ -40,6 +41,7 @@
     ]);
 
     listView.actions(
+      '<ma-delete-customer selection="selection" entity="entity"></ma-delete-customer>' +
       '<ma-upload-excel selection="selection" entity="entity"></ma-upload-excel>' +
       '<ma-send-sms selection="selection" entity="entity"></ma-send-sms>' +
       '<ma-filter-button filters="filters()" enabled-filters="enabledFilters" enable-filter="enableFilter()"></ma-filter-button>' +
